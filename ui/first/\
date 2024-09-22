@@ -15,6 +15,9 @@ mapy = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ]
+mapy_shape = [len(mapy), len(mapy[0])]
+number_of_positions = 10
+number_of_steps = 300
 
 
 class Kitten:
@@ -93,7 +96,6 @@ class Kitten:
                         self.last_instruction = "r"
                     elif positions[1] == mapy_shape[1] - 1:
                         self.last_instruction = "l"
-                    self.score += 1
                     return positions[0], positions[1]
                 else:
                     self.start_positions_index += 1
@@ -187,10 +189,12 @@ class Kitten:
                     self.i += 1
                 # step
 
+        self.print_map()
+
     def start(self):
 
         self.move()
-        return [self.score, self.start_positions, self.steps]
+        return self.score
 
     def print_map(self):
         for row in self.mapc:
@@ -200,24 +204,10 @@ class Kitten:
             print(mystring + "\n")
 
 
-if __name__ == "__main__":
-    mapy_shape = [len(mapy), len(mapy[0])]
-    number_of_positions = 10
-    number_of_steps = 300
-    kittens = [Kitten() for _ in range(25)]
-    kitten_score_sum = []
-    for _ in range(10):
-        kitten_result_array = []
-        kitten_score_average = []
-        for kitten in kittens:
-            kitten_data = kitten.start()
-            kitten_result_array.append(kitten_data)
-            kitten_score_average.append(kitten_data[0])
-        kitten_score_sum.append(sum(kitten_score_average))
-        kitten_result_array = list(reversed(sorted(kitten_result_array)))
-        top_kittens = kitten_result_array[:5]
-        print("top scores:")
-        for x in top_kittens:
-            print(x[0])
-
-    print(kitten_score_sum)
+kittens = [Kitten() for _ in range(5)]
+kitten_result_array = []
+for kitten in kittens:
+    kitten_score = kitten.start()
+    kitten_result_array.append([kitten, kitten_score])
+    print(kitten_score)
+print(mapy)
