@@ -18,40 +18,31 @@ mapy = [
 
 
 class Kitten:
-    def __init__(self, start_positions=None, steps=None):
-        def random_position():
-            # this boolean determines where its on the horizontal{0} or vertical{1} edge
-            side = bool(random.getrandbits(1))
-            opposite_side = not side
-            result = None
-            if side:
-                result = [
-                    random.randint(0, mapy_shape[opposite_side] - 1),
-                    0 if random.getrandbits(1) else (mapy_shape[side] - 1),
-                ]
-            else:
-                result = [
-                    0 if random.getrandbits(1) else (mapy_shape[side] - 1),
-                    random.randint(0, mapy_shape[opposite_side] - 1),
-                ]
-            return result
-
+    def __init__(self, start_positions=[], steps=None):
         # specific steps kitten will take
         if steps is None:
             self.steps = random.choices(["l", "r", "u", "d"], k=number_of_steps)
         else:
             self.steps = steps
+            for i in range(5):
+                x = random.randint(0, number_of_steps - 1)
+                self.steps[x] = random.choice(["l", "r", "u", "d"])
         # start_positions where the kitten will spawn afeter it leaves the field
+        # if we recieve positions as class arguent then we remove duplicates and append new positions
 
-        self.start_positions = []
-        if start_positions is None:
-            for i in range(number_of_positions):
-                x = random_position()
-                while x in self.start_positions:
-                    x = random_position()
-                self.start_positions.append(x)
-        else:
-            self.start_positions = start_positions
+        self.start_positions = [
+            list(t) for t in set(tuple(pos) for pos in start_positions)
+        ]
+
+        i = len(self.start_positions)
+
+        # add the thing
+        while i < number_of_positions:
+            x = self.random_position()
+            while x in self.start_positions:
+                x = self.random_position()
+            self.start_positions.append(x)
+            i += 1
         self.start_positions_index = 0
         self.score = 0
         self.mapc = copy.deepcopy(mapy)
@@ -63,6 +54,23 @@ class Kitten:
         # current index of kitten in start_positions
         self.i = 0
         # start fella
+
+    def random_position(self):
+        # this boolean determines where its on the horizontal{0} or vertical{1} edge
+        side = bool(random.getrandbits(1))
+        opposite_side = not side
+        result = None
+        if side:
+            result = [
+                random.randint(0, mapy_shape[opposite_side] - 1),
+                0 if random.getrandbits(1) else (mapy_shape[side] - 1),
+            ]
+        else:
+            result = [
+                0 if random.getrandbits(1) else (mapy_shape[side] - 1),
+                random.randint(0, mapy_shape[opposite_side] - 1),
+            ]
+        return result
 
     def move(self):
         def out_of_bounds_check(self):
@@ -122,9 +130,9 @@ class Kitten:
                 else:
                     self.position = [y, x]
                     self.number += 1
-                    self.mapc[self.position[0]][self.position[1]] = self.number
+                    # gets rid of error
+                    self.mapc[self.position[0]][self.position[1]] = self.number  # type: ignore
             else:
-                # todo check if can step else kill kitten
                 # todo fix this shit
                 while self.i < number_of_steps:
                     if (
@@ -209,14 +217,19 @@ class Kitten:
 
 if __name__ == "__main__":
     mapy_shape = [len(mapy), len(mapy[0])]
+    # defining starting parameters
     number_of_positions = 30
     number_of_steps = 300
     kitten_score_sum = []
-    number_of_generations = 20
+    number_of_generations = 200
+    # kittens_kitens_count **2 has to be bigger or = to number of kittens
     top_kitten_count = 10
     number_of_kittens = 100
+    # variable that i will use to invoke functions that are in kitten
+    mutant = Kitten()
     kittens = [Kitten() for _ in range(number_of_kittens)]
     for _ in range(number_of_generations):
+        print(len(kittens))
         kitten_result_array = []
         kitten_score_average = []
         for kitten in kittens:
@@ -227,26 +240,25 @@ if __name__ == "__main__":
         kitten_result_array = list(reversed(sorted(kitten_result_array)))
         top_kittens = kitten_result_array[:top_kitten_count]
         kittens.clear()
+
         print("top scores:")
         # I think this is the genetic thingy ? no random is present tho
+        # mutation1
         for top_kitten_i in top_kittens:
             print(top_kitten_i[0])
             for top_kitten_j in top_kittens:
                 if top_kitten_j != top_kitten_i:
                     # creating new kitten
-                    x = random.randint(0, number_of_positions - 2)
-                    y = random.randint(x, number_of_positions - 1)
+                    x = random.randint(0, number_of_positions - 1)
                     newpositions = (
                         top_kitten_i[1][0:x]
-                        + top_kitten_j[1][x:y]
-                        + top_kitten_i[1][y:number_of_positions]
+                        + top_kitten_j[1][x : number_of_positions - 1]
                     )
-                    x = random.randint(0, number_of_steps - 1)
-                    y = random.randint(x, number_of_steps - 1)
-                    newsteps = (
-                        top_kitten_i[2][0:x]
-                        + top_kitten_j[2][x:y]
-                        + top_kitten_i[2][y:number_of_steps]
-                    )
+                    x = int((x / number_of_positions) * number_of_steps)
+                    newsteps = top_kitten_i[2][0:x] + top_kitten_j[2][x:number_of_steps]
+                    # here we mutate the kittens
+                    mutate_position = random.randint(0, number_of_positions)
                     kittens.append(Kitten(newpositions, newsteps))
-    print(kitten_score_sum)
+                    if len(kittens) == number_of_kittens:
+                        break
+        # print(kitten_score_sum)

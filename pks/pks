@@ -1,0 +1,72 @@
+Switch# configure terminal
+Switch(config)# hostname Sw-Floor-1
+Sw-Floor-1(config)#
+
+
+Sw-Floor-1# configure terminal
+Sw-Floor-1(config)# line console 0
+Sw-Floor-1(config-line)# password cisco
+Sw-Floor-1(config-line)# login
+Sw-Floor-1(config-line)# end
+Sw-Floor-1#
+
+
+Sw-Floor-1# configure terminal
+Sw-Floor-1(config)# enable secret class
+Sw-Floor-1(config)# exit
+Sw-Floor-1#
+
+Sw-Floor-1# configure terminal
+Sw-Floor-1(config)# line vty 0 15
+Sw-Floor-1(config-line)# password cisco
+Sw-Floor-1(config-line)# login
+Sw-Floor-1(config-line)# end
+Sw-Floor-1#
+
+
+Sw-Floor-1# configure terminal
+Sw-Floor-1(config)# service password-encryption
+Sw-Floor-1(config)#
+
+Sw-Floor-1# configure terminal
+Sw-Floor-1(config)# banner motd #Authorized Access Only#
+
+
+#secures the interface in case someone is trying to connect with pc trough calble
+Sw-Floor-1# configure terminal
+Sw-Floor-1(config)# interface vlan 1
+Sw-Floor-1(config-if)# ip address 192.168.1.20 255.255.255.0
+Sw-Floor-1(config-if)# no shutdown
+Sw-Floor-1(config-if)# exit
+Sw-Floor-1(config)# ip default-gateway 192.168.1.1
+
+#secures priviledged mode of the machine
+Sw-Floor-1# configure terminal
+Sw-Floor-1(config)# enable secret class
+Sw-Floor-1(config)# exit
+Sw-Floor-1#
+
+#secures ssh/telnet
+Sw-Floor-1# configure terminal
+Sw-Floor-1(config)# line vty 0 15
+Sw-Floor-1(config-line)# password cisco
+Sw-Floor-1(config-line)# login
+Sw-Floor-1(config-line)# end
+Sw-Floor-1#
+
+Sw-Floor-1# configure terminal
+Sw-Floor-1(config)# banner motd #Authorized Access Only#
+
+Sw-Floor-1# configure terminal
+Sw-Floor-1(config)# interface vlan 1
+Sw-Floor-1(config-if)# ip address 192.168.1.20 255.255.255.0
+Sw-Floor-1(config-if)# no shutdown
+Sw-Floor-1(config-if)# exit
+Sw-Floor-1(config)# ip default-gateway 192.168.1.1
+
+
+
+Sw-Floor-1(config)# ip route <target network ip like 1.1.0.0 ) <subnet mask> <ip of router that's connected to that network >
+
+
+prvy test z ramcov
