@@ -24,9 +24,6 @@ class Kitten:
             self.steps = random.choices(["l", "r", "u", "d"], k=number_of_steps)
         else:
             self.steps = steps
-            for i in range(5):
-                x = random.randint(0, number_of_steps - 1)
-                self.steps[x] = random.choice(["l", "r", "u", "d"])
         # start_positions where the kitten will spawn afeter it leaves the field
         # if we recieve positions as class arguent then we remove duplicates and append new positions
 
@@ -219,17 +216,15 @@ if __name__ == "__main__":
     mapy_shape = [len(mapy), len(mapy[0])]
     # defining starting parameters
     number_of_positions = 30
-    number_of_steps = 300
+    number_of_steps = 120
     kitten_score_sum = []
-    number_of_generations = 200
+    number_of_generations = 1000
     # kittens_kitens_count **2 has to be bigger or = to number of kittens
     top_kitten_count = 10
     number_of_kittens = 100
-    # variable that i will use to invoke functions that are in kitten
-    mutant = Kitten()
+    mutation = 3
     kittens = [Kitten() for _ in range(number_of_kittens)]
     for _ in range(number_of_generations):
-        print(len(kittens))
         kitten_result_array = []
         kitten_score_average = []
         for kitten in kittens:
@@ -241,24 +236,25 @@ if __name__ == "__main__":
         top_kittens = kitten_result_array[:top_kitten_count]
         kittens.clear()
 
-        print("top scores:")
         # I think this is the genetic thingy ? no random is present tho
         # mutation1
+        print(top_kittens[0][0])
         for top_kitten_i in top_kittens:
-            print(top_kitten_i[0])
             for top_kitten_j in top_kittens:
-                if top_kitten_j != top_kitten_i:
-                    # creating new kitten
-                    x = random.randint(0, number_of_positions - 1)
-                    newpositions = (
-                        top_kitten_i[1][0:x]
-                        + top_kitten_j[1][x : number_of_positions - 1]
-                    )
-                    x = int((x / number_of_positions) * number_of_steps)
-                    newsteps = top_kitten_i[2][0:x] + top_kitten_j[2][x:number_of_steps]
-                    # here we mutate the kittens
-                    mutate_position = random.randint(0, number_of_positions)
-                    kittens.append(Kitten(newpositions, newsteps))
-                    if len(kittens) == number_of_kittens:
-                        break
+                # if top_kitten_j != top_kitten_i:
+                # creating new kitten
+                x = random.randint(0, number_of_positions - 1)
+                newpositions = (
+                    top_kitten_i[1][0:x] + top_kitten_j[1][x : number_of_positions - 1]
+                )
+                x = int((x / number_of_positions) * number_of_steps)
+                newsteps = top_kitten_i[2][0:x] + top_kitten_j[2][x:number_of_steps]
+                for i in range(mutation):
+                    x = random.randint(0, number_of_steps - 1)
+                    newsteps[x] = random.choice(["l", "r", "u", "d"])
+                # here we mutate the kittens
+                mutate_position = random.randint(0, number_of_positions)
+                kittens.append(Kitten(newpositions, newsteps))
+                if len(kittens) == number_of_kittens:
+                    break
         # print(kitten_score_sum)
