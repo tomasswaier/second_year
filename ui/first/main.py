@@ -18,7 +18,7 @@ mapy = [
 
 
 class Kitten:
-    def __init__(self):
+    def __init__(self, start_positions=None, steps=None):
         def random_position():
             # this boolean determines where its on the horizontal{0} or vertical{1} edge
             side = bool(random.getrandbits(1))
@@ -37,15 +37,22 @@ class Kitten:
             return result
 
         # specific steps kitten will take
-        self.steps = random.choices(["l", "r", "u", "d"], k=number_of_steps)
+        if steps is None:
+            self.steps = random.choices(["l", "r", "u", "d"], k=number_of_steps)
+        else:
+            self.steps = steps
         # start_positions where the kitten will spawn afeter it leaves the field
+
         self.start_positions = []
-        self.start_positions_index = 0
-        for i in range(number_of_positions):
-            x = random_position()
-            while x in self.start_positions:
+        if start_positions is None:
+            for i in range(number_of_positions):
                 x = random_position()
-            self.start_positions.append(x)
+                while x in self.start_positions:
+                    x = random_position()
+                self.start_positions.append(x)
+        else:
+            self.start_positions = start_positions
+        self.start_positions_index = 0
         self.score = 0
         self.mapc = copy.deepcopy(mapy)
         self.last_instruction = ""
@@ -202,11 +209,14 @@ class Kitten:
 
 if __name__ == "__main__":
     mapy_shape = [len(mapy), len(mapy[0])]
-    number_of_positions = 10
+    number_of_positions = 30
     number_of_steps = 300
-    kittens = [Kitten() for _ in range(25)]
     kitten_score_sum = []
-    for _ in range(10):
+    number_of_generations = 20
+    top_kitten_count = 10
+    number_of_kittens = 100
+    kittens = [Kitten() for _ in range(number_of_kittens)]
+    for _ in range(number_of_generations):
         kitten_result_array = []
         kitten_score_average = []
         for kitten in kittens:
@@ -215,9 +225,28 @@ if __name__ == "__main__":
             kitten_score_average.append(kitten_data[0])
         kitten_score_sum.append(sum(kitten_score_average))
         kitten_result_array = list(reversed(sorted(kitten_result_array)))
-        top_kittens = kitten_result_array[:5]
+        top_kittens = kitten_result_array[:top_kitten_count]
+        kittens.clear()
         print("top scores:")
-        for x in top_kittens:
-            print(x[0])
-
+        # I think this is the genetic thingy ? no random is present tho
+        for top_kitten_i in top_kittens:
+            print(top_kitten_i[0])
+            for top_kitten_j in top_kittens:
+                if top_kitten_j != top_kitten_i:
+                    # creating new kitten
+                    x = random.randint(0, number_of_positions - 2)
+                    y = random.randint(x, number_of_positions - 1)
+                    newpositions = (
+                        top_kitten_i[1][0:x]
+                        + top_kitten_j[1][x:y]
+                        + top_kitten_i[1][y:number_of_positions]
+                    )
+                    x = random.randint(0, number_of_steps - 1)
+                    y = random.randint(x, number_of_steps - 1)
+                    newsteps = (
+                        top_kitten_i[2][0:x]
+                        + top_kitten_j[2][x:y]
+                        + top_kitten_i[2][y:number_of_steps]
+                    )
+                    kittens.append(Kitten(newpositions, newsteps))
     print(kitten_score_sum)
