@@ -222,7 +222,7 @@ if __name__ == "__main__":
     number_of_steps = 200
     kitten_score_top = []
     kitten_score_avg = []
-    number_of_generations = 1000
+    number_of_generations = 400
     # number of kittens has to be bigger or = to top_kitten_count**2
     top_kitten_count = 10
     number_of_kittens = 100
