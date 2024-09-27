@@ -203,6 +203,8 @@ class Kitten:
     def start(self):
 
         self.move()
+        if flag == 1 or self.score == 114:
+            self.print_map()
         return [self.score, self.start_positions, self.steps]
 
     def print_map(self):
@@ -215,14 +217,15 @@ class Kitten:
         print(self.score)
 
 
+flag = 0
 if __name__ == "__main__":
     mapy_shape = [len(mapy), len(mapy[0])]
     # defining starting parameters
     number_of_positions = 20
-    number_of_steps = 200
+    number_of_steps = 350
     kitten_score_top = []
     kitten_score_avg = []
-    number_of_generations = 1000
+    number_of_generations = 10000
     # number of kittens has to be bigger or = to top_kitten_count**2
     top_kitten_count = 10
     number_of_kittens = 100
@@ -230,6 +233,8 @@ if __name__ == "__main__":
     kittens = [Kitten() for _ in range(number_of_kittens)]
     for i in range(number_of_generations):
         kitten_result_array = []
+        if i == number_of_generations - 1:
+            flag = 1
         kitten_score_average = 0
         for kitten in kittens:
             kitten_data = kitten.start()
@@ -246,6 +251,8 @@ if __name__ == "__main__":
         # I think this is the genetic thingy ? no random is present tho
         # mutation1
         print(top_kittens[0][0])
+        if top_kittens[0][0] == 114:
+            break
         for top_kitten_i in top_kittens:
             for top_kitten_j in top_kittens:
                 # if top_kitten_j != top_kitten_i:
@@ -266,6 +273,6 @@ if __name__ == "__main__":
                 if len(kittens) == number_of_kittens:
                     break
     plt.plot(kitten_score_top, label="top performer")
-    plt.plot(kitten_score_avg, label="average performance")
-    plt.legend(loc="upper left")
+    # plt.plot(kitten_score_avg, label="average performance")
+    plt.legend(loc="lower right")
     plt.show()
