@@ -20,16 +20,9 @@ mapy_shape = [len(mapy), len(mapy[0])]
 
 
 class Kitten:
-    def __init__(self, start_positions=[], steps=[]):
+    def __init__(self, start_positions=[]):
         # specific steps kitten will take
-        self.steps = steps
-        if steps != []:
-            for i in range(mutation_steps):
-                position = random.randint(0, number_of_steps - 1)
-                self.steps[position] = random.choice(["l", "u", "r", "d"])
-        while len(self.steps) != number_of_steps:
-            self.steps.append(random.choice(["l", "u", "r", "d"]))
-        self.i = 0
+        self.steps = ["l", "u", "r", "d"]
         self.start_positions = [
             list(t) for t in set(tuple(pos) for pos in start_positions)
         ]
@@ -238,11 +231,9 @@ class Kitten:
 
                 if self.direction == "":
                     self.direction = random.choice(self.steps)
-                self.direction = self.steps[self.i]
-                self.i += 1
-                if self.i == len(self.steps):
-                    self.i = 0
-
+                self.direction = self.steps[
+                    (self.steps.index(str(self.direction)) + 1) % 4
+                ]
         return False
 
     def start(self):
@@ -276,8 +267,8 @@ if __name__ == "__main__":
     # number of kittens has to be bigger or = to top_kitten_count**2
     top_kitten_count = 20
     number_of_kittens = 400
-    mutation_positions = 2
-    mutation_steps = 2
+    mutation_positions = 1
+    mutation_steps = 3
     kittens = [Kitten() for _ in range(number_of_kittens)]
     for i in range(number_of_generations):
         if i == number_of_generations - 1:
@@ -309,9 +300,7 @@ if __name__ == "__main__":
                 newpositions = (
                     top_kitten_i[1][0:x] + top_kitten_j[1][x : number_of_positions - 1]
                 )
-                x = int(x * number_of_positions / number_of_steps)
-                newsteps = top_kitten_i[2][0:x] + top_kitten_j[2][x:number_of_steps]
-                kittens.append(Kitten(newpositions, newsteps))
+                kittens.append(Kitten(newpositions))
 
                 if len(kittens) == number_of_kittens:
                     break
