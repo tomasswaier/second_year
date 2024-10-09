@@ -226,7 +226,7 @@ class Kitten:
             else:
                 stuck += 1
                 if stuck == 5:
-                    self.score -= 20
+                    self.score -= 5
                     return True
 
                 if self.direction == "":
@@ -268,7 +268,6 @@ if __name__ == "__main__":
     top_kitten_count = 20
     number_of_kittens = 400
     mutation_positions = 1
-    mutation_steps = 3
     kittens = [Kitten() for _ in range(number_of_kittens)]
     for i in range(number_of_generations):
         if i == number_of_generations - 1:
