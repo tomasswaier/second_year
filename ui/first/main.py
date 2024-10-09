@@ -49,7 +49,7 @@ rocks = [[1, 5], [2, 1], [3, 4], [4, 2], [6, 7], [6, 8]]
 
 mapy_shape = [10, 12]
 make_map(mapy_shape, rocks)
-print_map(mapy)
+# print_map(mapy)
 
 
 class Kitten:
@@ -305,12 +305,17 @@ if __name__ == "__main__":
     number_of_generations = 100
     number_of_steps = 100
     # number of kittens has to be bigger or = to top_kitten_count**2
-    top_kitten_count = 20
-    number_of_kittens = 400
+    top_kitten_count = 10
+    number_of_kittens = 100
     mutation_positions = 2
     mutation_steps = 1
+    pick = 1
     kittens = [Kitten() for _ in range(number_of_kittens)]
-
+    dummy_array = []
+    if pick == 2:
+        for i in reversed(range(number_of_kittens)):
+            ([dummy_array.append(i) for _ in range(number_of_kittens - i)])
+        print(dummy_array)
     # začiatok evolucie
     for i in range(number_of_generations):
         if i == number_of_generations - 1:
@@ -328,9 +333,14 @@ if __name__ == "__main__":
         # kitten_score_avg.append(kitten_score_average)
 
         # získame najlepších jedincov
-        kitten_result_array = list(reversed(sorted(kitten_result_array)))
 
+        kitten_result_array = list(reversed(sorted(kitten_result_array)))
         top_kittens = kitten_result_array[:top_kitten_count]
+        # ak chceme ruletovy vyber tak vyberieme náhodne z predpripravenej dummy array
+        if pick == 2:
+            top_kittens.clear()
+            for i in range(top_kitten_count):
+                top_kittens.append(kitten_result_array[random.choice(dummy_array)])
 
         kitten_score_top.append(top_kittens[0][0])
 
