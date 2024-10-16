@@ -1,0 +1,2035 @@
+
+File 02_hist.pdf
+Lines 7600
+Words 30128
+Special 123107
+
+File 04_ipc.pdf
+Lines 20954
+Words 83225
+Special 322269
+
+File 01_uvod.pdf
+Lines 1881
+Words 7440
+Special 26443
+
+File 03_proc.pdf
+Lines 11408
+Words 40044
+Special 120829
+
+File brach_cviko3.txt
+Lines 34
+Words 221
+Special 99
+
+File readme.txt
+Lines 27
+Words 185
+Special 41
+
+File z2.sh
+Lines 52
+Words 296
+Special 204
+
+File z3.sh
+Lines 54
+Words 288
+Special 187
+
+File z1.sh
+Lines 57
+Words 332
+Special 202
+
+File z4.sh
+Lines 55
+Words 327
+Special 200
+
+File z5.sh
+Lines 53
+Words 296
+Special 184
+
+File z7.sh
+Lines 53
+Words 311
+Special 185
+
+File z6.sh
+Lines 54
+Words 315
+Special 196
+
+File ls
+Lines 3
+Words 4
+Special 4
+
+File 8.sh
+Lines 18
+Words 34
+Special 25
+
+File dvaplusdva
+Lines 1
+Words 1
+Special 0
+
+File stderr
+Lines 0
+Words 0
+Special 0
+
+File spamer.sh
+Lines 5
+Words 9
+Special 7
+
+File index
+Lines 1
+Words 1
+Special 0
+
+File web.log
+Lines 6
+Words 30
+Special 36
+
+File sockety.txt
+Lines 72
+Words 317
+Special 139
+
+File nieco
+Lines 1
+Words 4
+Special 0
+
+File index.html
+Lines 0
+Words 0
+Special 0
+
+File webserver.sh
+Lines 37
+Words 144
+Special 154
+
+File subor.txt
+Lines 2
+Words 7
+Special 3
+
+File web.sh
+Lines 37
+Words 141
+Special 150
+
+File 9.sh
+Lines 22
+Words 51
+Special 33
+
+File svet
+Lines 1
+Words 2
+Special 1
+
+File 7.csh
+Lines 10
+Words 16
+Special 20
+
+File print_args.sh
+Lines 10
+Words 15
+Special 31
+
+File prikaz.txt
+Lines 1
+Words 4
+Special 16
+
+File 4.c
+Lines 35
+Words 106
+Special 126
+
+File os_base.h
+Lines 49
+Words 146
+Special 117
+
+File Makefile
+Lines 14
+Words 35
+Special 50
+
+File 5.c
+Lines 47
+Words 104
+Special 143
+
+File 7.c
+Lines 30
+Words 63
+Special 90
+
+File 6.c
+Lines 98
+Words 176
+Special 244
+
+File 2.c
+Lines 33
+Words 74
+Special 102
+
+File 8.c
+Lines 149
+Words 322
+Special 625
+
+File os_base.c
+Lines 116
+Words 229
+Special 323
+
+File 3.c
+Lines 38
+Words 96
+Special 114
+
+File 1.c
+Lines 31
+Words 75
+Special 94
+
+File cviko4.sh
+Lines 17
+Words 31
+Special 42
+
+File process.sh
+Lines 7
+Words 11
+Special 4
+
+File awk.txt
+Lines 70
+Words 282
+Special 172
+
+File sed.txt
+Lines 107
+Words 408
+Special 199
+
+File find_err
+Lines 39
+Words 123
+Special 287
+
+File z
+Lines 6
+Words 21
+Special 12
+
+File 1.csh
+Lines 3
+Words 6
+Special 4
+
+File 6.csh
+Lines 36
+Words 70
+Special 68
+
+File 8.csh
+Lines 15
+Words 28
+Special 25
+
+File 9-2.sh
+Lines 53
+Words 183
+Special 132
+
+File cow.sh
+Lines 7
+Words 12
+Special 4
+
+File x.bc
+Lines 6
+Words 12
+Special 13
+
+File s
+Lines 2
+Words 6
+Special 0
+
+File losovac.sh
+Lines 20
+Words 51
+Special 34
+
+File signaly.txt
+Lines 70
+Words 325
+Special 112
+
+File enh_losovac.sh
+Lines 24
+Words 63
+Special 45
+
+File 5.c
+Lines 45
+Words 106
+Special 158
+
+File Makefile
+Lines 14
+Words 34
+Special 48
+
+File 4.c
+Lines 43
+Words 120
+Special 289
+
+File 6.c
+Lines 50
+Words 115
+Special 171
+
+File 7.c
+Lines 48
+Words 115
+Special 172
+
+File 3.c
+Lines 30
+Words 49
+Special 80
+
+File spamer.sh
+Lines 17
+Words 33
+Special 23
+
+File 8.c
+Lines 50
+Words 121
+Special 173
+
+File 2.c
+Lines 24
+Words 46
+Special 71
+
+File 1.c
+Lines 22
+Words 40
+Special 73
+
+File test.sh
+Lines 16
+Words 23
+Special 25
+
+File nekoncim.sh
+Lines 11
+Words 26
+Special 16
+
+File vyberac.sh
+Lines 19
+Words 46
+Special 30
+
+File y.sh
+Lines 6
+Words 11
+Special 4
+
+File s.c
+Lines 16
+Words 24
+Special 32
+
+File history_27112020.txt
+Lines 1000
+Words 3156
+Special 1502
+
+File test.py
+Lines 4
+Words 4
+Special 10
+
+File 1.sh
+Lines 4
+Words 5
+Special 4
+
+File 3.sh
+Lines 24
+Words 41
+Special 41
+
+File test.py~
+Lines 4
+Words 4
+Special 7
+
+File 2.sh
+Lines 38
+Words 73
+Special 57
+
+File .hidden
+Lines 0
+Words 0
+Special 0
+
+File 3_special.sh
+Lines 44
+Words 69
+Special 91
+
+File 3_special.sh~
+Lines 44
+Words 68
+Special 91
+
+File 2_special.sh
+Lines 4
+Words 9
+Special 8
+
+File cvicenia.txt
+Lines 646
+Words 2513
+Special 1887
+
+File linkaaa
+Lines 4
+Words 5
+Special 4
+
+File rura_simple_example.txt
+Lines 14
+Words 30
+Special 13
+
+File mysearch
+Lines 8
+Words 8
+Special 32
+
+File 5.sh
+Lines 38
+Words 81
+Special 86
+
+File 4.sh
+Lines 8
+Words 31
+Special 42
+
+File 5.csh
+Lines 22
+Words 42
+Special 40
+
+File 2.csh
+Lines 5
+Words 13
+Special 8
+
+File 6.sh
+Lines 31
+Words 51
+Special 106
+
+File y.sh
+Lines 5
+Words 10
+Special 0
+
+File 7.sh
+Lines 10
+Words 19
+Special 39
+
+File 3.sh
+Lines 15
+Words 33
+Special 33
+
+File fragment.txt
+Lines 34
+Words 157
+Special 43
+
+File stderr.txt
+Lines 1
+Words 1
+Special 0
+
+File bankar.ppt
+Lines 2676
+Words 16972
+Special 57550
+
+File os_11_2.ppt
+Lines 723
+Words 3677
+Special 1023
+
+File os_11_1.ppt
+Lines 755
+Words 3252
+Special 1249
+
+File pos.sh
+Lines 36
+Words 149
+Special 105
+
+File 2.sh
+Lines 14
+Words 38
+Special 26
+
+File fragment.ods
+Lines 67
+Words 296
+Special 1200
+
+File 3.csh
+Lines 22
+Words 41
+Special 33
+
+File 1.sh
+Lines 3
+Words 5
+Special 5
+
+File chat3.sh
+Lines 18
+Words 34
+Special 44
+
+File chat2.sh
+Lines 16
+Words 26
+Special 40
+
+File chat.sh
+Lines 15
+Words 24
+Special 30
+
+File 4.csh
+Lines 9
+Words 21
+Special 24
+
+File zaciatocnik.txt
+Lines 2299
+Words 7564
+Special 2596
+
+File odpovede.txt
+Lines 47
+Words 114
+Special 88
+
+File sample_two.txt
+Lines 50
+Words 103
+Special 34
+
+File exercise_morhac.txt
+Lines 36
+Words 214
+Special 155
+
+File sample.txt
+Lines 15
+Words 23
+Special 1
+
+File testfile_x
+Lines 0
+Words 0
+Special 0
+
+File symlink_9
+Lines 0
+Words 0
+Special 0
+
+File symlink
+Lines 
+Words 
+Special 
+
+File 42
+Lines 
+Words 
+Special 
+
+File 0X0P+0
+Lines 
+Words 
+Special 
+
+File lvl2_3
+Lines 
+Words 
+Special 
+
+File symlink_x
+Lines 
+Words 
+Special 
+
+File 0X0P+0
+Lines 
+Words 
+Special 
+
+File lvl2_3
+Lines 
+Words 
+Special 
+
+File testfile_y
+Lines 
+Words 
+Special 
+
+File testfile_1
+Lines 0
+Words 0
+Special 0
+
+File symlink_4
+Lines 0
+Words 0
+Special 0
+
+File symlink_3
+Lines 0
+Words 0
+Special 0
+
+File testfile_2
+Lines 0
+Words 0
+Special 0
+
+File symlink_2
+Lines 0
+Words 0
+Special 0
+
+File symlink_1
+Lines 0
+Words 0
+Special 0
+
+File symlink_9
+Lines 0
+Words 0
+Special 0
+
+File testfile_4
+Lines 0
+Words 0
+Special 0
+
+File symlink_8
+Lines 0
+Words 0
+Special 0
+
+File symlink_5
+Lines 0
+Words 0
+Special 0
+
+File testfile_5
+Lines 0
+Words 0
+Special 0
+
+File testfile_3
+Lines 0
+Words 0
+Special 0
+
+File symlink_7
+Lines 0
+Words 0
+Special 0
+
+File symlink_6
+Lines 0
+Words 0
+Special 0
+
+File file.1
+Lines 27
+Words 46
+Special 100
+
+File file
+Lines 29
+Words 193
+Special 39
+
+File lorem_ipsum
+Lines 13
+Words 125
+Special 28
+
+File meroL
+Lines 24
+Words 276
+Special 58
+
+File Bash
+Lines 19
+Words 96
+Special 24
+
+File file.2
+Lines 28
+Words 70
+Special 124
+
+File nahodny
+Lines 4
+Words 4
+Special 32
+
+File EMskCdwqgfQj0.000000
+Lines 0
+Words 1
+Special 1
+
+File advanced
+Lines 
+Words 
+Special 
+
+File Lorem
+Lines 
+Words 
+Special 
+
+File ipsum
+Lines 
+Words 
+Special 
+
+File advanced
+Lines 
+Words 
+Special 
+
+File Not
+Lines 
+Words 
+Special 
+
+File ASCII
+Lines 
+Words 
+Special 
+
+File text
+Lines 
+Words 
+Special 
+
+File advanced
+Lines 
+Words 
+Special 
+
+File 0X0P+0
+Lines 
+Words 
+Special 
+
+File advanced
+Lines 
+Words 
+Special 
+
+File !so
+Lines 
+Words 
+Special 
+
+File -type
+Lines 
+Words 
+Special 
+
+File f
+Lines 
+Words 
+Special 
+
+File file.4
+Lines 6
+Words 6
+Special 14
+
+File ls
+Lines 42
+Words 162
+Special 89
+
+File zaciatocnikom
+Lines 10
+Words 38
+Special 4
+
+File file.3
+Lines 27
+Words 56
+Special 140
+
+File plato06
+Lines 97
+Words 661
+Special 118
+
+File dickens06
+Lines 412
+Words 3162
+Special 683
+
+File dickens01
+Lines 460
+Words 3141
+Special 721
+
+File plato01
+Lines 106
+Words 662
+Special 134
+
+File aristotle01
+Lines 51
+Words 507
+Special 66
+
+File shakespeare01
+Lines 404
+Words 2366
+Special 614
+
+File poe01
+Lines 33
+Words 281
+Special 78
+
+File shakespeare08
+Lines 428
+Words 2364
+Special 628
+
+File aristotle02
+Lines 52
+Words 506
+Special 80
+
+File plato02
+Lines 61
+Words 654
+Special 79
+
+File poe02
+Lines 33
+Words 267
+Special 92
+
+File shakespeare09
+Lines 428
+Words 2421
+Special 624
+
+File shakespeare03
+Lines 410
+Words 2358
+Special 533
+
+File dickens07
+Lines 427
+Words 3237
+Special 866
+
+File dickens02
+Lines 411
+Words 3146
+Special 683
+
+File shakespeare02
+Lines 418
+Words 2358
+Special 600
+
+File plato07
+Lines 89
+Words 638
+Special 133
+
+File dickens08
+Lines 454
+Words 3189
+Special 876
+
+File shakespeare04
+Lines 430
+Words 2440
+Special 616
+
+File dickens03
+Lines 405
+Words 3191
+Special 719
+
+File aristotle03
+Lines 55
+Words 503
+Special 55
+
+File plato03
+Lines 67
+Words 652
+Special 99
+
+File poe03
+Lines 33
+Words 268
+Special 111
+
+File dickens04
+Lines 383
+Words 3071
+Special 659
+
+File shakespeare06
+Lines 381
+Words 2315
+Special 671
+
+File aristotle04
+Lines 56
+Words 538
+Special 68
+
+File shakespeare00
+Lines 469
+Words 2308
+Special 596
+
+File plato04
+Lines 76
+Words 666
+Special 107
+
+File dickens00
+Lines 453
+Words 3054
+Special 728
+
+File plato05
+Lines 98
+Words 634
+Special 119
+
+File shakespeare05
+Lines 410
+Words 2329
+Special 608
+
+File plato00
+Lines 93
+Words 609
+Special 115
+
+File poe00
+Lines 40
+Words 264
+Special 87
+
+File shakespeare07
+Lines 405
+Words 2414
+Special 661
+
+File shakespeare10
+Lines 396
+Words 2251
+Special 527
+
+File aristotle00
+Lines 59
+Words 472
+Special 65
+
+File dickens05
+Lines 375
+Words 3166
+Special 712
+
+File fortune
+Lines 
+Words 
+Special 
+
+File foo2
+Lines 
+Words 
+Special 
+
+File fortune
+Lines 
+Words 
+Special 
+
+File foo8
+Lines 
+Words 
+Special 
+
+File fortune
+Lines 
+Words 
+Special 
+
+File foo5
+Lines 
+Words 
+Special 
+
+File fortune
+Lines 
+Words 
+Special 
+
+File foo1
+Lines 
+Words 
+Special 
+
+File fortune
+Lines 
+Words 
+Special 
+
+File foo6
+Lines 
+Words 
+Special 
+
+File fortune
+Lines 
+Words 
+Special 
+
+File foo4
+Lines 
+Words 
+Special 
+
+File fortune
+Lines 
+Words 
+Special 
+
+File jeden
+Lines 
+Words 
+Special 
+
+File fortune
+Lines 
+Words 
+Special 
+
+File foo9
+Lines 
+Words 
+Special 
+
+File fortune
+Lines 
+Words 
+Special 
+
+File foo3
+Lines 
+Words 
+Special 
+
+File fortune
+Lines 
+Words 
+Special 
+
+File foo7
+Lines 
+Words 
+Special 
+
+File fortune
+Lines 
+Words 
+Special 
+
+File foo10
+Lines 
+Words 
+Special 
+
+File kw3.txt
+Lines 4
+Words 6
+Special 0
+
+File kw2.txt
+Lines 3
+Words 3
+Special 0
+
+File kw5.txt
+Lines 14
+Words 25
+Special 0
+
+File historia.sh
+Lines 9
+Words 33
+Special 29
+
+File os1-4.pdf
+Lines 5322
+Words 21915
+Special 46979
+
+File ps_filters.txt
+Lines 27
+Words 201
+Special 51
+
+File os_5_2.ppt
+Lines 6764
+Words 16199
+Special 15331
+
+File ps_cat.c
+Lines 39
+Words 100
+Special 138
+
+File p.sh
+Lines 5
+Words 10
+Special 11
+
+File vim.txt
+Lines 99
+Words 331
+Special 178
+
+File q.csh
+Lines 3
+Words 6
+Special 5
+
+File p.csh
+Lines 5
+Words 8
+Special 10
+
+File q.c
+Lines 39
+Words 73
+Special 167
+
+File p.c
+Lines 21
+Words 45
+Special 82
+
+File kw10.txt
+Lines 7
+Words 20
+Special 2
+
+File kw6.txt
+Lines 1
+Words 2
+Special 0
+
+File os1-4_2024.pdf
+Lines 6423
+Words 25646
+Special 62436
+
+File kw8.txt
+Lines 7
+Words 10
+Special 2
+
+File grezo18092024.history
+Lines 193
+Words 586
+Special 91
+
+File lastinec10252023.history
+Lines 106
+Words 770
+Special 684
+
+File grezo11102023.history
+Lines 472
+Words 1746
+Special 1533
+
+File sevcik20231115.history
+Lines 133
+Words 595
+Special 631
+
+File sevcik20231011.history
+Lines 216
+Words 907
+Special 1066
+
+File sevcik20231108.history
+Lines 288
+Words 1657
+Special 1458
+
+File sevcik20230920.history
+Lines 75
+Words 212
+Special 54
+
+File vojtko26102023.history
+Lines 198
+Words 1903
+Special 1767
+
+File sevcik20231004.history
+Lines 357
+Words 1893
+Special 963
+
+File lastinec10182023.history
+Lines 124
+Words 415
+Special 317
+
+File grezo20092023.history
+Lines 144
+Words 428
+Special 118
+
+File vojtko21092023.history
+Lines 203
+Words 661
+Special 208
+
+File lastinec10112023.history
+Lines 97
+Words 307
+Special 142
+
+File vojtko02112023.history
+Lines 172
+Words 936
+Special 1201
+
+File sevcik20231122.history
+Lines 173
+Words 482
+Special 143
+
+File lastinec20231115.history
+Lines 129
+Words 388
+Special 171
+
+File grezo27092023.history
+Lines 237
+Words 915
+Special 411
+
+File lastinec09272023.history
+Lines 100
+Words 534
+Special 364
+
+File grezo09112023.history
+Lines 189
+Words 555
+Special 206
+
+File vojtko12102023.history
+Lines 282
+Words 1690
+Special 1656
+
+File sevcik20231018.history
+Lines 312
+Words 1204
+Special 1072
+
+File sevcik20230927.history
+Lines 309
+Words 877
+Special 286
+
+File vojtko28092023.history
+Lines 281
+Words 960
+Special 464
+
+File vojtko19102023.history
+Lines 357
+Words 1328
+Special 1049
+
+File grezo18102023.history
+Lines 233
+Words 913
+Special 732
+
+File grezo02112023.history
+Lines 227
+Words 1125
+Special 1268
+
+File grezo16112023.history
+Lines 118
+Words 330
+Special 196
+
+File lastinec09202023.history
+Lines 54
+Words 172
+Special 55
+
+File grezo16112023_2.history
+Lines 50
+Words 155
+Special 59
+
+File lastinec10042023.history
+Lines 121
+Words 566
+Special 506
+
+File sevcik20231129.history
+Lines 145
+Words 411
+Special 202
+
+File sevcik20231025.history
+Lines 211
+Words 707
+Special 598
+
+File grezo04102023.history
+Lines 274
+Words 1423
+Special 1007
+
+File vojtko05102023.history
+Lines 631
+Words 3316
+Special 1970
+
+File vojtko02102024.history
+Lines 300
+Words 1566
+Special 1033
+
+File morhac26092024.history
+Lines 505
+Words 1628
+Special 529
+
+File grezo08102020-2.history
+Lines 155
+Words 1243
+Special 1209
+
+File lastinec-st-16-2.history
+Lines 119
+Words 391
+Special 175
+
+File seminar23092020.history
+Lines 16
+Words 42
+Special 13
+
+File lastinec-st-14-2.history
+Lines 119
+Words 460
+Special 187
+
+File lastinec-st-14.history
+Lines 90
+Words 258
+Special 82
+
+File grezo08102020.history
+Lines 154
+Words 985
+Special 830
+
+File history_sys_cviko_30_10_10_00
+Lines 136
+Words 959
+Special 1153
+
+File history_sys_cviko_16_10_10_00
+Lines 129
+Words 474
+Special 298
+
+File grezo22102020.history
+Lines 392
+Words 1420
+Special 1161
+
+File lastinec-st-16-7.history
+Lines 96
+Words 471
+Special 507
+
+File lastinec-st-16-3.history
+Lines 113
+Words 710
+Special 519
+
+File history_sys_cviko_23_10_08_00
+Lines 241
+Words 985
+Special 697
+
+File history_sys_cviko_06_11_10_00
+Lines 139
+Words 687
+Special 737
+
+File lastinec-st-14-3.history
+Lines 122
+Words 661
+Special 504
+
+File lastinec-st-14-7.history
+Lines 95
+Words 495
+Special 531
+
+File grezo29102020.history
+Lines 100
+Words 795
+Special 739
+
+File history_sys_cviko_30_10_08_00
+Lines 145
+Words 1273
+Special 1417
+
+File grezo15102020.history
+Lines 242
+Words 799
+Special 717
+
+File grezo01102020.history
+Lines 233
+Words 986
+Special 600
+
+File lastinec-st-16-9.history
+Lines 66
+Words 177
+Special 108
+
+File lastinec-st-16-5.history
+Lines 163
+Words 740
+Special 706
+
+File lastinec-st-14-9.history
+Lines 86
+Words 263
+Special 170
+
+File lastinec-st-6.history
+Lines 63
+Words 491
+Special 572
+
+File lastinec-st-14-5.history
+Lines 141
+Words 620
+Special 495
+
+File grezo05112020.history
+Lines 183
+Words 961
+Special 1226
+
+File lastinec-st-16-11.history
+Lines 47
+Words 192
+Special 172
+
+File grezo24092020.history
+Lines 85
+Words 246
+Special 89
+
+File lastinec-st-16-4.history
+Lines 72
+Words 352
+Special 238
+
+File history_sys_cviko_23_10_10_00
+Lines 271
+Words 1176
+Special 838
+
+File lastinec-st-16-8.history
+Lines 73
+Words 256
+Special 187
+
+File history_sys_cviko_06_11_08_00
+Lines 146
+Words 683
+Special 949
+
+File lastinec-st-14-4.history
+Lines 110
+Words 533
+Special 356
+
+File lastinec-st-14-8.history
+Lines 102
+Words 354
+Special 239
+
+File history_sys_cviko_16_10_08_00
+Lines 142
+Words 553
+Special 289
+
+File lastinec-st-16.history
+Lines 93
+Words 269
+Special 83
+
+File lastinec-st-14-11.history
+Lines 70
+Words 304
+Special 280
+
+File salgovic03102024.history
+Lines 556
+Words 2138
+Special 1364
+
+File morhac03102024.history
+Lines 781
+Words 2939
+Special 1294
+
+File vojtko18092024.history
+Lines 71
+Words 223
+Special 71
+
+File grezo13102022-2.history
+Lines 151
+Words 672
+Special 439
+
+File vojtko13102022.history
+Lines 180
+Words 731
+Special 512
+
+File grezo03112022.history
+Lines 215
+Words 832
+Special 751
+
+File grezo20102022.history
+Lines 233
+Words 913
+Special 732
+
+File sevcik21102022.history
+Lines 373
+Words 1285
+Special 851
+
+File lastinec06102022.history
+Lines 138
+Words 631
+Special 685
+
+File vojtko22092022.history
+Lines 45
+Words 95
+Special 37
+
+File vojtko20102022.history
+Lines 122
+Words 516
+Special 413
+
+File vojtko03112022.history
+Lines 149
+Words 855
+Special 1104
+
+File grezo13102022.history
+Lines 205
+Words 665
+Special 226
+
+File vojtko_sevcik27102022.history
+Lines 84
+Words 516
+Special 528
+
+File lastinec29092022.history
+Lines 121
+Words 424
+Special 231
+
+File grezo10112022.history
+Lines 293
+Words 820
+Special 248
+
+File grezo27102022.history
+Lines 190
+Words 1304
+Special 1064
+
+File sevcik11112022.history
+Lines 636
+Words 1899
+Special 710
+
+File sevcik04112022.history
+Lines 244
+Words 966
+Special 1096
+
+File lastinec27102022.history
+Lines 106
+Words 727
+Special 527
+
+File lastinec10112022.history
+Lines 133
+Words 482
+Special 321
+
+File sevcik28102022.history
+Lines 181
+Words 924
+Special 913
+
+File sevcik14102022.history
+Lines 391
+Words 2065
+Special 1843
+
+File grezo06102022.history
+Lines 363
+Words 2811
+Special 2972
+
+File lastinec13102022.history
+Lines 170
+Words 616
+Special 482
+
+File grezo29092022.history
+Lines 227
+Words 626
+Special 126
+
+File sevcik18112022.history
+Lines 795
+Words 2479
+Special 1351
+
+File sevcik07102022.history
+Lines 503
+Words 4210
+Special 2324
+
+File lastinec20102022.history
+Lines 119
+Words 434
+Special 276
+
+File vojtko29092022.history
+Lines 195
+Words 646
+Special 314
+
+File lastinec03112022.history
+Lines 85
+Words 415
+Special 522
+
+File vojtko06102022.history
+Lines 191
+Words 1080
+Special 1153
+
+File grezo02102024.history
+Lines 390
+Words 2107
+Special 2303
+
+File morhac19092024.history
+Lines 179
+Words 521
+Special 72
+
+File sys211105_0800.txt
+Lines 159
+Words 871
+Special 1483
+
+File sys211029_0800.txt
+Lines 177
+Words 690
+Special 714
+
+File sys011021_1000.txt
+Lines 149
+Words 668
+Special 468
+
+File vojtko28102021.history
+Lines 112
+Words 1122
+Special 985
+
+File grezo07102021.history
+Lines 330
+Words 1404
+Special 1685
+
+File vojtko14102021.history
+Lines 205
+Words 713
+Special 475
+
+File vojtko04112021.history
+Lines 143
+Words 1144
+Special 1134
+
+File sys081021_0800.txt
+Lines 141
+Words 509
+Special 596
+
+File sys221021_0800.txt
+Lines 234
+Words 789
+Special 599
+
+File vojtko22102021.history
+Lines 124
+Words 450
+Special 393
+
+File vojtko08102021.history
+Lines 126
+Words 487
+Special 629
+
+File grezo04112021.history
+Lines 138
+Words 688
+Special 733
+
+File sys011021_0800.txt
+Lines 152
+Words 724
+Special 470
+
+File sys211029_1000.txt
+Lines 323
+Words 872
+Special 836
+
+File vojtko12112021.history
+Lines 101
+Words 408
+Special 363
+
+File sys211105_1000.txt
+Lines 125
+Words 652
+Special 983
+
+File sys221021_1000.txt
+Lines 223
+Words 794
+Special 576
+
+File sys081021_1000.txt
+Lines 109
+Words 420
+Special 455
+
+File grezo14102021.history
+Lines 422
+Words 1521
+Special 1017
+
+File grezo28102021.history
+Lines 177
+Words 1661
+Special 1544
+
+File vojtko07102021.history
+Lines 187
+Words 736
+Special 758
+
+File sys151021_0800.txt
+Lines 153
+Words 553
+Special 393
+
+File grezo23092021-2.history
+Lines 62
+Words 197
+Special 72
+
+File grezo30092021.history
+Lines 166
+Words 1153
+Special 852
+
+File vojtko21102021.history
+Lines 109
+Words 490
+Special 429
+
+File grezo11112021.history
+Lines 236
+Words 684
+Special 246
+
+File sys151021_1000.txt
+Lines 137
+Words 454
+Special 285
+
+File vojtko05112021.history
+Lines 117
+Words 1020
+Special 1060
+
+File grezo21102021.history
+Lines 263
+Words 911
+Special 717
+
+File vojtko11112021.history
+Lines 132
+Words 566
+Special 685
+
+File grezo23092021.history
+Lines 88
+Words 255
+Special 79
+
+File vojtko30092021.history
+Lines 127
+Words 555
+Special 324
+
+File vojtko29102021.history
+Lines 96
+Words 873
+Special 891
+
+File vojtko15102021.history
+Lines 169
+Words 579
+Special 306
+
+File grezo25092024.history
+Lines 269
+Words 1020
+Special 491
+
+File kw9.txt
+Lines 14
+Words 30
+Special 2
+
+File kw7.txt
+Lines 8
+Words 18
+Special 0
+
+File regular-expressions.pdf
+Lines 688
+Words 2797
+Special 10058
+
+File memory386.txt
+Lines 92
+Words 701
+Special 345
+
+File os_seminar_priklady.pdf
+Lines 1689
+Words 9072
+Special 15272
+
+File vim.pdf
+Lines 1064
+Words 3717
+Special 12819
+
+File logformat.txt
+Lines 9
+Words 95
+Special 38
+
+File input.txt
+Lines 2
+Words 6
+Special 0
+
+File wtmp.2020
+Lines 1008
+Words 5080
+Special 39280
+
+File access.log
+Lines 10000
+Words 197906
+Special 435040
+
+File 1.txt
+Lines 10
+Words 49
+Special 14
+
+File subor5k+1
+Lines 19
+Words 117
+Special 480
+
+File wtmp.an3
+Lines 4
+Words 23
+Special 97
+
+File subor4k+1
+Lines 15
+Words 88
+Special 369
+
+File list.txt
+Lines 19
+Words 93
+Special 26
+
+File 5
+Lines 0
+Words 0
+Special 0
+
+File list2.txt
+Lines 20
+Words 97
+Special 28
+
+File subor5K
+Lines 22
+Words 120
+Special 472
+
+File subor100K
+Lines 387
+Words 2295
+Special 9153
+
+File bonus.txt
+Lines 10
+Words 10
+Special 64
+
+File passwd.2020
+Lines 250
+Words 262
+Special 3209
+
+File mojscript.sed
+Lines 1
+Words 1
+Special 3
+
+File sedinput.txt
+Lines 6
+Words 20
+Special 0
+
+File 2.txt
+Lines 10
+Words 49
+Special 14
+
+File zamestnanci.txt
+Lines 9
+Words 27
+Special 0
+
+File compile.log
+Lines 1007
+Words 2031
+Special 1021

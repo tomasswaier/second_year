@@ -53,18 +53,10 @@ make_map(mapy_shape, rocks)
 
 
 class Kitten:
-    def __init__(self, start_positions=[], steps=[], dont_evolve=False):
+    def __init__(self, start_positions=[], dont_evolve=False):
         # definovanie kam su bude mmonk hýbať pri náraze na stenu alebo kedykoľvek potrebuje random direction
-        self.steps = steps
 
         # randomná zmena génu 2
-        if steps != [] and dont_evolve == False:
-            for i in range(mutation_steps):
-                position = random.randint(0, number_of_steps - 1)
-                self.steps[position] = random.choice(["l", "u", "r", "d"])
-        # ak neprišiel list pohybov ako vstup tak si ho vytvorý
-        while len(self.steps) != number_of_steps:
-            self.steps.append(random.choice(["l", "u", "r", "d"]))
         self.i = 0
         # vymazanie každej duplicitnej hodnoty v gene s pohybmi
         self.start_positions = [
@@ -272,20 +264,44 @@ class Kitten:
                     self.prev_move = "r"
                 flag = True
             # ak sa  monk nemá kam pohnúť tak sa mu odpočítajú body
-            if flag:
-                stuck = 0
-            else:
-                stuck += 1
-                if stuck == 5:
-                    self.score -= 3
-                    return True
+            if not flag:
+                if self.direction in ["l", "r"]:
+                    up = self.can_move([self.position[0] - 1, self.position[1]])
+                    down = self.can_move([self.position[0] + 1, self.position[1]])
+                    if up and down:
+                        self.direction = random.choice(["u", "d"])
+                    elif not up and not down:
+                        self.score -= 10
+                        self.position = []
+                        return True  # Stuck, return out of loop
+                    elif up:
+                        self.direction = "u"
+                    else:
+                        self.direction = "d"
+                elif self.direction in ["u", "d"]:
+                    left = self.can_move([self.position[0], self.position[1] - 1])
+                    right = self.can_move([self.position[0], self.position[1] + 1])
+                    if right and left:
+                        self.direction = random.choice(["l", "r"])
+                    elif not left and not right:
+                        self.score -= 10
+                        self.position = []
+                        return True  # Stuck, return out of loop
+                    elif left:
+                        self.direction = "l"
+                    else:
+                        self.direction = "r"
 
-                if self.direction == "":
-                    self.direction = self.steps[self.i]
-                self.direction = self.steps[self.i]
-                self.i += 1
-                if self.i == len(self.steps):
-                    self.i = 0
+                        return False
+
+    def can_move(self, position):
+        row, col = position
+
+        if row < 0 or col < 0 or row >= len(self.mapc) or col >= len(self.mapc[0]):
+            return True
+
+        if self.mapc[row][col] == 0:
+            return True
 
         return False
 
@@ -293,7 +309,7 @@ class Kitten:
         self.move()
         if flag == 1 or self.score == 114:
             print_map(self.mapc)
-        return [self.score, self.start_positions, self.steps]
+        return [self.score, self.start_positions]
 
 
 flag = 0
@@ -302,11 +318,10 @@ if __name__ == "__main__":
     number_of_positions = 28
     kitten_score_top = []
     kitten_score_avg = []
-    number_of_generations = 100
-    number_of_steps = 100
+    number_of_generations = 1000
     # number of kittens has to be bigger or = to top_kitten_count**2
-    top_kitten_count = 10
-    number_of_kittens = 100
+    top_kitten_count = 20
+    number_of_kittens = 400
     mutation_positions = 2
     mutation_steps = 1
     pick = 1
@@ -359,9 +374,7 @@ if __name__ == "__main__":
                     top_kittens[i][1][0:x]
                     + top_kittens[j][1][x : number_of_positions - 1]
                 )
-                x = int(x * number_of_positions / number_of_steps)
                 # skombinujeme ich rozhodnutia
-                newsteps = top_kittens[i][2][0:x] + top_kittens[j][2][x:number_of_steps]
                 # ak by sme chceli používať systém ponechania najlepšieho jedinca tak by sme toto odkomentovali
                 dont_evolve = False
                 """
@@ -371,7 +384,7 @@ if __name__ == "__main__":
                     dont_evolve = True
                     """
                 # vytvorím nového jedinca
-                kittens.append(Kitten(newpositions, newsteps, dont_evolve))
+                kittens.append(Kitten(newpositions, dont_evolve))
 
                 if len(kittens) == number_of_kittens:
                     break

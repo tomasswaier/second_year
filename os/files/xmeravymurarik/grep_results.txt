@@ -1,0 +1,25 @@
+/public/priklady/sockety/sockety.txt:socat UNIX-LISTEN:/tmp/chat.sock -
+/public/priklady/sockety/sockety.txt:socat UNIX:/tmp/chat.sock -
+/public/priklady/sockety/sockety.txt:socat SYSTEM:bash UNIX-LISTEN:/tmp/back.sock
+/public/priklady/petrik/history_27112020.txt: 1574  socat UNIX:/tmp/chat.sock -
+/public/priklady/petrik/history_27112020.txt: 1710  socat UNIX:/tmp/chat.sock -
+/public/priklady/petrik/history_27112020.txt: 1711  socat UNIX:/tmp/back.sock -
+/public/priklady/petrik/history_27112020.txt: 1771  socat UNIX:/tmp/chat.sock -
+/public/priklady/petrik/history_27112020.txt: 1772  socat SYSTEM:bash UNIX-LISTEN:/tmp/back.sock
+/public/priklady/petrik/history_27112020.txt: 1779  socat UNIX-LISTEN:/tmp/chat.sock -
+/public/priklady/petrik/history_27112020.txt: 1780  socat SYSTEM:bash UNIX-LISTEN:/tmp/back.sock
+/public/priklady/petrik/history_27112020.txt: 1979  socat UNIX-LISTEN:/tmp/chat.sock -
+/public/priklady/petrik/history_27112020.txt: 1981  socat UNIX:/tmp/back.sock -
+/public/ucebnove/historia/2020/lastinec-st-16-11.history:    7  socat UNIX-LISTEN:/tmp/chat.sock -
+/public/ucebnove/historia/2020/lastinec-st-16-11.history:    8  sudo socat SYSTEM:bash UNIX-LISTEN:/tmp/back.sock
+/public/ucebnove/historia/2020/lastinec-st-16-11.history:    9  socat SYSTEM:bash UNIX-LISTEN:/tmp/back.sock
+/public/ucebnove/historia/2020/lastinec-st-16-11.history:    7  socat UNIX:/tmp/chat.sock -
+/public/ucebnove/historia/2020/lastinec-st-16-11.history:    9  socat UNIX:/tmp/cack.sock -
+/public/ucebnove/historia/2020/lastinec-st-16-11.history:   10  socat UNIX:/tmp/back.sock -
+/public/ucebnove/historia/2020/lastinec-st-14-11.history:1482  socat UNIX-LISTEN:/tmp/chat.sock -
+/public/ucebnove/historia/2020/lastinec-st-14-11.history: 1487  sudo socat SYSTEM:bash UNIX-LISTEN:/tmp/back.sock
+/public/ucebnove/historia/2020/lastinec-st-14-11.history: 1488  sucat SYSTEM:bash UNIX-LISTEN:/tmp/back.sock
+/public/ucebnove/historia/2020/lastinec-st-14-11.history: 1489  socat SYSTEM:bash UNIX-LISTEN:/tmp/back.sock
+/public/ucebnove/historia/2020/lastinec-st-14-11.history: 1486  socat UNIX:/tmp/chat.sock -
+/public/ucebnove/historia/2020/lastinec-st-14-11.history: 1489  socat UNIX:/tmp/back.sock -
+
