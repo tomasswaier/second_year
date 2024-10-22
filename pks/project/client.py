@@ -28,23 +28,26 @@ class Client:
         self.sock.bind((ip, port))
         self.server_ip = server_ip
         self.server_port = server_port
-        self.sock.settimeout(0.1)
+        self.sock.settimeout(0.00000001)
         self.handshake()
+        self.print_message = None
 
     def receive(self):
         try:
             data, _ = self.sock.recvfrom(511)
             return self.unpack_header(data)
         except BlockingIOError:
-            return None
+            return None, None
         except Exception:
-            return None
+            return None, None
 
     def send_message(self, message, flag, corrupt=False):
+        # dummymessage
         if corrupt == True:
             print("Corrupting")
-        message = self.make_header(message, flag)
-        self.sock.sendto(message, (self.server_ip, self.server_port))
+        fragment = self.make_header(message, flag=flag)
+        print(fragment)
+        self.sock.sendto(fragment, (self.server_ip, self.server_port))
 
     def send_response(self):
         self.sock.sendto(b"Message Received", (self.server_ip, self.server_port))
@@ -54,21 +57,21 @@ class Client:
         print("Client closed..")
 
     def handshake(self):
-        recieved_data = None
+        received_data = None
         while True:
             self.send_message("SYN", 1)
-            recieved_data = self.receive()
-            if recieved_data and recieved_data[1] == 1:
+            received_data = self.receive()
+            if received_data and received_data[1] == 1:
                 print("Recieved SYN ,sending SYN-ACK")
                 self.send_message("SYN-ACK", 2)
-                recieved_data = None
-                while not recieved_data or recieved_data and recieved_data[1] != 3:
-                    recieved_data = self.receive()
+                received_data = None
+                while not received_data or received_data and received_data[1] != 3:
+                    received_data = self.receive()
 
                 print("Recieved ACK ,connection initiated")
                 break
-            elif recieved_data and recieved_data[1] == 2:
-                print("recieved SYN-ACK , sendgin ACK , conversationg initiated")
+            elif received_data and received_data[1] == 2:
+                print("received SYN-ACK , sendgin ACK , conversationg initiated")
                 self.send_message("ACK", 3)
                 break
 
@@ -98,6 +101,9 @@ class Client:
         length = struct.unpack("!B", data[5:6])[0]
         checksum = struct.unpack("!H", data[6:8])[0]
         message = data[8:].decode("utf-8")
+        if prefix_byte == 4:
+            self.print_message = message
+            print(message)
         return [message, prefix_byte]
 
 
@@ -106,6 +112,18 @@ class Window(Gtk.Window):
         super().__init__(title="Client")
         self.init_interface()
         self.name = "Client"
+        self.check_data_thread = True
+        self.check_thread = threading.Thread(
+            target=self.check_loop,
+        )
+        self.check_thread.start()
+
+    def check_loop(self):
+        while client and self.check_data_thread:
+            client.receive()
+            if client and client.print_message != None:
+                self.print_message(client.print_message, "Client2")
+                client.print_message = None
 
     def init_interface(self):
         self.set_size_request(600, 800)
@@ -113,12 +131,16 @@ class Window(Gtk.Window):
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         self.add(vbox)
 
-        self.action_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
         # file select:
-        # self.filepicker = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=1)
-        # self.filename = Gtk.Label(label="No File")
-        # self.filepicker.pack_start(self.label, True, False, 10)
+        self.filepicker = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        self.filename = Gtk.Label(label="No File")
+        self.filepicker.set_size_request(500, 40)
+        pick_file = Gtk.Button.new_with_label("File")
+        pick_file.connect("clicked", self.select_file)
+        self.filepicker.pack_start(self.filename, True, True, 0)
+        self.filepicker.pack_start(pick_file, False, False, 0)
         # Text area
+        self.action_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
         self.entry = Gtk.TextView()
         self.entry.set_size_request(500, 40)
         self.entry.set_wrap_mode(1)
@@ -133,11 +155,35 @@ class Window(Gtk.Window):
         self.scrolled_window = Gtk.ScrolledWindow()
         self.message_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         self.scrolled_window.add_with_viewport(self.message_box)
-        # vbox.pack_start(self.filepicker, True, True, 10)
+        # put it all into main window (vbox)
+        vbox.pack_start(self.filepicker, True, True, 10)
         vbox.pack_start(self.scrolled_window, True, True, 10)
         vbox.pack_start(self.action_box, False, False, 30)
 
-        GLib.timeout_add(1000, self.check_for_messages)  # Check every 100 ms
+        # GLib.timeout_add(1000, self.check_for_messages)  # Check every 100 ms
+
+    def select_file(self, _):
+        dialog = Gtk.FileChooserDialog(
+            title="Please choose a file",
+            parent=None,
+            action=Gtk.FileChooserAction.OPEN,
+            buttons=(
+                Gtk.STOCK_CANCEL,
+                Gtk.ResponseType.CANCEL,
+                Gtk.STOCK_OPEN,
+                Gtk.ResponseType.OK,
+            ),
+        )
+
+        response = dialog.run()
+        if response == Gtk.ResponseType.OK:
+            file_path = dialog.get_filename()
+            # todo:finish this
+            print(file_path)
+        elif response == Gtk.ResponseType.CANCEL:
+            print("Cancel clicked")
+
+        dialog.destroy()
 
     def print_message(self, text, name):
         mylabel = Gtk.Label()
@@ -152,7 +198,7 @@ class Window(Gtk.Window):
         self.message_box.show_all()
         self.update_scrollbar()
 
-    def send_message(self, button):
+    def send_message(self, _):
         buffer = self.entry.get_buffer()
         text = buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter(), False)
         if text:
@@ -163,12 +209,6 @@ class Window(Gtk.Window):
     def update_scrollbar(self):
         vadjustment = self.scrolled_window.get_vadjustment()
         vadjustment.set_value(vadjustment.get_upper())  # Scroll to the bottom
-
-    def check_for_messages(self):
-        data = client.receive()  # type: ignore
-        if data is not None:
-            self.print_message(data[0], "Server")
-        return True
 
 
 # Create client instance
