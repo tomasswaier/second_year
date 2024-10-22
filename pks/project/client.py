@@ -5,7 +5,7 @@ import struct
 import threading
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, GLib
+from gi.repository import Gtk, GLib  # type:ignore
 
 if len(sys.argv) > 1:
     CLIENT_IP = "127.0.0.1"
@@ -28,9 +28,17 @@ class Client:
         self.sock.bind((ip, port))
         self.server_ip = server_ip
         self.server_port = server_port
-        self.sock.settimeout(0.00000001)
         self.handshake()
         self.print_message = None
+        self.read_messages = True
+        self.read_thread = threading.Thread(
+            target=self.recieve_loop,
+        )
+        self.read_thread.start()
+
+    def recieve_loop(self):
+        while self.read_messages:
+            self.receive()
 
     def receive(self):
         try:
@@ -41,39 +49,25 @@ class Client:
         except Exception:
             return None, None
 
-    def send_message(self, message, flag, corrupt=False):
+    def send_message(
+        self, message, flag=4, sequence_num=1, fragment_num=1, length=1, corrupt=False
+    ):
         # dummymessage
         if corrupt == True:
             print("Corrupting")
-        fragment = self.make_header(message, flag=flag)
-        print(fragment)
+        if message == "end":
+            flag = 5
+        # dummychecksum
+        checksum = 0
+        fragment = self.make_header(
+            message, flag, sequence_num, fragment_num, length, checksum
+        )
+        print("sending:" + str(fragment))
         self.sock.sendto(fragment, (self.server_ip, self.server_port))
-
-    def send_response(self):
-        self.sock.sendto(b"Message Received", (self.server_ip, self.server_port))
 
     def quit(self):
         self.sock.close()
         print("Client closed..")
-
-    def handshake(self):
-        received_data = None
-        while True:
-            self.send_message("SYN", 1)
-            received_data = self.receive()
-            if received_data and received_data[1] == 1:
-                print("Recieved SYN ,sending SYN-ACK")
-                self.send_message("SYN-ACK", 2)
-                received_data = None
-                while not received_data or received_data and received_data[1] != 3:
-                    received_data = self.receive()
-
-                print("Recieved ACK ,connection initiated")
-                break
-            elif received_data and received_data[1] == 2:
-                print("received SYN-ACK , sendgin ACK , conversationg initiated")
-                self.send_message("ACK", 3)
-                break
 
     def make_header(
         self, message, flag=4, sequence_num=1, fragment_num=1, length=1, checksum=1
@@ -95,16 +89,41 @@ class Client:
         return frame
 
     def unpack_header(self, data):
-        prefix_byte = struct.unpack("!B", data[0:1])[0]
+        flag = struct.unpack("!B", data[0:1])[0]
         sequence = struct.unpack("!H", data[1:3])[0]
         fragment_num = struct.unpack("!H", data[3:5])[0]
         length = struct.unpack("!B", data[5:6])[0]
         checksum = struct.unpack("!H", data[6:8])[0]
         message = data[8:].decode("utf-8")
-        if prefix_byte == 4:
+        print("received:" + str(data))
+        if flag == 4:
             self.print_message = message
-            print(message)
-        return [message, prefix_byte]
+        elif flag == 5:
+            self.send_message("end")
+            self.quit()
+        return [message, flag]
+
+    def handshake(self):
+        received_data = None
+        while True:
+            self.send_message("SYN", 1)
+            received_data = self.receive()
+            if received_data and received_data[1] == 1:
+                print("Recieved SYN ,sending SYN-ACK")
+                self.send_message("SYN-ACK", 2)
+                received_data = None
+                while not received_data or received_data and received_data[1] != 3:
+                    # this is here just as debug for start.@property
+                    if received_data and received_data[1] == 2:
+                        self.send_message("ACK", 3)
+                    received_data = self.receive()
+
+                print("Recieved ACK ,connection initiated")
+                break
+            elif received_data and received_data[1] == 2:
+                print("received SYN-ACK , sendgin ACK , conversationg initiated")
+                self.send_message("ACK", 3)
+                break
 
 
 class Window(Gtk.Window):
@@ -112,11 +131,7 @@ class Window(Gtk.Window):
         super().__init__(title="Client")
         self.init_interface()
         self.name = "Client"
-        self.check_data_thread = True
-        self.check_thread = threading.Thread(
-            target=self.check_loop,
-        )
-        self.check_thread.start()
+        GLib.idle_add(self.read_messages)
 
     def check_loop(self):
         while client and self.check_data_thread:
@@ -130,6 +145,10 @@ class Window(Gtk.Window):
         # Main box
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         self.add(vbox)
+        # Message Area
+        self.scrolled_window = Gtk.ScrolledWindow()
+        self.message_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        self.scrolled_window.add(self.message_box)
 
         # file select:
         self.filepicker = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
@@ -137,7 +156,7 @@ class Window(Gtk.Window):
         self.filepicker.set_size_request(500, 40)
         pick_file = Gtk.Button.new_with_label("File")
         pick_file.connect("clicked", self.select_file)
-        self.filepicker.pack_start(self.filename, True, True, 0)
+        self.filepicker.pack_start(self.filename, True, False, 0)
         self.filepicker.pack_start(pick_file, False, False, 0)
         # Text area
         self.action_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
@@ -151,16 +170,19 @@ class Window(Gtk.Window):
         self.action_box.pack_start(button_send, True, True, 0)
         self.action_box.pack_start(self.checkbox, True, True, 0)
 
-        # This is where messages will go
-        self.scrolled_window = Gtk.ScrolledWindow()
-        self.message_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-        self.scrolled_window.add_with_viewport(self.message_box)
         # put it all into main window (vbox)
-        vbox.pack_start(self.filepicker, True, True, 10)
+        vbox.pack_start(self.filepicker, False, False, 10)
         vbox.pack_start(self.scrolled_window, True, True, 10)
         vbox.pack_start(self.action_box, False, False, 30)
 
         # GLib.timeout_add(1000, self.check_for_messages)  # Check every 100 ms
+
+    def read_messages(self):
+        message = client.print_message
+        if message:
+            self.print_message(message, "Client2")
+            client.print_message = None
+        return True
 
     def select_file(self, _):
         dialog = Gtk.FileChooserDialog(
@@ -179,6 +201,7 @@ class Window(Gtk.Window):
         if response == Gtk.ResponseType.OK:
             file_path = dialog.get_filename()
             # todo:finish this
+            self.filename.set_text(file_path)
             print(file_path)
         elif response == Gtk.ResponseType.CANCEL:
             print("Cancel clicked")
