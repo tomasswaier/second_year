@@ -178,6 +178,9 @@ class Window(Gtk.Window):
         # GLib.timeout_add(1000, self.check_for_messages)  # Check every 100 ms
 
     def read_messages(self):
+        if not client:
+            print("client is None for some reason . EXITING")
+            exit()
         message = client.print_message
         if message:
             self.print_message(message, "Client2")
