@@ -70,3 +70,12 @@ FH
 192.168.27.65
 LH
 192.168.27.66
+
+
+prednaska 7 ?
+description :dhcp dns ssh
+
+DHCP - 	good for changing environment
+dhcp reqest
+DNS  -	just converts 
+

@@ -1,5 +1,4 @@
 """
-todo : make classifier for urslef
 point is to compare how successful is the result compare to original or sumshit 
 """
 
