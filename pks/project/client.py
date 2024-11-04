@@ -1,8 +1,4 @@
-import socket
-import gi
-import sys
-import struct
-import threading
+import socket, gi, sys, struct, threading, time, logging
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, GLib  # type:ignore
@@ -17,10 +13,9 @@ else:
     CLIENT_PORT = int(input("client port:"))
     SERVER_IP = input("peer ip:")
     SERVER_PORT = int(input("peer port:"))
-
+# setting these variables to be global for linter errors
 NAME = "Client" + ("1" if CLIENT_PORT < SERVER_PORT else "2")
 OTHER_CLIENT_NAME = "Client" + ("1" if CLIENT_PORT > SERVER_PORT else "2")
-
 client = None
 
 
@@ -56,14 +51,14 @@ class Client:
         self, message, flag=4, sequence_num=1, fragment_num=1, length=1, corrupt=False
     ):
         # dummymessage
-        if corrupt == True:
-            print("Corrupting")
         if message == "end":
             flag = 5
         # dummychecksum
-        checksum = 0
+        checksum = self.crc_ccitt_16(str.encode(message))
+        if checksum:
+            checksum += 1
         fragment = self.make_header(
-            message, flag, sequence_num, fragment_num, length, checksum
+            message, flag, sequence_num, fragment_num, length, checksum=checksum
         )
         print("sending:" + str(fragment))
         self.sock.sendto(fragment, (self.server_ip, self.server_port))
@@ -86,34 +81,57 @@ class Client:
         frame += struct.pack("!H", sequence_num)
         frame += struct.pack("!H", fragment_num)
         frame += struct.pack("!B", length)
-        frame += struct.pack("!H", checksum)
         frame += message.encode("utf-8")
+        frame += struct.pack("!H", checksum)
 
         return frame
+
+    def crc_ccitt_16(self, data):
+        crc = 0xFFFF
+        for byte in data:
+            crc ^= byte << 8
+            for _ in range(8):
+                if crc & 0x8000:
+                    crc = (crc << 1) ^ 0x1021
+                else:
+                    crc <<= 1
+
+                crc &= 0xFFFF
+
+        return crc
+
+    def check_checksum(self, data):
+        if self.crc_ccitt_16(data) == 0:
+            return True
+        return False
 
     def unpack_header(self, data):
         flag = struct.unpack("!B", data[0:1])[0]
         sequence = struct.unpack("!H", data[1:3])[0]
         fragment_num = struct.unpack("!H", data[3:5])[0]
         length = struct.unpack("!B", data[5:6])[0]
-        checksum = struct.unpack("!H", data[6:8])[0]
-        message = data[8:].decode("utf-8")
-        self.last_message = [flag, sequence, fragment_num, length, checksum, message]
+        message = data[6:-2].decode("utf-8")
+
+        self.last_message = [flag, sequence, fragment_num, length, message]
         print("received:" + str(data))
+
         if flag == 4:
+            print(data[6:])
             self.send_message(message="ACK", flag=3)
             self.print_message = message
         elif flag == 5:
             self.send_message("end")
             self.quit()
+
         return [message, flag]
 
     def handshake(self):
         received_data = None
-
         if CLIENT_PORT < SERVER_PORT:
-            self.send_message("SYN", 1)
+
             while received_data is None or received_data != 2:
+                self.send_message("SYN", 1)
+                time.sleep(0.5)
                 if self.last_message is not None:
                     received_data = self.last_message[0]
             print("Received SYN-ACK, sending ACK, connection initiated")
@@ -144,7 +162,7 @@ class Window(Gtk.Window):
     def check_loop(self):
         while client and self.check_data_thread:
             client.receive()
-            if client and client.print_message != None:
+            if client and client.print_message is not None:
                 self.print_message(client.print_message, OTHER_CLIENT_NAME)
                 client.print_message = None
 
@@ -236,7 +254,7 @@ class Window(Gtk.Window):
         buffer = self.entry.get_buffer()
         text = buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter(), False)
         if text:
-            client.send_message(text, 4, self.checkbox.get_active())  # type: ignore
+            client.send_message(text, 4, corrupt=self.checkbox.get_active())  # type: ignore
             self.print_message(text, NAME)
             buffer.set_text("")
 
@@ -251,6 +269,7 @@ try:
 except Exception as e:
     print(f"Failed to create client: {e}")
     exit(1)
+
 
 # Start the GTK application
 if __name__ == "__main__":
