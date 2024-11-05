@@ -17,7 +17,6 @@ else:
 NAME = "Client" + ("1" if CLIENT_PORT < SERVER_PORT else "2")
 OTHER_CLIENT_NAME = "Client" + ("1" if CLIENT_PORT > SERVER_PORT else "2")
 client = None
-
 logger = logging.getLogger()
 logging.basicConfig(filename="logclient.log", level=logging.INFO)
 
@@ -28,7 +27,7 @@ def log(message):
 
 
 class Client:
-    def __init__(self, ip, port, server_ip, server_port) -> None:
+    def __init__(self, ip: str, port: int, server_ip: str, server_port: int) -> None:
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.sock.bind((ip, port))
         self.server_ip = server_ip
@@ -44,6 +43,7 @@ class Client:
         inside messages that are supposed to be printed on client.
         The window is constantly listeninng to messages on this variable
         """
+        self.message_event = threading.Event()
 
         self.last_message = None
         self.print_message = None
@@ -51,6 +51,10 @@ class Client:
         self.handshake()
 
     def recieve_loop(self):
+        """
+        receiver rool will unpack everything and then put it to last variable
+        todo: make it thread safe
+        """
         while True:
             self.receive()
 
@@ -65,35 +69,84 @@ class Client:
 
     def send_message(
         self,
-        message="",
-        flag=4,
-        sequence_num=1,
-        fragment_num=1,
-        length=1,
+        message="",  # the actual message
+        flag=4,  # flag that can be from 1 to 6 so far
+        fragment_num=1,  # frag_num
+        fragment_total=1,  # total num of fragments
         corrupt=False,
     ):
         # todo: fix
+        """the below is code i need to add + fix
         if message == "end" or message == "exit":
             flag = 5
-        """
-        checksum = self.crc_ccitt_16(str.encode(message))
+        checksum = self.crc16(str.encode(message))
         if corrupt:
             checksum += 1
-            """
+        """
         fragment = self.make_header(
-            message, flag, sequence_num, fragment_num, length, corrupt=corrupt
+            message,
+            flag,
+            fragment_num,
+            fragment_total,
+            corrupt=corrupt,
         )
         log("sending:" + str(fragment))
-        self.sock.sendto(fragment, (self.server_ip, self.server_port))
+        # expected_number = len(message.encode()) if fragment_total == 1 else fragment_num
+        # if we're sending data it makes sure that it gets delivered
+        if flag == 4:
+            response = None
+            while not response:
+                self.sock.sendto(fragment, (self.server_ip, self.server_port))
+
+                response = self.wait_for_response()
+                # if the response is ACK we break out of the loop
+                if response and response == 3:
+                    log(len(message.encode()))
+                    break
+                elif response == 6:
+                    # elif the response is NACK we rebuild the frame
+                    log("redoing fragment")
+                    fragment = self.make_header(
+                        message,
+                        flag=flag,
+                        fragment_num=fragment_num,
+                        fragment_total=fragment_total,
+                        corrupt=False,
+                    )
+                    log("sending:" + str(fragment))
+                    # make new message
+                    response = None
+                else:
+                    response = None
+        else:
+            self.sock.sendto(fragment, (self.server_ip, self.server_port))
+
+    def wait_for_response(self, wait_time=3):
+        self.message_event.clear()
+        start_time = time.time()
+        while time.time() - start_time < wait_time:
+            # todo: huh ???
+            if self.message_event.wait(timeout=wait_time - (time.time() - start_time)):
+                if (
+                    self.last_message
+                    and self.last_message[0] in [3, 6]
+                    # and self.last_message[1] ==
+                ):
+                    response_flag = self.last_message
+                    self.last_message = None  # Clear message after handling
+                    return response_flag[0]
+        return None
 
     def quit(self):
+        # todo: fix
         self.sock.close()
         log("Client closed..")
 
     def make_header(
-        self, message, flag=4, sequence_num=1, fragment_num=1, length=1, corrupt=False
+        self, message, flag=4, fragment_num=1, fragment_total=1, corrupt=False
     ):
         """
+        Makes header in very clear way with these flag options
         1=SYN
         2=SYN-ACK
         3=ACK
@@ -101,19 +154,21 @@ class Client:
         5=FIN
         6=NACK
         """
+
         frame = struct.pack("!B", flag)
-        frame += struct.pack("!H", sequence_num)
         frame += struct.pack("!H", fragment_num)
-        frame += struct.pack("!B", length)
+        frame += struct.pack("!H", fragment_total)
+        frame += struct.pack("!B", len(message.encode()))
         frame += message.encode("utf-8")
-        checksum = self.crc_ccitt_16(frame)
+        checksum = self.crc16(frame)
+
         if corrupt:
-            checksum += 1
+            checksum += 1 if int(checksum) < 50000 else -1
         frame += struct.pack("!H", checksum)
 
         return frame
 
-    def crc_ccitt_16(self, data):
+    def crc16(self, data):
         crc = 0xFFFF
         for byte in data:
             crc ^= byte << 8
@@ -128,42 +183,56 @@ class Client:
         return crc
 
     def check_checksum(self, data):
-        return self.crc_ccitt_16(data) == 0
+        return self.crc16(data) == 0
 
     def unpack_header(self, data):
+        """we unpack the message but if the flag is 4
+        we make sure it gets delivered ( prob should
+        have this on everything but whatevs uwu
+        """
         flag = struct.unpack("!B", data[0:1])[0]
-        sequence = struct.unpack("!H", data[1:3])[0]
-        fragment_num = struct.unpack("!H", data[3:5])[0]
+        fragment_num = struct.unpack("!H", data[1:3])[0]
+        fragment_total = struct.unpack("!H", data[3:5])[0]
         length = struct.unpack("!B", data[5:6])[0]
         message = data[6:-2].decode("utf-8")
         # unpacks the message and puts all the available data into last_message variable
-        self.last_message = [flag, sequence, fragment_num, length, message]
+        self.last_message = [flag, fragment_num, fragment_total, length, message]
         log("received:" + str(data))
 
         if flag == 4:
-            log(self.check_checksum(data[:]) == 0)
-            if self.check_checksum(data[:]) == 0:
-                self.send_message(message="ACK", flag=3)
+            """
+            when sending message it expects ACK to somehow identify
+            itself as to which packet it's acknowledging so I take
+            the expected number ( length)  and use it as fragment_num.
+            Problems might arrise in file transfer.
+            """
+            log(self.check_checksum(data[:]))
+            if self.check_checksum(data[:]):
+                self.send_message(message="", fragment_num=length, flag=3)
                 self.print_message = message
             else:
-                self.send_message(message="NACK", flag=6)
+                self.send_message(message="", flag=6)
         elif flag == 5:
             self.send_message("end")
             self.quit()
-
+        self.message_event.set()
         return [message, flag]
 
     def handshake(self):
+        """preferably don't touch , we are working on 2
+        ports hence one has to be lower so we set one of
+        them to be listener and the other to be sender .
+        """
         received_data = None
         if CLIENT_PORT < SERVER_PORT:
 
             while received_data is None or received_data != 2:
-                self.send_message("SYN", 1)
+                self.send_message("", 1)
                 time.sleep(0.5)
                 if self.last_message is not None:
                     received_data = self.last_message[0]
             log("Received SYN-ACK, sending ACK, connection initiated")
-            self.send_message("ACK", 3)
+            self.send_message("", 3)
 
         else:
             while received_data is None or received_data != 1:
@@ -171,7 +240,7 @@ class Client:
                     received_data = self.last_message[0]
 
             log("Received SYN, sending SYN-ACK")
-            self.send_message("SYN-ACK", 2)
+            self.send_message("", 2)
             while received_data is None or received_data != 3:
                 if self.last_message is not None:
                     received_data = self.last_message[0]
@@ -189,7 +258,6 @@ class Window(Gtk.Window):
 
     def check_loop(self):
         while client and self.check_data_thread:
-            client.receive()
             if client and client.print_message is not None:
                 self.print_message(client.print_message, OTHER_CLIENT_NAME)
                 client.print_message = None
