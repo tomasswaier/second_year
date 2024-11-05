@@ -18,6 +18,14 @@ NAME = "Client" + ("1" if CLIENT_PORT < SERVER_PORT else "2")
 OTHER_CLIENT_NAME = "Client" + ("1" if CLIENT_PORT > SERVER_PORT else "2")
 client = None
 
+logger = logging.getLogger()
+logging.basicConfig(filename="logclient.log", level=logging.INFO)
+
+
+def log(message):
+    print(message)
+    logger.info(message)
+
 
 class Client:
     def __init__(self, ip, port, server_ip, server_port) -> None:
@@ -28,14 +36,22 @@ class Client:
         self.read_thread = threading.Thread(
             target=self.recieve_loop,
         )
+        """
+        last_message holds last message recieved . It can be used to
+        kcheck for ack pacets, nack , finish idk.
+
+        print_message serves one purpose and that is to keep
+        inside messages that are supposed to be printed on client.
+        The window is constantly listeninng to messages on this variable
+        """
+
         self.last_message = None
         self.print_message = None
-        self.read_messages = True
         self.read_thread.start()
         self.handshake()
 
     def recieve_loop(self):
-        while self.read_messages:
+        while True:
             self.receive()
 
     def receive(self):
@@ -48,27 +64,34 @@ class Client:
             return None, None
 
     def send_message(
-        self, message, flag=4, sequence_num=1, fragment_num=1, length=1, corrupt=False
+        self,
+        message="",
+        flag=4,
+        sequence_num=1,
+        fragment_num=1,
+        length=1,
+        corrupt=False,
     ):
-        # dummymessage
-        if message == "end":
+        # todo: fix
+        if message == "end" or message == "exit":
             flag = 5
-        # dummychecksum
+        """
         checksum = self.crc_ccitt_16(str.encode(message))
-        if checksum:
+        if corrupt:
             checksum += 1
+            """
         fragment = self.make_header(
-            message, flag, sequence_num, fragment_num, length, checksum=checksum
+            message, flag, sequence_num, fragment_num, length, corrupt=corrupt
         )
-        print("sending:" + str(fragment))
+        log("sending:" + str(fragment))
         self.sock.sendto(fragment, (self.server_ip, self.server_port))
 
     def quit(self):
         self.sock.close()
-        print("Client closed..")
+        log("Client closed..")
 
     def make_header(
-        self, message, flag=4, sequence_num=1, fragment_num=1, length=1, checksum=1
+        self, message, flag=4, sequence_num=1, fragment_num=1, length=1, corrupt=False
     ):
         """
         1=SYN
@@ -76,12 +99,16 @@ class Client:
         3=ACK
         4=PSH (data)
         5=FIN
+        6=NACK
         """
         frame = struct.pack("!B", flag)
         frame += struct.pack("!H", sequence_num)
         frame += struct.pack("!H", fragment_num)
         frame += struct.pack("!B", length)
         frame += message.encode("utf-8")
+        checksum = self.crc_ccitt_16(frame)
+        if corrupt:
+            checksum += 1
         frame += struct.pack("!H", checksum)
 
         return frame
@@ -101,9 +128,7 @@ class Client:
         return crc
 
     def check_checksum(self, data):
-        if self.crc_ccitt_16(data) == 0:
-            return True
-        return False
+        return self.crc_ccitt_16(data) == 0
 
     def unpack_header(self, data):
         flag = struct.unpack("!B", data[0:1])[0]
@@ -111,14 +136,17 @@ class Client:
         fragment_num = struct.unpack("!H", data[3:5])[0]
         length = struct.unpack("!B", data[5:6])[0]
         message = data[6:-2].decode("utf-8")
-
+        # unpacks the message and puts all the available data into last_message variable
         self.last_message = [flag, sequence, fragment_num, length, message]
-        print("received:" + str(data))
+        log("received:" + str(data))
 
         if flag == 4:
-            print(data[6:])
-            self.send_message(message="ACK", flag=3)
-            self.print_message = message
+            log(self.check_checksum(data[:]) == 0)
+            if self.check_checksum(data[:]) == 0:
+                self.send_message(message="ACK", flag=3)
+                self.print_message = message
+            else:
+                self.send_message(message="NACK", flag=6)
         elif flag == 5:
             self.send_message("end")
             self.quit()
@@ -134,7 +162,7 @@ class Client:
                 time.sleep(0.5)
                 if self.last_message is not None:
                     received_data = self.last_message[0]
-            print("Received SYN-ACK, sending ACK, connection initiated")
+            log("Received SYN-ACK, sending ACK, connection initiated")
             self.send_message("ACK", 3)
 
         else:
@@ -142,13 +170,13 @@ class Client:
                 if self.last_message is not None:
                     received_data = self.last_message[0]
 
-            print("Received SYN, sending SYN-ACK")
+            log("Received SYN, sending SYN-ACK")
             self.send_message("SYN-ACK", 2)
             while received_data is None or received_data != 3:
                 if self.last_message is not None:
                     received_data = self.last_message[0]
 
-            print(
+            log(
                 "Received ACK, connection initiated\n-----------------------------------"
             )
 
@@ -205,7 +233,7 @@ class Window(Gtk.Window):
 
     def read_messages(self):
         if not client:
-            print("client is None for some reason . EXITING")
+            log("client is None for some reason . EXITING")
             exit()
         message = client.print_message
         if message:
@@ -231,9 +259,9 @@ class Window(Gtk.Window):
             file_path = dialog.get_filename()
             # todo:finish this
             self.filename.set_text(file_path)
-            print(file_path)
+            log(file_path)
         elif response == Gtk.ResponseType.CANCEL:
-            print("Cancel clicked")
+            log("Cancel clicked")
 
         dialog.destroy()
 
@@ -267,7 +295,7 @@ class Window(Gtk.Window):
 try:
     client = Client(CLIENT_IP, CLIENT_PORT, SERVER_IP, SERVER_PORT)
 except Exception as e:
-    print(f"Failed to create client: {e}")
+    log(f"Failed to create client: {e}")
     exit(1)
 
 
@@ -279,6 +307,6 @@ if __name__ == "__main__":
         win.show_all()
         Gtk.main()
     except Exception as e:
-        print(f"An error occurred while starting the GUI: {e}")
+        log(f"An error occurred while starting the GUI: {e}")
     finally:
         client.quit()  # Ensure the client socket is closed properly
