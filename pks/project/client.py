@@ -91,14 +91,14 @@ class Client:
             corrupt=corrupt,
         )
         log("sending:" + str(fragment))
-        # expected_number = len(message.encode()) if fragment_total == 1 else fragment_num
+        expected_number = len(message.encode()) if fragment_total == 1 else fragment_num
         # if we're sending data it makes sure that it gets delivered
         if flag == 4:
             response = None
             while not response:
                 self.sock.sendto(fragment, (self.server_ip, self.server_port))
 
-                response = self.wait_for_response()
+                response = self.wait_for_response(expected_number=expected_number)
                 # if the response is ACK we break out of the loop
                 if response and response == 3:
                     log(len(message.encode()))
@@ -121,7 +121,7 @@ class Client:
         else:
             self.sock.sendto(fragment, (self.server_ip, self.server_port))
 
-    def wait_for_response(self, wait_time=3):
+    def wait_for_response(self, expected_number, wait_time=3):
         self.message_event.clear()
         start_time = time.time()
         while time.time() - start_time < wait_time:
@@ -130,7 +130,7 @@ class Client:
                 if (
                     self.last_message
                     and self.last_message[0] in [3, 6]
-                    # and self.last_message[1] ==
+                    and self.last_message[1] == expected_number
                 ):
                     response_flag = self.last_message
                     self.last_message = None  # Clear message after handling
@@ -211,7 +211,7 @@ class Client:
                 self.send_message(message="", fragment_num=length, flag=3)
                 self.print_message = message
             else:
-                self.send_message(message="", flag=6)
+                self.send_message(message="", fragment_num=length, flag=6)
         elif flag == 5:
             self.send_message("end")
             self.quit()

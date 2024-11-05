@@ -112,14 +112,23 @@ for i in range(5, int(40020 / 4)):
         index += 1
 
 
-def evaluate_accuracy(knn_instance):
-    correct_num = 0
-    total_num = len(x)
-    for i in range(total_num):
-        if classes[i] == knn_instance.c[i]:
-            correct_num += 1
+def evaluate_accuracy(knn_instance, num_points_per_class=10000):
+    correct_predictions = 0
+    total_predictions = 4 * num_points_per_class
 
-    return (correct_num / total_num) * 100
+    for i in range(num_points_per_class):
+        for color, actual_class in [(red, 0), (green, 1), (blue, 2), (pink, 3)]:
+            x_point, y_point = gen_random_point(*color[2])
+
+            x, y, classes = knn_instance.return_points()
+            limit_index = len(x)
+
+            predicted_class = knn_instance.classify(x_point, y_point, limit_index)
+            if predicted_class == actual_class:
+                correct_predictions += 1
+
+    accuracy = correct_predictions / total_predictions * 100
+    return accuracy
 
 
 accuracy_1 = evaluate_accuracy(array1)
