@@ -19,6 +19,7 @@ OTHER_CLIENT_NAME = "Client" + ("1" if CLIENT_PORT > SERVER_PORT else "2")
 client = None
 logger = logging.getLogger()
 logging.basicConfig(filename="logclient.log", level=logging.INFO)
+PACKET_LENGTH = 255
 
 
 def log(message):
@@ -60,7 +61,7 @@ class Client:
 
     def receive(self):
         try:
-            data, _ = self.sock.recvfrom(512)
+            data, _ = self.sock.recvfrom(PACKET_LENGTH)
             return self.unpack_header(data)
         except BlockingIOError:
             return None, None
@@ -82,44 +83,57 @@ class Client:
         checksum = self.crc16(str.encode(message))
         if corrupt:
             checksum += 1
+        I am using placeholder for flag==4 because
+        it insists on there being a message
         """
-        fragment = self.make_header(
-            message,
-            flag,
-            fragment_num,
-            fragment_total,
-            corrupt=corrupt,
-        )
-        log("sending:" + str(fragment))
-        expected_number = len(message.encode()) if fragment_total == 1 else fragment_num
-        # if we're sending data it makes sure that it gets delivered
-        if flag == 4:
-            response = None
-            while not response:
-                self.sock.sendto(fragment, (self.server_ip, self.server_port))
+        if flag != 4:
+            message = "placeholder"
+        fragments = [
+            message[i : i + PACKET_LENGTH - 7]
+            for i in range(0, len(message), PACKET_LENGTH - 7)
+        ]
 
-                response = self.wait_for_response(expected_number=expected_number)
-                # if the response is ACK we break out of the loop
-                if response and response == 3:
-                    log(len(message.encode()))
-                    break
-                elif response == 6:
-                    # elif the response is NACK we rebuild the frame
-                    log("redoing fragment")
-                    fragment = self.make_header(
-                        message,
-                        flag=flag,
-                        fragment_num=fragment_num,
-                        fragment_total=fragment_total,
-                        corrupt=False,
-                    )
-                    log("sending:" + str(fragment))
-                    # make new message
+        fragment_total = len(fragments)
+        for fragment_index, fragment_data in enumerate(fragments, start=1):
+            if fragment_total == 1:
+                expected_number = len(message.encode())
+            else:
+                expected_number = fragment_index
+                fragment_num = fragment_index
+            fragment = self.make_header(
+                message=fragment_data,
+                flag=flag,
+                fragment_num=fragment_num,
+                fragment_total=fragment_total,
+                corrupt=corrupt,
+            )
+            log("sending:" + str(fragment))
+            # this part makes sure that data gets delivered
+            if flag == 4:
+                response = None
+                while not response:
+                    self.sock.sendto(fragment, (self.server_ip, self.server_port))
+
+                    response = self.wait_for_response(expected_number=expected_number)
+                    # if the response is ACK we break out of the loop
+                    if response and response == 3:
+                        break
+                    elif response == 6:
+                        # elif the response is NACK we rebuild the frame
+                        log("redoing fragment")
+                        fragment = self.make_header(
+                            message=fragment_data,
+                            flag=flag,
+                            fragment_num=fragment_num,
+                            fragment_total=fragment_total,
+                            corrupt=False,
+                        )
+                        log("sending:" + str(fragment))
+                        # make new message
+
                     response = None
-                else:
-                    response = None
-        else:
-            self.sock.sendto(fragment, (self.server_ip, self.server_port))
+            else:
+                self.sock.sendto(fragment, (self.server_ip, self.server_port))
 
     def wait_for_response(self, expected_number, wait_time=3):
         self.message_event.clear()
@@ -127,6 +141,8 @@ class Client:
         while time.time() - start_time < wait_time:
             # todo: huh ???
             if self.message_event.wait(timeout=wait_time - (time.time() - start_time)):
+                if self.last_message and self.last_message[0] in [3, 6]:
+                    log("{} {}".format(self.last_message[1], expected_number))
                 if (
                     self.last_message
                     and self.last_message[0] in [3, 6]
@@ -154,12 +170,14 @@ class Client:
         5=FIN
         6=NACK
         """
+        if flag != 4:
+            message = ""
 
         frame = struct.pack("!B", flag)
         frame += struct.pack("!H", fragment_num)
         frame += struct.pack("!H", fragment_total)
-        frame += struct.pack("!B", len(message.encode()))
-        frame += message.encode("utf-8")
+        frame += struct.pack("!B", len(message))
+        frame += message.encode()
         checksum = self.crc16(frame)
 
         if corrupt:
@@ -198,6 +216,7 @@ class Client:
         # unpacks the message and puts all the available data into last_message variable
         self.last_message = [flag, fragment_num, fragment_total, length, message]
         log("received:" + str(data))
+        log("{} {}".format(fragment_num, struct.unpack("!B", data[5:6])[0]))
 
         if flag == 4:
             """
@@ -206,17 +225,22 @@ class Client:
             the expected number ( length)  and use it as fragment_num.
             Problems might arrise in file transfer.
             """
-            log(self.check_checksum(data[:]))
-            if self.check_checksum(data[:]):
-                self.send_message(message="", fragment_num=length, flag=3)
-                self.print_message = message
-            else:
-                self.send_message(message="", fragment_num=length, flag=6)
-        elif flag == 5:
+            # if it passes checksum we send back ack packet
+            acceptance_code = length if fragment_total == 1 else fragment_num
+            # if it doesnt pass checksum we send back nack packet
+            response_flag = 3 if self.check_checksum(data[:]) else 6
+            self.send_message(
+                message="", fragment_num=acceptance_code, flag=response_flag
+            )
+            self.print_message = message
+        elif flag == 5:  # todo: finish this
             self.send_message("end")
             self.quit()
         self.message_event.set()
         return [message, flag]
+
+    def receive_long(self, fragment_num, name=None):
+        pass
 
     def handshake(self):
         """preferably don't touch , we are working on 2
@@ -350,7 +374,7 @@ class Window(Gtk.Window):
         buffer = self.entry.get_buffer()
         text = buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter(), False)
         if text:
-            client.send_message(text, 4, corrupt=self.checkbox.get_active())  # type: ignore
+            client.send_message(message=text, flag=4, corrupt=self.checkbox.get_active())  # type: ignore
             self.print_message(text, NAME)
             buffer.set_text("")
 
