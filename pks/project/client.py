@@ -89,8 +89,8 @@ class Client:
         if flag != 4:
             message = "placeholder"
         fragments = [
-            message[i : i + PACKET_LENGTH - 7]
-            for i in range(0, len(message), PACKET_LENGTH - 7)
+            message[i : i + PACKET_LENGTH - 8]
+            for i in range(0, len(message), PACKET_LENGTH - 8)
         ]
 
         fragment_total = len(fragments)
