@@ -45,7 +45,7 @@ class Client:
         The window is constantly listeninng to messages on this variable
         """
         self.message_event = threading.Event()
-
+        self.long_message = []
         self.last_message = None
         self.print_message = None
         self.read_thread.start()
@@ -86,8 +86,19 @@ class Client:
         I am using placeholder for flag==4 because
         it insists on there being a message
         """
+        filename = None
         if flag != 4:
             message = "placeholder"
+        else:
+            # when sending data this is preparation
+            if type(message) == list():
+                filename = message[0]
+                message = message[1]
+                # dummy thing for error
+                filename += 1
+
+        message = message.encode("utf-8")
+        # -8 because header
         fragments = [
             message[i : i + PACKET_LENGTH - 8]
             for i in range(0, len(message), PACKET_LENGTH - 8)
@@ -96,8 +107,12 @@ class Client:
         fragment_total = len(fragments)
         for fragment_index, fragment_data in enumerate(fragments, start=1):
             if fragment_total == 1:
-                expected_number = len(message.encode())
+                expected_number = len(message)
             else:
+                """logic : we send first fragment with str fileanme
+                if we're sending file else we send fragment num 0 bcs
+                we're sending really long message?
+                """
                 expected_number = fragment_index
                 fragment_num = fragment_index
             fragment = self.make_header(
@@ -113,10 +128,10 @@ class Client:
                 response = None
                 while not response:
                     self.sock.sendto(fragment, (self.server_ip, self.server_port))
-
                     response = self.wait_for_response(expected_number=expected_number)
                     # if the response is ACK we break out of the loop
                     if response and response == 3:
+                        log("received ack packet")
                         break
                     elif response == 6:
                         # elif the response is NACK we rebuild the frame
@@ -142,7 +157,8 @@ class Client:
             # todo: huh ???
             if self.message_event.wait(timeout=wait_time - (time.time() - start_time)):
                 if self.last_message and self.last_message[0] in [3, 6]:
-                    log("{} {}".format(self.last_message[1], expected_number))
+                    # log("{} {}".format(self.last_message[1], expected_number))
+                    pass
                 if (
                     self.last_message
                     and self.last_message[0] in [3, 6]
@@ -159,7 +175,7 @@ class Client:
         log("Client closed..")
 
     def make_header(
-        self, message, flag=4, fragment_num=1, fragment_total=1, corrupt=False
+        self, message: bytes, flag=4, fragment_num=1, fragment_total=1, corrupt=False
     ):
         """
         Makes header in very clear way with these flag options
@@ -171,13 +187,13 @@ class Client:
         6=NACK
         """
         if flag != 4:
-            message = ""
+            message = "".encode()
 
         frame = struct.pack("!B", flag)
         frame += struct.pack("!H", fragment_num)
         frame += struct.pack("!H", fragment_total)
         frame += struct.pack("!B", len(message))
-        frame += message.encode()
+        frame += message
         checksum = self.crc16(frame)
 
         if corrupt:
@@ -212,11 +228,15 @@ class Client:
         fragment_num = struct.unpack("!H", data[1:3])[0]
         fragment_total = struct.unpack("!H", data[3:5])[0]
         length = struct.unpack("!B", data[5:6])[0]
-        message = data[6:-2].decode("utf-8")
+        message = None
+        if fragment_total != 1:
+            message = data[6:-2]
+        else:
+            message = data[6:-2].decode()
+            self.last_message = [flag, fragment_num, fragment_total, length, message]
         # unpacks the message and puts all the available data into last_message variable
-        self.last_message = [flag, fragment_num, fragment_total, length, message]
         log("received:" + str(data))
-        log("{} {}".format(fragment_num, struct.unpack("!B", data[5:6])[0]))
+        # log("{} {}".format(fragment_num, struct.unpack("!B", data[5:6])[0]))
 
         if flag == 4:
             """
@@ -225,14 +245,24 @@ class Client:
             the expected number ( length)  and use it as fragment_num.
             Problems might arrise in file transfer.
             """
-            # if it passes checksum we send back ack packet
             acceptance_code = length if fragment_total == 1 else fragment_num
-            # if it doesnt pass checksum we send back nack packet
+            # if passeses we respond with ack else we ask for it again
             response_flag = 3 if self.check_checksum(data[:]) else 6
             self.send_message(
                 message="", fragment_num=acceptance_code, flag=response_flag
             )
-            self.print_message = message
+
+            if response_flag == 3 and fragment_total != 1:
+                log(message)
+                if fragment_num == fragment_total:
+                    self.long_message.append(message)
+                    self.print_message = b"".join(self.long_message).decode()
+                    log(self.print_message)
+                    self.long_message = []
+                else:
+                    self.long_message.append(message)
+            elif response_flag == 3:
+                self.print_message = message
         elif flag == 5:  # todo: finish this
             self.send_message("end")
             self.quit()
