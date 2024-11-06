@@ -253,11 +253,9 @@ class Client:
             )
 
             if response_flag == 3 and fragment_total != 1:
-                log(message)
                 if fragment_num == fragment_total:
                     self.long_message.append(message)
                     self.print_message = b"".join(self.long_message).decode()
-                    log(self.print_message)
                     self.long_message = []
                 else:
                     self.long_message.append(message)
