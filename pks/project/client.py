@@ -45,28 +45,13 @@ class Client:
         The window is constantly listeninng to messages on this variable
         """
         self.message_event = threading.Event()
-        self.long_message = []
-        self.last_message = None
-        self.print_message = None
-        self.read_thread.start()
-        self.handshake()
-
-    def recieve_loop(self):
-        """
-        receiver rool will unpack everything and then put it to last variable
-        todo: make it thread safe
-        """
-        while True:
-            self.receive()
-
-    def receive(self):
-        try:
-            data, _ = self.sock.recvfrom(PACKET_LENGTH)
-            return self.unpack_header(data)
-        except BlockingIOError:
-            return None, None
-        except Exception:
-            return None, None
+        self.read_thread_running = True
+        self.package = []  # long message
+        self.package_name = None
+        self.last_message = None  # last message recieved
+        self.print_message = None  # message to be printed
+        self.read_thread.start()  # thread that's always listening
+        self.handshake()  # what do u think ?
 
     def send_message(
         self,
@@ -77,9 +62,9 @@ class Client:
         corrupt=False,
     ):
         # todo: fix
-        """the below is code i need to add + fix
         if message == "end" or message == "exit":
             flag = 5
+        """the below is code i need to add + fix
         checksum = self.crc16(str.encode(message))
         if corrupt:
             checksum += 1
@@ -87,25 +72,32 @@ class Client:
         it insists on there being a message
         """
         filename = None
+        start = 1
         if flag != 4:
             message = "placeholder"
         else:
-            # when sending data this is preparation
-            if type(message) == list():
+            """
+            when sending long_message (package) if it's plain
+            text we start from 1 else it's a file and we start
+            from 0 where 0th fragment_num is filename
+            """
+            if type(message) == list:
                 filename = message[0]
                 message = message[1]
-                # dummy thing for error
-                filename += 1
-
-        message = message.encode("utf-8")
+                start = 0
+        if type(message) == str:
+            message = message.encode()
         # -8 because header
         fragments = [
             message[i : i + PACKET_LENGTH - 8]
             for i in range(0, len(message), PACKET_LENGTH - 8)
         ]
-
+        if filename:
+            fragments.insert(0, filename.encode())
         fragment_total = len(fragments)
-        for fragment_index, fragment_data in enumerate(fragments, start=1):
+
+        for fragment_index, fragment_data in enumerate(fragments, start=start):
+            expected_number = 0
             if fragment_total == 1:
                 expected_number = len(message)
             else:
@@ -115,6 +107,7 @@ class Client:
                 """
                 expected_number = fragment_index
                 fragment_num = fragment_index
+
             fragment = self.make_header(
                 message=fragment_data,
                 flag=flag,
@@ -156,23 +149,18 @@ class Client:
         while time.time() - start_time < wait_time:
             # todo: huh ???
             if self.message_event.wait(timeout=wait_time - (time.time() - start_time)):
-                if self.last_message and self.last_message[0] in [3, 6]:
-                    # log("{} {}".format(self.last_message[1], expected_number))
-                    pass
+                # if self.last_message and self.last_message[0] in [3, 6]:
+                #    log("{} {}".format(self.last_message[1], expected_number))
+                #    pass
                 if (
                     self.last_message
                     and self.last_message[0] in [3, 6]
                     and self.last_message[1] == expected_number
                 ):
                     response_flag = self.last_message
-                    self.last_message = None  # Clear message after handling
+                    self.last_message = None  # Clear message
                     return response_flag[0]
         return None
-
-    def quit(self):
-        # todo: fix
-        self.sock.close()
-        log("Client closed..")
 
     def make_header(
         self, message: bytes, flag=4, fragment_num=1, fragment_total=1, corrupt=False
@@ -254,21 +242,61 @@ class Client:
 
             if response_flag == 3 and fragment_total != 1:
                 if fragment_num == fragment_total:
-                    self.long_message.append(message)
-                    self.print_message = b"".join(self.long_message).decode()
-                    self.long_message = []
+                    self.package.append(message)
+                    self.print_message = b"".join(self.package).decode()
+                    self.package = []
+                    self.package_name = None
+                elif (
+                    fragment_num + 1 == fragment_total and self.package_name is not None
+                ):
+                    self.package.append(message)
+                    # Open the file and write the accumulated package data
+                    with open("output" + self.package_name, "wb") as file:
+                        data = b"".join(self.package)
+                        file.write(data)
+                    # log(data)
+                    log("file saved: " + self.package_name)
+                    # Clear the package list after writing
+                    self.package = []
+                    self.print_message = "You've received a file: " + self.package_name
+                    self.package_name = None
+
                 else:
-                    self.long_message.append(message)
+                    if fragment_num == 0:
+                        self.package_name = message.decode().split("/")[-1]
+                    else:
+                        self.package.append(message)
             elif response_flag == 3:
                 self.print_message = message
-        elif flag == 5:  # todo: finish this
+        elif flag == 5:  # This flag represents "end" or exit condition
             self.send_message("end")
             self.quit()
+            GLib.idle_add(Gtk.main_quit)
         self.message_event.set()
         return [message, flag]
 
-    def receive_long(self, fragment_num, name=None):
-        pass
+    def quit(self):
+        self.read_thread_running = False
+        self.sock.close()
+        log("Client closed " + NAME)
+        GLib.idle_add(Gtk.main_quit)
+
+    def recieve_loop(self):
+        """
+        receiver rool will unpack everything and then put it to last variable
+        todo: make it thread safe
+        """
+        while self.read_thread_running:
+            self.receive()
+
+    def receive(self):
+        try:
+            data, _ = self.sock.recvfrom(PACKET_LENGTH)
+            return self.unpack_header(data)
+        except BlockingIOError:
+            return None, None
+        except Exception:
+            return None, None
 
     def handshake(self):
         """preferably don't touch , we are working on 2
@@ -379,7 +407,7 @@ class Window(Gtk.Window):
             file_path = dialog.get_filename()
             # todo:finish this
             self.filename.set_text(file_path)
-            log(file_path)
+            log("file :" + file_path)
         elif response == Gtk.ResponseType.CANCEL:
             log("Cancel clicked")
 
@@ -401,9 +429,18 @@ class Window(Gtk.Window):
     def send_message(self, _):
         buffer = self.entry.get_buffer()
         text = buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter(), False)
-        if text:
+        file = self.filename.get_text()
+        if file == "No File":
+            file = None
+
+        if (text and not file) or (file and not text):
+            if file:
+                with open(file, "rb") as f:
+                    file_content = f.read()
+                # Create a list with filename and file content in binary form
+                text = [file, file_content]
             client.send_message(message=text, flag=4, corrupt=self.checkbox.get_active())  # type: ignore
-            self.print_message(text, NAME)
+            self.print_message(text if file is None else file, NAME)
             buffer.set_text("")
 
     def update_scrollbar(self):
