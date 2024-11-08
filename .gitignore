@@ -1,0 +1,6 @@
+PKS-course-2425/
+IAU-course/
+env/
+*.log
+**/test_files/
+
