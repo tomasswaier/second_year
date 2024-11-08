@@ -52,6 +52,7 @@ class Client:
         self.print_message = None  # message to be printed
         self.read_thread.start()  # thread that's always listening
         self.handshake()  # what do u think ?
+        self.time_start = None
 
     def send_message(
         self,
@@ -256,6 +257,7 @@ class Client:
                         file.write(data)
                     # log(data)
                     log("file saved: " + self.package_name)
+                    log(time.time() - self.time_start)
                     # Clear the package list after writing
                     self.package = []
                     self.print_message = "You've received a file: " + self.package_name
@@ -264,6 +266,7 @@ class Client:
                 else:
                     if fragment_num == 0:
                         self.package_name = message.decode().split("/")[-1]
+                        self.time_start = time.time()
                     else:
                         self.package.append(message)
             elif response_flag == 3:
@@ -363,14 +366,18 @@ class Window(Gtk.Window):
         # Text area
         self.action_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
         self.entry = Gtk.TextView()
-        self.entry.set_size_request(500, 40)
+        self.entry.set_size_request(470, 40)
         self.entry.set_wrap_mode(1)
+        self.size_entry = Gtk.TextView()
+        self.size_entry.set_size_request(30, 40)
+        self.size_entry.set_wrap_mode(1)
         button_send = Gtk.Button.new_with_label("Send")
         button_send.connect("clicked", self.send_message)
         self.checkbox = Gtk.CheckButton(label="")
-        self.action_box.pack_start(self.entry, False, False, 0)
-        self.action_box.pack_start(button_send, True, True, 0)
-        self.action_box.pack_start(self.checkbox, True, True, 0)
+        self.action_box.pack_start(self.entry, True, True, 0)
+        self.action_box.pack_start(button_send, False, False, 0)
+        self.action_box.pack_start(self.checkbox, False, False, 0)
+        self.action_box.pack_start(self.size_entry, False, False, 0)
 
         # put it all into main window (vbox)
         vbox.pack_start(self.filepicker, False, False, 10)
