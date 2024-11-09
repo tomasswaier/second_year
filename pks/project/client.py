@@ -1,7 +1,15 @@
-import socket, gi, sys, struct, threading, time, logging
+import sys
+import time
+import struct
+import threading
+import socket
+import logging
+import gi
+
+"""DO NOT TRY TO PUT IT INTO MULTIPLE FILES . I TRIED .... """
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, GLib  # type:ignore
+from gi.repository import Gtk, GLib
 
 if len(sys.argv) > 1:
     CLIENT_IP = "127.0.0.1"
@@ -50,9 +58,10 @@ class Client:
         self.package_name = None
         self.last_message = None  # last message recieved
         self.print_message = None  # message to be printed
+        self.timeout = [time.time(), 0]  # a thing for timeout
+        self.send_timeout = None
         self.read_thread.start()  # thread that's always listening
         self.handshake()  # what do u think ?
-        self.time_start = None
 
     def send_message(
         self,
@@ -61,6 +70,7 @@ class Client:
         fragment_num=1,  # frag_num
         fragment_total=1,  # total num of fragments
         corrupt=False,
+        wait_for_response=True,
     ):
         # todo: fix
         if message == "end" or message == "exit":
@@ -82,11 +92,11 @@ class Client:
             text we start from 1 else it's a file and we start
             from 0 where 0th fragment_num is filename
             """
-            if type(message) == list:
+            if isinstance(message, list):
                 filename = message[0]
                 message = message[1]
                 start = 0
-        if type(message) == str:
+        if isinstance(message, str):
             message = message.encode()
         # -8 because header
         fragments = [
@@ -118,7 +128,7 @@ class Client:
             )
             log("sending:" + str(fragment))
             # this part makes sure that data gets delivered
-            if flag == 4:
+            if flag == 4 and wait_for_response:
                 response = None
                 while not response:
                     self.sock.sendto(fragment, (self.server_ip, self.server_port))
@@ -150,9 +160,6 @@ class Client:
         while time.time() - start_time < wait_time:
             # todo: huh ???
             if self.message_event.wait(timeout=wait_time - (time.time() - start_time)):
-                # if self.last_message and self.last_message[0] in [3, 6]:
-                #    log("{} {}".format(self.last_message[1], expected_number))
-                #    pass
                 if (
                     self.last_message
                     and self.last_message[0] in [3, 6]
@@ -257,7 +264,6 @@ class Client:
                         file.write(data)
                     # log(data)
                     log("file saved: " + self.package_name)
-                    log(time.time() - self.time_start)
                     # Clear the package list after writing
                     self.package = []
                     self.print_message = "You've received a file: " + self.package_name
@@ -266,7 +272,6 @@ class Client:
                 else:
                     if fragment_num == 0:
                         self.package_name = message.decode().split("/")[-1]
-                        self.time_start = time.time()
                     else:
                         self.package.append(message)
             elif response_flag == 3:
@@ -292,9 +297,19 @@ class Client:
         while self.read_thread_running:
             self.receive()
 
+    def timeout_check(self):
+        if self.timeout[0] + 5 < time.time():
+            log("{} , {}".format(self.timeout[0] + 5, time.time()))
+            self.send_timeout = "timeout"
+            self.timeout[0] = time.time()
+            self.timeout[1] += 1
+            if self.timeout[1] == 4:
+                self.quit()
+
     def receive(self):
         try:
             data, _ = self.sock.recvfrom(PACKET_LENGTH)
+            self.timeout[0] = time.time()
             return self.unpack_header(data)
         except BlockingIOError:
             return None, None
@@ -329,7 +344,7 @@ class Client:
                     received_data = self.last_message[0]
 
             log(
-                "Received ACK, connection initiated\n-----------------------------------"
+                "Received ACK, connection initiated\n----------------------------------"
             )
 
 
@@ -391,6 +406,11 @@ class Window(Gtk.Window):
             log("client is None for some reason . EXITING")
             exit()
         message = client.print_message
+        client.timeout_check()
+        send_timeout = client.send_timeout
+        if send_timeout:
+            client.send_message(message=send_timeout, flag=4, wait_for_response=False)
+            client.send_timeout = ""
         if message:
             self.print_message(message, OTHER_CLIENT_NAME)
             client.print_message = None
@@ -446,7 +466,9 @@ class Window(Gtk.Window):
                     file_content = f.read()
                 # Create a list with filename and file content in binary form
                 text = [file, file_content]
-            client.send_message(message=text, flag=4, corrupt=self.checkbox.get_active())  # type: ignore
+            client.send_message(
+                message=text, flag=4, corrupt=self.checkbox.get_active()
+            )
             self.print_message(text if file is None else file, NAME)
             buffer.set_text("")
 
