@@ -1,15 +1,16 @@
-import sys
-import time
-import struct
-import threading
-import socket
 import logging
+import socket
+import struct
+import sys
+import threading
+import time
+
 import gi
 
 """DO NOT TRY TO PUT IT INTO MULTIPLE FILES . I TRIED .... """
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, GLib
+from gi.repository import GLib, Gtk
 
 if len(sys.argv) > 1:
     CLIENT_IP = "127.0.0.1"
@@ -152,7 +153,10 @@ class Client:
 
                     response = None
             else:
-                self.sock.sendto(fragment, (self.server_ip, self.server_port))
+                try:
+                    self.sock.sendto(fragment, (self.server_ip, self.server_port))
+                except OSError as e:
+                    log(str(e))
 
     def wait_for_response(self, expected_number, wait_time=3):
         self.message_event.clear()
