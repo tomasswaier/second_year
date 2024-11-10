@@ -8,7 +8,6 @@ import time
 import gi
 
 """DO NOT TRY TO PUT IT INTO MULTIPLE FILES . I TRIED .... """
-
 gi.require_version("Gtk", "3.0")
 from gi.repository import GLib, Gtk
 
@@ -27,8 +26,11 @@ NAME = "Client" + ("1" if CLIENT_PORT < SERVER_PORT else "2")
 OTHER_CLIENT_NAME = "Client" + ("1" if CLIENT_PORT > SERVER_PORT else "2")
 client = None
 logger = logging.getLogger()
-logging.basicConfig(filename="logclient.log", level=logging.INFO)
-PACKET_LENGTH = 255
+logging.basicConfig(filename="test_files/logclient.log", level=logging.INFO)
+# base packet length
+packet_length = 255
+# time for timeout packet to send itself
+TIMEOUT_TIME = 30  # todo :change to 5
 
 
 def log(message):
@@ -101,8 +103,8 @@ class Client:
             message = message.encode()
         # -8 because header
         fragments = [
-            message[i : i + PACKET_LENGTH - 8]
-            for i in range(0, len(message), PACKET_LENGTH - 8)
+            message[i : i + packet_length - 8]
+            for i in range(0, len(message), packet_length - 8)
         ]
         if filename:
             fragments.insert(0, filename.encode())
@@ -303,7 +305,7 @@ class Client:
 
     def timeout_check(self):
         if self.timeout[0] + 5 < time.time():
-            log("{} , {}".format(self.timeout[0] + 5, time.time()))
+            # log("{} , {}".format(self.timeout[0] + 5, time.time()))
             self.send_timeout = "timeout"
             self.timeout[0] = time.time()
             self.timeout[1] += 1
@@ -312,8 +314,8 @@ class Client:
 
     def receive(self):
         try:
-            data, _ = self.sock.recvfrom(PACKET_LENGTH)
-            self.timeout[0] = time.time()
+            data, _ = self.sock.recvfrom(packet_length)
+            self.timeout = [time.time(), 0]
             return self.unpack_header(data)
         except BlockingIOError:
             return None, None
@@ -387,9 +389,16 @@ class Window(Gtk.Window):
         self.entry = Gtk.TextView()
         self.entry.set_size_request(470, 40)
         self.entry.set_wrap_mode(1)
-        self.size_entry = Gtk.TextView()
+        adjustment = Gtk.Adjustment(
+            value=0,
+            lower=10,
+            upper=255,
+            step_increment=1,
+            page_increment=5,
+        )
+        self.size_entry = Gtk.SpinButton(adjustment=adjustment)
+        self.size_entry.set_range(10, 255)
         self.size_entry.set_size_request(30, 40)
-        self.size_entry.set_wrap_mode(1)
         button_send = Gtk.Button.new_with_label("Send")
         button_send.connect("clicked", self.send_message)
         self.checkbox = Gtk.CheckButton(label="")
@@ -460,6 +469,8 @@ class Window(Gtk.Window):
     def send_message(self, _):
         buffer = self.entry.get_buffer()
         text = buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter(), False)
+        packet_size = self.size_entry.get_value_as_int()
+        log(packet_size)
         file = self.filename.get_text()
         if file == "No File":
             file = None

@@ -31,7 +31,8 @@ while IFS= read -r line; do
         last_login=$(echo "$current_data" | cut -d',' -f2)
 
         # Increment count or initialize if empty
-	echo "$name $login_date $session_start $session_end"
+	#echo "$line"
+	#echo "$name $login_date $session_start $session_end"
         ((current_count++))
         login_data["$name"]="$current_count,$login_date $session_start"
     fi 2> /dev/null
