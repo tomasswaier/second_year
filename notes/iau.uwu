@@ -1,35 +1,42 @@
 week 6 :cviko
-Talking about concept similar to Tokenization in chatgpt  . How we will be using it for something .  
-::Concept manhattan distance::
-::Hyper parameter tuning::
+	Talking about concept similar to Tokenization in chatgpt  . How we will be using it for something .  
+	::Concept manhattan distance::
+	::Hyper parameter tuning::
 
-grid search / brute force : trying every combination of 2 parameters
-
-::ensemble learning::
+	grid search / brute force : trying every combination of 2 parameters
+	
+	::ensemble learning::
 
 
 
 week 6 :lecture
-regression
-regression types
-
-
-week7 :cviko
-
-nieco len na trenovacia 
-
-
-nevytvarat novy pipline na trenovaciu / testovaciu ?
-
-robili novy fit na trenovaciu ?
-
-fit_transform -> train
-only transform na test
-
-
-analiza chybala v jednotke
-zle popisane v dvojke
+	regression
+	regression types
+	
+	
+	week7 :cviko
+	
+	nieco len na trenovacia 
+	
+	
+	nevytvarat novy pipline na trenovaciu / testovaciu ?
+	
+	robili novy fit na trenovaciu ?
+	
+	fit_transform -> train
+	only transform na test
+	
+	
+	analiza chybala v jednotke
+	zle popisane v dvojke
 
 week 7 : i didnt pay attention first halb
 
 
+week 9 :cviko
+	rawtext- tokenization - text cleaning -pos tagging stopwords -lemmetization-cleaned text - ml model
+
+week 9 :lecture : feature extraction
+	(12:09) yap
+	(12:11) feature extraction and feature encoding
+	(12:19) nlp (natural language processing)

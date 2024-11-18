@@ -1,255 +1,479 @@
+mynotes:
+	commands:
+		 
+    		Configure the device name.
+		Router(config)# hostname hostname
+
+		Secure privileged EXEC mode.
+		Router(config)# enable secret password
+
+		Secure user EXEC mode.
+  		Router(config)# line console 0  
+  		Router(config-line)# password password  
+  		Router(config-line)# login
+
+		Secure remote Telnet / SSH access.
+  		Router(config-line)# line vty 0 4  
+  		Router(config-line)# password   password  
+  		Router(config-line)# login  
+  		Router(config-line)# transport input {    ssh   | telnet}
+
+		Secure all passwords in the config file.
+  		Router(config-line)# exit  
+  		Router(config)# service password-encryption
+
+		Provide legal notification.
+		Router(config)# banner motd delimiter message delimiter
+
+		Save the configuration.
+  		Router(config)# end  
+  		Router# copy running-config startup-config
+
+		Router(config)# interface type-and-number  
+  		Router(config-if)# description description-text  
+  		Router(config-if)# ip address  ipv4-address subnet-mask  
+  		Router(config-if)# ipv6 address  ipv6-address/prefix-length  
+  		Router(config-if)# no shutdown
+
+		R1# show ip interface brief
+		R1# show ipv4 interface brief
+
+		To enable a router as an IPv6 router, the ipv6 unicast-routing
+	Not Sure:
+		TCP vs OSI model:
+		TCP: Application : Transport : Network : Network Access
+		OSI: Application : Presentation : Session : Transport : Network : Data Link : Physical
+		Transport has dest and source ip's that stay the same no matter what but Data Link has mac to the next hop which will change 
+	Module 6(data link):
+		data link:
+			prepares data for physical network
+			echanges fromes between endpoints over network
+			performs error detection
+		IEEE 802 LAN/MAN standards are specific to LAN WLAN WPAn and other local and metropolitan networks
+
+		data link sublayers:
+			Logical Link Control - communicates between upper layers and device hardware. Places information into the header that  identifies which network protocol is being used 
+			Media Access Control 
+					     - Responsible for data encapsulation ( frame delimiting , addressing , error detection ) and media access control also provides data link layer addressing
+		access to media : basically just that when router receives frame he decodes it , reads where its headed and encodes it with new mac 
+		
+		sees only logical topology
+	Module 7(switching):
+		CSMA/CA : ( carrier sense multiple access/collision avoidance)
+			csma/ca is  effective after collision . csma cd is effective before collision
+			used in wireless 
+			minimizes possibility of collision
+			
+		CSMA/CD : ( carrier sense multiple access/collision detection) ( modern switches operate in fullduplex)
+			ensures that only one device is transmitting at a time.
+			allows multiple devices to share same half duplex medium
+			detects collision when more than one device attempts to transmit simultaneously 
+			provides backoff algorithm for retransmission
+			used in wired networks
+		Ethernet Frames have to be between 64 and 1500
+
+		Unicast MAC - is used when frame is sent from one transmitting device to a single destination
+		Broadcast MAC- is received by every device on network. FF-FF-FF-FF-FF-FF . not forwarded by router
+		multicast MAC - goes to only specific devices . mac of 01-00-5e whend its ipv4 multicast and 33-33 when its ipv6 multicast - goes out of all ports - not forwarded by router unless()
+
+
+		switch (layer 2) makes decisions solely by layer2 etherner mac 
+
+		switches have 2 methods to determine which port they should forward it to:
+			Store-and-forward-receives whole frame, performes crc and if it's correct he looks up destination address , forwards it to looked up port
+
+			Cut-trough-forwards it before the frame is completely received(ofc he first reads the mac)(has 2 variants , the second one waits for firs 64 bytes bcs thats where most errors occur)
+
+		switch may use a buffering technique to store frames before forwarding them. buffering may also be used when the destination port is busy.
+			port based memory - frames are stored in queues linked to incoming / outgoing ports 
+			shared memory - puts all frames into common memory buffer shared by all ports . frames are dynamically linked to dest port so they don't have to be put at the start of queue
+				-this is important bcs it allows u to connect to 10GBbps swithc and 1Gpbs pcs 
+	Module 8(network layer):
+		network layer communication protocols specify packet structure 
+		protocols include ipv4,ipv6,ospf,icmp
+		to accomplish end to end commuication 4 things have to be done:
+			have said devices configured with unique ips so they can be identified
+			network layer encapsulates protocol data unit (pdu) into packets. this process adds ips 
+			network provides services to forward packets from source to destination
+			de-encapsulation ( if ips match)
+		ip characteristics ) no connection with destination established before packet is sent ) ip delivery not guaranteed ) independant of medium (copper,fiber-optic,wireless)
+
+		show ip route
+    		L - Directly connected local interface IP address
+    		C - Directly connected network
+    		S - Static route was manually configured by an administrator
+    		O - OSPF
+    		D - EIGRP
+	Module 12 ( ipv6):
+		todo : learn
+		Global Unicast Address (GUA) - This is similar to a public IPv4 address. These are globally unique, internet-routable addresses. GUAs can be configured statically or assigned dynamically.
+		Link-local Address (LLA) - This is required for every IPv6-enabled device. LLAs are used to communicate with other devices on the same local link. With IPv6, the term link refers to a subnet. LLAs are confined to a single link. Their uniqueness must only be confirmed on that link because they are not routable beyond the link. In other words, routers will not forward packets with a link-local source or destination address
+		IPv6 GUAs are the same as public IPv4 addresses. An IPv6 LLA lets two IPv6-enabled devices communicate with each other on the same link (subnet).
+
 nalievaren:
-
-
-192.168.16.0
-siet n1 1022 pc 1025 zariadeni 1025 - 2048 "2^11>1025"  32-11=21
-n2 508 +3
-N3 57
-N4 126
-N5 4 (N,B,R1,R2)
-
-/21
-255.255.1111 1000.0000 0000
-128+64+32+16+8= 255-1-2-4 = 248
-SM=255.255.248.0
-
-N
-192.168.16.0
-B
-192.168.23.255
-FH
-192.168.16.1
-LH
-192.168.23.248
-
-192.168.24.0
-511 
-32-9=23
-255.255.11111110.0000 0000
-SM=255.255.254.0
-N=192.168.24.0
-B=192.168.25.255
-fh=192.168.24.1
-lh=192.168.25.254
-
-192.168.26.0
-126+3=129 -> 256 = 2^8
-SM=255.255.255.0
-N=192.168.26.0
-B=192.168.26.255
-FH=192.168.26.1
-LH=192.168.26.254
-
-
-
-192.168.27.0
-57+3=60->64 = 2^6 = 26
-255.255.255.1100 0000
-SM= 255.255.255.192.0
-N=192.168.27.0
-B=192.168.27.255
-FH=192.168.27.0
-LH=192.168.27.63
-
-
-192.168.27.65
-4=2^2
-SM=255.255.255.252
-N=192.168.27.65
-B=192.168.27.68
-FH=192.168.27.66
-LH=192.168.27.67
-
-
-===================================================================================================
-N
-192.168.16.0/21
-B
-192.168.23.255
-SM
-255.255.248.0
-FH
-192.168.16.1
-LH
-192.168.23.254
-
-N
-192.168.24.0/23
-B
-192.168.25.255
-SM
-255.255.254.0
-FH
-192.168.24.1
-LH
-192.168.25.254
-
-N4 126/24/256
-
-N
-192.168.26.0/24
-B
-192.168.26.255
-SM
-255.255.255.0
-FH
-192.168.26.1
-LH
-192.168.26.254
-
-
-N3 57 /26 /64(cislo kolko to vie obsiahnut)
-
-N
-192.168.27.0/26
-B
-192.168.27.255
-SM
-255.255.255.192
-FH
-192.168.27.1
-LH
-192.168.27.62
-N5 
-
-N
-192.168.27.64/30
-B
-192.168.27.67
-SM
-255.255.255.252
-FH
-192.168.27.65
-LH
-192.168.27.66
-
-
-prednaska 7 ?
-description :dhcp dns ssh
-
-DHCP - 	good for changing environment
-dhcp reqest
-DNS  -	just converts 
-
-
-
-===================================================================================================
-
-
-
-23.255.224.0
-
-
-Sieť N2 2300 PC. -> 4096
-Sieť N4 511 PC. -> 1024
-Sieť N1 254 PC. -> 512
-Sieť N3 20 PC.  -> 32
-
-n2 23.255.224.0 /20
-SM= 255.255.240.0
-B=23.255.239.255
-gw=23.255.239.254
-pc=23.255.224.31.248
-
-
-n4 23.255.240.0 /22
-SM=255.255.252.0
-B=23.255.243.255
-GW=23.255.243.254
-PC=23.255.241.255
-
-
-n1 23.255.244.0 /23
-SM=255.255.254.0
-B= 23.255.245.255
-gw= 23.255.245.254
-pc= 23.255.244.128
-
-
-
-n3 23.255.246.0/ 27
-SM=255.255.255.224
-B=23.255.246.31
-gw=23.255.246.30
-pc=23.255.246.1
-
-
-n5 23.255.246.32/30
-SM=255.255.255.252
-B=23.255.246.35
-gw1=23.255.246.33
-gw2=23.255.246.34
-
-===================================================================================================
-
-
-23.255.224.0/19
-n2 2300 4096
-n4 511 	1024
-n1 254 	512
-n3 20 	32
-
-n2 23.255.224.0/20
-sm=255.255.240.0
-B=23.255.239.255
-gw=23.255.239.254
-pc=23.255.231.248
-
-n4 23.255.240.0/22
-sm= 255.255.252.0
-b=23.255.243.255
-gw=23.255.243.254
-pc=23.255.241.255
-
-
-n1 23.255.244.0/23
-sm=255.255.254.0
-B=23.255.245.255
-gw=23.255.245.254
-pc=23.255.244.128
-
-n3 23.255.246.0/27
-sm=255.255.255.224
-B=23.255.246.31
-gw=23.255.246.30
-pc=23.255.246.1
-
-n5 23.255.246.32/30
-sm=255.255.255.252
-B=23.255.246.35
-gw1=23.255.246.33
-gw2=23.255.246.34
-
+	192.168.16.0
+	siet n1 1022 pc 1025 zariadeni 1025 - 2048 "2^11>1025"  32-11=21
+	n2 508 +3
+	N3 57
+	N4 126
+	N5 4 (N,B,R1,R2)
+	
+	/21
+	255.255.1111 1000.0000 0000
+	128+64+32+16+8= 255-1-2-4 = 248
+	SM=255.255.248.0
+	
+	N
+	192.168.16.0
+	B
+	192.168.23.255
+	FH
+	192.168.16.1
+	LH
+	192.168.23.248
+	
+	192.168.24.0
+	511 
+	32-9=23
+	255.255.11111110.0000 0000
+	SM=255.255.254.0
+	N=192.168.24.0
+	B=192.168.25.255
+	fh=192.168.24.1
+	lh=192.168.25.254
+	
+	192.168.26.0
+	126+3=129 -> 256 = 2^8
+	SM=255.255.255.0
+	N=192.168.26.0
+	B=192.168.26.255
+	FH=192.168.26.1
+	LH=192.168.26.254
+	
+	
+	
+	192.168.27.0
+	57+3=60->64 = 2^6 = 26
+	255.255.255.1100 0000
+	SM= 255.255.255.192.0
+	N=192.168.27.0
+	B=192.168.27.255
+	FH=192.168.27.0
+	LH=192.168.27.63
+	
+	
+	192.168.27.65
+	4=2^2
+	SM=255.255.255.252
+	N=192.168.27.65
+	B=192.168.27.68
+	FH=192.168.27.66
+	LH=192.168.27.67
+	
+	
+	===================================================================================================
+	N
+	192.168.16.0/21
+	B
+	192.168.23.255
+	SM
+	255.255.248.0
+	FH
+	192.168.16.1
+	LH
+	192.168.23.254
+	
+	N
+	192.168.24.0/23
+	B
+	192.168.25.255
+	SM
+	255.255.254.0
+	FH
+	192.168.24.1
+	LH
+	192.168.25.254
+	
+	N4 126/24/256
+	
+	N
+	192.168.26.0/24
+	B
+	192.168.26.255
+	SM
+	255.255.255.0
+	FH
+	192.168.26.1
+	LH
+	192.168.26.254
+	
+	
+	N3 57 /26 /64(cislo kolko to vie obsiahnut)
+	
+	N
+	192.168.27.0/26
+	B
+	192.168.27.255
+	SM
+	255.255.255.192
+	FH
+	192.168.27.1
+	LH
+	192.168.27.62
+	N5 
+	
+	N
+	192.168.27.64/30
+	B
+	192.168.27.67
+	SM
+	255.255.255.252
+	FH
+	192.168.27.65
+	LH
+	192.168.27.66
+	
+	
+	prednaska 7 ?
+	description :dhcp dns ssh
+	
+	DHCP - 	good for changing environment
+	dhcp reqest
+	DNS  -	just converts 
+	
+	
+	
+	===================================================================================================
+	
+	
+	
+	23.255.224.0
+	
+	
+	Sieť N2 2300 PC. -> 4096
+	Sieť N4 511 PC. -> 1024
+	Sieť N1 254 PC. -> 512
+	Sieť N3 20 PC.  -> 32
+	
+	n2 23.255.224.0 /20
+	SM= 255.255.240.0
+	B=23.255.239.255
+	gw=23.255.239.254
+	pc=23.255.224.31.248
+	
+	
+	n4 23.255.240.0 /22
+	SM=255.255.252.0
+	B=23.255.243.255
+	GW=23.255.243.254
+	PC=23.255.241.255
+	
+	
+	n1 23.255.244.0 /23
+	SM=255.255.254.0
+	B= 23.255.245.255
+	gw= 23.255.245.254
+	pc= 23.255.244.128
+	
+	
+	
+	n3 23.255.246.0/ 27
+	SM=255.255.255.224
+	B=23.255.246.31
+	gw=23.255.246.30
+	pc=23.255.246.1
+	
+	
+	n5 23.255.246.32/30
+	SM=255.255.255.252
+	B=23.255.246.35
+	gw1=23.255.246.33
+	gw2=23.255.246.34
+	
+	===================================================================================================
+	
+	
+	23.255.224.0/19
+	n2 2300 4096
+	n4 511 	1024
+	n1 254 	512
+	n3 20 	32
+	
+	n2 23.255.224.0/20
+	sm=255.255.240.0
+	B=23.255.239.255
+	gw=23.255.239.254
+	pc=23.255.231.248
+	
+	n4 23.255.240.0/22
+	sm= 255.255.252.0
+	b=23.255.243.255
+	gw=23.255.243.254
+	pc=23.255.241.255
+	
+	
+	n1 23.255.244.0/23
+	sm=255.255.254.0
+	B=23.255.245.255
+	gw=23.255.245.254
+	pc=23.255.244.128
+	
+	n3 23.255.246.0/27
+	sm=255.255.255.224
+	B=23.255.246.31
+	gw=23.255.246.30
+	pc=23.255.246.1
+	
+	n5 23.255.246.32/30
+	sm=255.255.255.252
+	B=23.255.246.35
+	gw1=23.255.246.33
+	gw2=23.255.246.34
+	
 lecture 9 week 8 < ?
+	ipv6
+	-nema: flags(neboli použíavané), fragment offset (fragmentacia je end to end), header checksum
+	-no broadcast
+	-16B
+	leading 0's can be left out 
+	multiple 0 octets can be changed to ::
+	
+	2001:0db8:cafe:0000:0000:002e:0000:7334
+	2001:db8:cafe::2e:0:7334
+	13:31>meow
+	
+	ipv6 has unicast multicast anycast
+	unicast - gua (global unicast address) something like public ipv4 
+		lla (link local address) something like local ipv4 that u have in ur network 
+	(13:43)
+	gua(global unicast address) 2000::/3 
+	lla(link local address) fe80::/10 ( actually its /64)
+	loopback ::1/128
+	multicast ff00::/8 (more commonly ff02::/16)
+	(13:48)ipv6 autoconfig -> slaac
+	
+	
+	
+	(14:09) NIECO S NEIGHBOR SOLICITATION I DONT KNOWWWW OKOLO 29
+	
+	
+	(14:11) packettracr config - basic 2 router , 1 switch , 4 pc setup
+	(14:18) I wasnt paying attention but I think he was doing something with connecting them all with only ipv6 
 
 
-ipv6
--jema: flags(neboli použíavané), fragment offset (fragmentacia je end to end), header checksum
--no broadcast
--16B
-leading 0's can be left out 
-multiple 0 octets can be changed to ::
-
-2001:0db8:cafe:0000:0000:002e:0000:7334
-2001:db8:cafe::2e:0:7334
-13:31>meow
-
-ipv6 has unicast multicast anycast
-unicast - gua (global unicast address) something like public ipv4 
-	lla (link local address) something like local ipv4 that u have in ur network 
-(13:43)
-gua 2000::/3 
-lla fe80::/10 ( actually its /64)
-loopback ::1/128
-multicast ff00::/8 (more commonly ff02::/16)
-(13:48)ipv6 autoconfig -> slaac
+lecture week 9
+	(13:08) ipv6 subnetting
+	lot easier compared to ipv4
+	GUA subnetting
+	(13:19) talking nonsense and asking questions like we're braindead 
+	(13:27) talking nonsense about how and where ipv6 is implemented
+	(14:26) the rest of the lecture was kinda pointless
 
 
-
-(14:09) NIECO S NEIGHBOR SOLICITATION I DONT KNOWWWW OKOLO 29
-
-
-(14:11) packettracr config - basic 2 router , 1 switch , 4 pc setup
-(14:18) I wasnt paying attention but I think he was doing something with connecting them all with only ipv6 
+nalievaren week9
+	PKS 24/25 - Troubleshooting test
 
 
+	Pár dní dozadu bol jeden z vašich kolegov poverený prerobiť infraštruktúru vo firme, kde pracujete. Po dokončení
+	a otestovaní novej infraštruktúry sa zistilo, že komunikácia medzi počítačmi a zariadeniami na WiFi nefunguje. 
+	Navyše majú všetky koncové zariadenia problém pripojiť sa do internetu, kde sa nachádza externá webová lokalita na doméne reachme.pks.net.
+	
+	Vašou úlohou je identifikovať chyby v konfigurácii a opraviť ich tak, aby mohli všetky počítače a zariadenia medzi
+	sebou komunikovať, a súčasne aby mali všetky počítače prístup na internet, resp. na doménu reachme.pks.net cez webový prehliadač.
+	
+	Na konfiguráciu zariadení v sieti použite zariadenie Admin PC a prostredníctvom SSHv2 sa pripojte na aktívne sieťové prvky. Pozor,
+	zariadenie S2 je možné konfigurovať iba zo zariadenia Access Router 1. Pri vypracovaní úloh môžete použiť štandardné mechanizmy dostupné
+	v CLI operačného systému Cisco IOS a simulovaného operačného systému Packet Tracer PC.
+	
+	Okrem nesprávnej konfigurácie administrátor stratil heslo k prepínaču S2. Toto heslo je však uložené na webovom serveri na adrese http://intranet.pks.net.
+	
+	Tam, kde je to potrebné, doplňte predvolenú statickú cestu (default static route) s využitím IP adresy susedného smerovača (tzv. next-hop IP address).
+	
+	Na zariadenie S2 doplňte hlášku pri pokuse o pripojenie (tzv. Message of the Day - MOTD) v tvare Unauthorized Access Prohibited
+	
+	Laptop je propojený prostredníctvom WiFi pripojenia na sieť Cyberops. Heslo do siete je evkamazikova
+	
+	Na čo si dať pozor
+	
+	Na zariadeniach nechajte zapnuté iba tie porty, ktoré sa používajú. Ostatné porty musia byť administratívne vypnuté. Dajte však pozor, aby
+	ste neopatrným vypnutím rozhraní nestratili prístup k zariadeniu !
+	Pomocou SSH máte prístup iba na aktívne sieťové komponenty, t.j. smerovače a prepínače. Ostatné zariadenia majú buď aktívne GUI, alebo ich zámerne nie je možné konfigurovať.
+	Odporúčame používať diagnostické nástroje na overenie konektivity a prípadné hľadanie chýb.
+	Venujte pozornosť nastaveniu IP adries na rozhraniach a tiež dostupnosti požadovaných ciest.
+	Tam, kde je to potrebné, doplňte predvolenú statickú cestu.
+	Skontrolujte tiež správne nastavenie predvolenej brány (tzv. default gateway, a to aj na sieťových prvkoch !) a DNS.
+	Skontrolujte správne nastavenie IP adries na rozhraniach jednotlivých zariadení.
+	Nezabudnite si konfiguráciu na zariadeniach ukladať ! Priebežne si ukladajte aj celú PT aktivitu !
+	
+	
+	SSH prístupy
+	
+	Zariadenie	Prihl. meno	Heslo	Poznámka
+	CE	admin	cepass	Rovnaké heslo do privileg. režimu
+	Access Router 1	admin	access1pass	Rovnaké heslo do privileg. režimu
+	S1	admin	s1pass	Rovnaké heslo do privileg. režimu
+	S2	admin	?	Rovnaké heslo do privileg. režimu
+	
+	
+	Inventár zariadení
+	
+	Zariadenie	Rozhranie	IP adresa	Subnet	Poznámka
+	CE	Gi0/0/0	LUHA	157.240.248.0 /21	STATIC
+	Gi0/0/1	FUHA	10.0.0.0 /24	STATIC
+	Access Router 1	Gi0/0/0	LUHA	10.0.0.0 /24	STATIC
+	
+	Gi0/0/1	10.0.1.1 /32	10.0.1.0 /25	STATIC
+	Office AP	Internet	10.0.0.252 /32	10.0.0.0 /24	STATIC
+	DNS Server	Port0	10.0.0.251 /32	10.0.0.0 /24	STATIC
+	S1	Fa0/1	-	-	
+	Fa0/22	-	-	
+	Fa0/23	-	-	
+	
+	Vlan1	10.0.0.253 /32	10.0.0.0 /24	STATIC
+	S2	Fa0/1	-	-	
+	Fa0/2	-	-	
+	Fa0/24	-	-	
+	Gi0/1	-	-	
+	
+	Vlan1	LUHA	10.0.1.0 /25	STATIC
+	Admin PC	Fa0	2. použiteľná IP adresa	10.0.0.0 /24	STATIC
+	PC2	Fa0	2. použiteľná IP adresa	10.0.1.0 /25	STATIC
+	PC3	Fa0	3. použiteľná IP adresa	10.0.1.0 /25	STATIC
+	Laptop	Wireless0	-	10.0.1.128 /25	DHCP
+	ISP Modem	
+	FUHA	157.240.248.0 /21	STATIC
+
+	
+	traceroute didnt do anything so he prob has error in router
+	dns server didnt have IP , subnet , and gateway 
+	(20:46) logging in admin pc , setting it's ip/mask/gateway/dns.
+	(20:49) ssh into router (CE)
+	(20:53) pinged sum
+	(20:56) he's on some interface and is setting ip
+	(20:57) ping modem or sum
+	(20:59) check static route
+	(21:07) hes removing some ip route ( sry Ann , i didn't pay attention )
+	(21:10) pc2 set dns / pc3 gateway 
+	(21:12) ping pc3 - pc2 failed
+	(21:14) from adminpc he got info the website and got passwor
+	-cant ssh into switch s2
+	(21:18)ssh into accessrouter1
+	(21:19) can ssh into s2 from accessrouter1
+	(21:23) s2>show interface info  (or sum like that) interfaces x and y are disabled so we log into them and no sh
+	(21:25) can ping from pc2 and pc3
+	(21:28) we forgot to set message into console
+	(21:29) banned modt message
+week 9 cviko:
+	(18:16) set pc addr
+	18:22nah bro i go tlost  a long time ago
+	hes ssh into 10.0.1.126 idk dude
+	(18:28) problem was that something had it's ports on shutdown 0 most likely the switch ? xd
+	(18:31) got timeout on trying to get to the website while using pc2 . problem was shown in tracert , infinite loop
+	(18:36)banner modt
+	(18:41) this wholle time i was sssh into some isdk router when the ssh was ssupppsoed tobe 10.0.0.1
+	(18:44) problem in loop is that router CE has default ip route is set wrong
+	make sure to no ip router x x x 
+
+week 10 cviko:
+	HIEZDICOVA , KRUHOVA A ZBERNICOVA TOPOLOGIA
+	multiplexing . ( frequency multiplexing , time division multiplexing , wavelength multiplexing , code division multiplexing, orthogonal frequency multiplexing)

@@ -38,7 +38,6 @@ while IFS= read -r line; do
     fi 2> /dev/null
 done < <(last -f wtmp.2020)
 
-# Sort users by nighttime login counts and get the top N
 for user in "${!login_data[@]}"; do
     count=$(echo "${login_data["$user"]}" | cut -d',' -f1)
     last_login=$(echo "${login_data["$user"]}" | cut -d',' -f2)

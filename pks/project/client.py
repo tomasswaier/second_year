@@ -1,3 +1,7 @@
+# q : can UI be buggy ? like when one ui gets some kinda block / freeze etc
+# q : does the documentation have to be appended to the first one ?
+# q : will they actually pull out file during testing / if i should prepare for it
+# q : if output of file has to be exact same as documtentation of if it can stay
 import logging
 import socket
 import struct
@@ -28,7 +32,6 @@ client = None
 logger = logging.getLogger()
 logging.basicConfig(filename="test_files/logclient.log", level=logging.INFO)
 # base packet length
-packet_length = 255
 # time for timeout packet to send itself
 TIMEOUT_TIME = 30  # todo :change to 5
 
@@ -57,6 +60,7 @@ class Client:
         """
         self.message_event = threading.Event()
         self.read_thread_running = True
+        self.packet_size = 255
         self.package = []  # long message
         self.package_name = None
         self.last_message = None  # last message recieved
@@ -103,8 +107,8 @@ class Client:
             message = message.encode()
         # -8 because header
         fragments = [
-            message[i : i + packet_length - 8]
-            for i in range(0, len(message), packet_length - 8)
+            message[i : i + self.packet_size - 8]
+            for i in range(0, len(message), self.packet_size - 8)
         ]
         if filename:
             fragments.insert(0, filename.encode())
@@ -194,7 +198,7 @@ class Client:
         frame = struct.pack("!B", flag)
         frame += struct.pack("!H", fragment_num)
         frame += struct.pack("!H", fragment_total)
-        frame += struct.pack("!B", len(message))
+        frame += struct.pack("!H", len(message))
         frame += message
         checksum = self.crc16(frame)
 
@@ -216,6 +220,7 @@ class Client:
 
                 crc &= 0xFFFF
 
+        print(crc)
         return crc
 
     def check_checksum(self, data):
@@ -229,12 +234,12 @@ class Client:
         flag = struct.unpack("!B", data[0:1])[0]
         fragment_num = struct.unpack("!H", data[1:3])[0]
         fragment_total = struct.unpack("!H", data[3:5])[0]
-        length = struct.unpack("!B", data[5:6])[0]
+        length = struct.unpack("!H", data[5:7])[0]
         message = None
         if fragment_total != 1:
-            message = data[6:-2]
+            message = data[7:-2]
         else:
-            message = data[6:-2].decode()
+            message = data[7:-2].decode()
             self.last_message = [flag, fragment_num, fragment_total, length, message]
         # unpacks the message and puts all the available data into last_message variable
         log("received:" + str(data))
@@ -314,7 +319,7 @@ class Client:
 
     def receive(self):
         try:
-            data, _ = self.sock.recvfrom(packet_length)
+            data, _ = self.sock.recvfrom(self.packet_size)
             self.timeout = [time.time(), 0]
             return self.unpack_header(data)
         except BlockingIOError:
@@ -390,14 +395,14 @@ class Window(Gtk.Window):
         self.entry.set_size_request(470, 40)
         self.entry.set_wrap_mode(1)
         adjustment = Gtk.Adjustment(
-            value=0,
+            value=1420,
             lower=10,
-            upper=255,
+            upper=1420,
             step_increment=1,
             page_increment=5,
         )
         self.size_entry = Gtk.SpinButton(adjustment=adjustment)
-        self.size_entry.set_range(10, 255)
+        self.size_entry.set_range(10, 1420)
         self.size_entry.set_size_request(30, 40)
         button_send = Gtk.Button.new_with_label("Send")
         button_send.connect("clicked", self.send_message)
@@ -469,8 +474,9 @@ class Window(Gtk.Window):
     def send_message(self, _):
         buffer = self.entry.get_buffer()
         text = buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter(), False)
+        # setting the packet size
         packet_size = self.size_entry.get_value_as_int()
-        log(packet_size)
+        client.packet_size = packet_size
         file = self.filename.get_text()
         if file == "No File":
             file = None

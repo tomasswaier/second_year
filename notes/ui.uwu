@@ -5,3 +5,13 @@ Neural networks
 prednaska 8 multilayer perceptron backpropagation
 (08:17)sumsum chain rule = lotta math with derivatives etc
 (08:38) stochastic gradient descent  -finding optimal parameters
+
+prednaska 9
+(08:12) keeps yapping about human Neural networks
+(08:26) convolutional layer ... talks about the filter that's running over the image and giving us output
+(08:34) pooling layer - controlst overfitting (reducint number of features also reduces overfitting)
+(08:41) batch normalization - when training it normalizes all batches to have mean of 0 and std 1 ( stabilizes training)
+(08:46) uapping about history of sumsum
+(09:01) residual networks ( idk dude)
+(09:12) detectors
+(09:31) convolutional nns are bad for speech recognition , time-series , language modeling
