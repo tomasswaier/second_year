@@ -1,7 +1,3 @@
-# q : can UI be buggy ? like when one ui gets some kinda block / freeze etc
-# q : does the documentation have to be appended to the first one ?
-# q : will they actually pull out file during testing / if i should prepare for it
-# q : if output of file has to be exact same as documtentation of if it can stay
 import logging
 import socket
 import struct
@@ -198,7 +194,7 @@ class Client:
         frame = struct.pack("!B", flag)
         frame += struct.pack("!H", fragment_num)
         frame += struct.pack("!H", fragment_total)
-        frame += struct.pack("!H", len(message))
+        frame += struct.pack("!B", len(message))
         frame += message
         checksum = self.crc16(frame)
 
@@ -234,12 +230,12 @@ class Client:
         flag = struct.unpack("!B", data[0:1])[0]
         fragment_num = struct.unpack("!H", data[1:3])[0]
         fragment_total = struct.unpack("!H", data[3:5])[0]
-        length = struct.unpack("!H", data[5:7])[0]
+        length = struct.unpack("!B", data[5:6])[0]
         message = None
         if fragment_total != 1:
-            message = data[7:-2]
+            message = data[6:-2]
         else:
-            message = data[7:-2].decode()
+            message = data[6:-2].decode()
             self.last_message = [flag, fragment_num, fragment_total, length, message]
         # unpacks the message and puts all the available data into last_message variable
         log("received:" + str(data))
@@ -395,14 +391,14 @@ class Window(Gtk.Window):
         self.entry.set_size_request(470, 40)
         self.entry.set_wrap_mode(1)
         adjustment = Gtk.Adjustment(
-            value=1420,
+            value=255,
             lower=10,
-            upper=1420,
+            upper=255,
             step_increment=1,
             page_increment=5,
         )
         self.size_entry = Gtk.SpinButton(adjustment=adjustment)
-        self.size_entry.set_range(10, 1420)
+        self.size_entry.set_range(10, 255)
         self.size_entry.set_size_request(30, 40)
         button_send = Gtk.Button.new_with_label("Send")
         button_send.connect("clicked", self.send_message)

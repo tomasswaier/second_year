@@ -1,0 +1,70 @@
+Signaly
+
+Pre kazdy proces OS prideli priestor, v ktorom su reprezentovane jednotlive cisla signalov.
+
+Procesy mozu medzi sebou komunikovat pomocou signalov.
+
+POSIX definuje niekolko signalov medzi najbeznejsie patria:
+SIGHUP (1) terminal bol ukonceny
+SIGINT (2) prerusenie: CTRL+C
+SIGQUIT (3) prosim skoncii: CTRL+\
+SIGKILL (9) koncis bezpodmienecne (zabije proces)
+SIGTERM (15) bud skoncis po dobrom, alebo zomries
+
+Prikaz trap definuje a aktivuje handlery, pre obsluhu signalov.
+Pre viac informacii:
+help trap
+Vsetky signaly si mozete pozriet pomocou prikazu:
+trap -l
+
+man 7 signal
+
+Prikaz wait pocka na dokoncenie procesu. Proces ID moze byt definovane ako jeho argument. Pre viac informacii:
+help wait
+
+Pomocky pri tomto cviceni:
+"$$" - PID aktualneho procesu
+"$!" - PID posledneho procesu spusteneho na pozadi (napr. "skript.sh &")
+jobs
+bg
+fg
+ps -eLf
+ps -aux --forest
+kill -9 PID
+kill -s KILL PID
+killall <process>
+kill -9 $!
+
+Ulohy:
+Analyzute obsah skriptu nekoncim.sh
+
+Spustite skript nekoncim.sh a pokuste sa ho zastavit (CTRL+C)
+
+Analyzujte obsah skriptu losovac.sh
+
+Spustite v jednom terminali skript losovac.sh a poslite mu z ineho terminalu signal, aby vylosoval nahodne cislo.
+
+Zopakujte predchadzajucu ulohu tak, ze ju vykonate v jednom terminali.
+
+Analyzujte obsah skriptu vyberac.sh
+
+Spustite skript vyberac.sh, je mozne zastavit vykonavanie losovac.sh odoslanim signalu procesu vyberac.sh ? Ak ano, preco?
+
+Upravte skript losovac.sh tak aby ulozil svoje PID do /tmp/losovac.PID a v pripade, ze je ukonceny (aj necakane), musi po sebe tento subor zmazat.
+
+Upravte skript vyberac.sh tak aby identifikoval PID losovac.sh podla obsahu /tmp/losovac.PID. 
+
+Upravte losovac.sh tak, aby vytvoril pomenovanu ruru (named pipe, FIFO) /tmp/losovac.PID a pri posielal losovane cislo do nej. Upravte vyberac.sh tak, ze z pomenovanej rury precita vylosovane cislo. Losovac by mal po sebe ruru opat poupratovat. Pomocka: man mkfifo ; man mknod ;
+
+Bonus:
+Zabezpecte vymenu aspom piatich roznych signalov dvomi medzi procesmi. Pri kazdej vymene signalu vypiste co sa prave deje z pohladu procesov. Za tym vypiste jednu pouzivatelom definovanu spravu, ktoru vyberiete ako dalsi argument z pola argumentov obdrzanych pri spustani skriptu. 
+
+
+
+
+
+
+
+
+
+

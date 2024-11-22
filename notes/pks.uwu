@@ -1,6 +1,11 @@
 mynotes:
+	question:
+		interface loopback
+		160
+		1010 0000
+		1010 1111
+		wewillrockyou
 	commands:
-		 
     		Configure the device name.
 		Router(config)# hostname hostname
 
@@ -109,6 +114,40 @@ mynotes:
 		Global Unicast Address (GUA) - This is similar to a public IPv4 address. These are globally unique, internet-routable addresses. GUAs can be configured statically or assigned dynamically.
 		Link-local Address (LLA) - This is required for every IPv6-enabled device. LLAs are used to communicate with other devices on the same local link. With IPv6, the term link refers to a subnet. LLAs are confined to a single link. Their uniqueness must only be confirmed on that link because they are not routable beyond the link. In other words, routers will not forward packets with a link-local source or destination address
 		IPv6 GUAs are the same as public IPv4 addresses. An IPv6 LLA lets two IPv6-enabled devices communicate with each other on the same link (subnet).
+
+
+
+	Module 12:
+		icmpv6 messages include : )network prefix and prefix length )default gateway )dns add and domain
+		todo : how tf do they get the address tho ? " RA message to create its own IPv6 GUA a" but how ?
+		three router advertisement messages:
+    			SLAAC - “I have everything you need including the prefix, prefix length, and default gateway address.”
+    			SLAAC with a stateless DHCPv6 server - “Here is my information but you need to get other information such as DNS addresses from a stateless DHCPv6 server.”
+    			Stateful DHCPv6 (no SLAAC) - “I can give you your default gateway address. You need to ask a stateful DHCPv6 server for all your other information.”
+			(slaac with dhcpv6 sends RA message with flag of "niqqa go find dhcpv6 urself)
+			(dhcpv6 sends rs , gets ra with def gateway and then asks all dhcpv6s for the rest [gua, prefix-length , dns addr])
+
+
+			when host receives ra from slaac , he gets only prefix portion of addr but has to generate the rest himself with EUI-64 or random 64 bit
+			EUI  This process uses the 48-bit Ethernet MAC address of a client, and inserts another 16 bits in the middle of the 48-bit MAC address to create a 64-bit interface ID.
+
+
+			
+    			Organizationally Unique Identifier (OUI) - The OUI is a 24-bit (6 hexadecimal digits) vendor code assigned by IEEE.
+    			Device Identifier - The device identifier is a unique 24-bit (6 hexadecimal digits) value within a common OUI.
+
+			An EUI-64 Interface ID is represented in binary and is made up of three parts:
+
+    				24-bit OUI from the client MAC address, but the 7th bit (the Universally/Locally (U/L) bit) is reversed. This means that if the 7th bit is a 0, it becomes a 1, and vice versa
+    				The inserted 16-bit value fffe (in hexadecimal).
+    				24-bit Device Identifier from the client MAC address.
+
+				example ipv6 by eui64 2001:db8:acad:1:fc99:47ff:fe75:cee0
+				mac of fc99:4775:cee0
+
+
+
+
 
 nalievaren:
 	192.168.16.0

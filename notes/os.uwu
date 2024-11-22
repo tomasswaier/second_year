@@ -55,3 +55,7 @@ os seminar week 9:
 	(14:19) displaying processes like trough ps 
 	ctrl z stops process , bg is background process and fg is forground
 	(15:18)thread yap
+os sem week 10:
+	ps -eLf
+	kill
+
