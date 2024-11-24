@@ -59,6 +59,7 @@ class Client:
         self.packet_size = 255
         self.package = []  # long message
         self.package_name = None
+        self.package_time = None
         self.last_message = None  # last message recieved
         self.print_message = None  # message to be printed
         self.timeout = [time.time(), 0]  # a thing for timeout
@@ -129,9 +130,12 @@ class Client:
                 fragment_total=fragment_total,
                 corrupt=corrupt,
             )
-            log("sending:" + str(fragment))
+            # log("sending:" + str(fragment))
             # this part makes sure that data gets delivered
             if flag == 4 and wait_for_response:
+                log(
+                    f"Odosielací uzol :{filename}; file/message size {len(message)}; fragment size:{len(fragment)}; fragment index:{fragment_index};"
+                )
                 response = None
                 while not response:
                     self.sock.sendto(fragment, (self.server_ip, self.server_port))
@@ -155,6 +159,7 @@ class Client:
 
                     response = None
             else:
+                log("sending:" + str(fragment))
                 try:
                     self.sock.sendto(fragment, (self.server_ip, self.server_port))
                 except OSError as e:
@@ -190,7 +195,6 @@ class Client:
         """
         if flag != 4:
             message = "".encode()
-
         frame = struct.pack("!B", flag)
         frame += struct.pack("!H", fragment_num)
         frame += struct.pack("!H", fragment_total)
@@ -216,7 +220,6 @@ class Client:
 
                 crc &= 0xFFFF
 
-        print(crc)
         return crc
 
     def check_checksum(self, data):
@@ -238,7 +241,6 @@ class Client:
             message = data[6:-2].decode()
             self.last_message = [flag, fragment_num, fragment_total, length, message]
         # unpacks the message and puts all the available data into last_message variable
-        log("received:" + str(data))
         # log("{} {}".format(fragment_num, struct.unpack("!B", data[5:6])[0]))
 
         if flag == 4:
@@ -251,11 +253,14 @@ class Client:
             acceptance_code = length if fragment_total == 1 else fragment_num
             # if passeses we respond with ack else we ask for it again
             response_flag = 3 if self.check_checksum(data[:]) else 6
+            log(
+                f"Príjmací uzol: fragment num:{fragment_num}; is corrupt:{response_flag == 6}; "
+            )
             self.send_message(
                 message="", fragment_num=acceptance_code, flag=response_flag
             )
 
-            if response_flag == 3 and fragment_total != 1:
+            if response_flag == 3 and fragment_total > 1:
                 if fragment_num == fragment_total:
                     self.package.append(message)
                     self.print_message = b"".join(self.package).decode()
@@ -266,6 +271,7 @@ class Client:
                 ):
                     self.package.append(message)
                     # Open the file and write the accumulated package data
+
                     with open("output" + self.package_name, "wb") as file:
                         data = b"".join(self.package)
                         file.write(data)
@@ -273,11 +279,19 @@ class Client:
                     log("file saved: " + self.package_name)
                     # Clear the package list after writing
                     self.package = []
-                    self.print_message = "You've received a file: " + self.package_name
+                    self.print_message = (
+                        "You've received a file: "
+                        + self.package_name
+                        + "length: "
+                        + str(len(message))
+                        + "time to send :"
+                        + str(time.time() - self.package_time)
+                    )
                     self.package_name = None
 
                 else:
                     if fragment_num == 0:
+                        self.package_time = time.time()
                         self.package_name = message.decode().split("/")[-1]
                     else:
                         self.package.append(message)
@@ -287,6 +301,8 @@ class Client:
             self.send_message("end")
             self.quit()
             GLib.idle_add(Gtk.main_quit)
+        else:
+            log("received:" + str(data))
         self.message_event.set()
         return [message, flag]
 
@@ -423,7 +439,9 @@ class Window(Gtk.Window):
         client.timeout_check()
         send_timeout = client.send_timeout
         if send_timeout:
-            client.send_message(message=send_timeout, flag=4, wait_for_response=False)
+            client.send_message(
+                message=send_timeout, flag=4, fragment_total=0, wait_for_response=False
+            )
             client.send_timeout = ""
         if message:
             self.print_message(message, OTHER_CLIENT_NAME)
@@ -488,6 +506,7 @@ class Window(Gtk.Window):
             )
             self.print_message(text if file is None else file, NAME)
             buffer.set_text("")
+            self.filename = "No File"
 
     def update_scrollbar(self):
         vadjustment = self.scrolled_window.get_vadjustment()

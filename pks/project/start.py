@@ -5,7 +5,8 @@ from random import randint
 """this code is used to start the program twice on the same machine """
 
 
-port1 = str(randint(20000, 52000))
+# port1 = str(randint(20000, 52000))
+port1 = "12345"
 port2 = str(int(port1) + 1)
 
 processes = ([port1, port2], [port2, port1])
