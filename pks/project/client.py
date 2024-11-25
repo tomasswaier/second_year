@@ -66,6 +66,7 @@ class Client:
         self.send_timeout = None
         self.read_thread.start()  # thread that's always listening
         self.handshake()  # what do u think ?
+        self.chosen_filepath = False
 
     def send_message(
         self,
@@ -285,8 +286,9 @@ class Client:
                 ):
                     self.package.append(message)
                     # Open the file and write the accumulated package data
+                    self.chosen_filepath = False
 
-                    with open("output" + self.package_name, "wb") as file:
+                    with open(self.package_name, "wb") as file:
                         data = b"".join(self.package)
                         file.write(data)
                     # log(data)
@@ -305,8 +307,9 @@ class Client:
 
                 else:
                     if fragment_num == 0:
+                        self.chosen_filepath = True
                         self.package_time = time.time()
-                        self.package_name = message.decode().split("/")[-1]
+                        self.package_name = "output" + message.decode().split("/")[-1]
                     else:
                         self.package.append(message)
             elif response_flag == 3:
@@ -323,7 +326,6 @@ class Client:
         self.read_thread_running = False
         self.sock.close()
         log("Client closed " + NAME)
-        time.sleep(3)
         GLib.idle_add(Gtk.main_quit)
 
     def recieve_loop(self):
@@ -457,16 +459,29 @@ class Window(Gtk.Window):
                 message=send_timeout, flag=4, fragment_total=0, wait_for_response=False
             )
             client.send_timeout = ""
+
         if message:
             self.print_message(message, OTHER_CLIENT_NAME)
             client.print_message = None
+        if client.package_name and client.chosen_filepath:
+            filepath = None
+            filepath = self.select_file(0, called=True)
+            if filepath:
+                client.package_name = filepath + "/" + client.package_name
+                client.chosen_filepath = False
+                log(filepath)
         return True
 
-    def select_file(self, _):
+    def select_file(self, _, called=False):
+        action = (
+            Gtk.FileChooserAction.SELECT_FOLDER
+            if called
+            else Gtk.FileChooserAction.OPEN
+        )
         dialog = Gtk.FileChooserDialog(
-            title="Please choose a file",
+            title="Please choose a folder" if called else "Please choose a file",
             parent=None,
-            action=Gtk.FileChooserAction.OPEN,
+            action=action,
             buttons=(
                 Gtk.STOCK_CANCEL,
                 Gtk.ResponseType.CANCEL,
@@ -477,14 +492,20 @@ class Window(Gtk.Window):
 
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
-            file_path = dialog.get_filename()
-            # todo:finish this
-            self.filename.set_text(file_path)
-            log("file :" + file_path)
+            selected_path = dialog.get_filename()
+            if called:
+                log(selected_path)
+                dialog.destroy()
+                return selected_path
+            else:
+                self.filename.set_text(selected_path)
+            log("Selected: " + selected_path)
         elif response == Gtk.ResponseType.CANCEL:
             log("Cancel clicked")
 
         dialog.destroy()
+        if called:
+            return None
 
     def print_message(self, text, name):
         mylabel = Gtk.Label()
