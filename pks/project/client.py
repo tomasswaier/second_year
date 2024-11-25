@@ -132,14 +132,28 @@ class Client:
             )
             # log("sending:" + str(fragment))
             # this part makes sure that data gets delivered
+
             if flag == 4 and wait_for_response:
+                """
                 log(
                     f"Odosielací uzol :{filename}; file/message size {len(message)}; fragment size:{len(fragment)}; fragment index:{fragment_index};"
                 )
+                """
                 response = None
                 while not response:
-                    self.sock.sendto(fragment, (self.server_ip, self.server_port))
-                    response = self.wait_for_response(expected_number=expected_number)
+                    for i in range(3):
+                        self.sock.sendto(fragment, (self.server_ip, self.server_port))
+                        log(
+                            f"Odosielací uzol :{filename}; file/message size {len(message)}; fragment size:{len(fragment)}; fragment index:{fragment_index};"
+                        )
+                        response = self.wait_for_response(
+                            expected_number=expected_number
+                        )
+                        if response:
+                            break
+                    if not response:
+                        self.quit()
+
                     # if the response is ACK we break out of the loop
                     if response and response == 3:
                         log("received ack packet")
@@ -165,7 +179,7 @@ class Client:
                 except OSError as e:
                     log(str(e))
 
-    def wait_for_response(self, expected_number, wait_time=3):
+    def wait_for_response(self, expected_number, wait_time=5):
         self.message_event.clear()
         start_time = time.time()
         while time.time() - start_time < wait_time:
@@ -298,18 +312,18 @@ class Client:
             elif response_flag == 3:
                 self.print_message = message
         elif flag == 5:  # This flag represents "end" or exit condition
-            self.send_message("end")
             self.quit()
-            GLib.idle_add(Gtk.main_quit)
         else:
             log("received:" + str(data))
         self.message_event.set()
         return [message, flag]
 
     def quit(self):
+        self.send_message("end")
         self.read_thread_running = False
         self.sock.close()
         log("Client closed " + NAME)
+        time.sleep(3)
         GLib.idle_add(Gtk.main_quit)
 
     def recieve_loop(self):
@@ -506,7 +520,7 @@ class Window(Gtk.Window):
             )
             self.print_message(text if file is None else file, NAME)
             buffer.set_text("")
-            self.filename = "No File"
+            self.filename.set_text("No File")
 
     def update_scrollbar(self):
         vadjustment = self.scrolled_window.get_vadjustment()

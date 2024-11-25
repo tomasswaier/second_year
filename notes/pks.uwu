@@ -144,6 +144,10 @@ mynotes:
 
 				example ipv6 by eui64 2001:db8:acad:1:fc99:47ff:fe75:cee0
 				mac of fc99:4775:cee0
+	Module 14:
+		selective acknowledgement-he receiver can explicitly acknowledge which segments (bytes) were received including any discontinuous segments
+		maximum segments size - in tcp iptions field it specifies largest amount of data in bytes that the device can receive (most common is 1460)
+		peer-peer : gnutela - sending files from multiple pcs go to another pc
 
 
 
