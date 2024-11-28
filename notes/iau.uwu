@@ -45,3 +45,19 @@ week 10  : cviko
 	rozdelovanie 2clusterov : logisctic regression (one line)
 	activation function (tahm for example) changes lines direction
 	niečo niečo keras library and pytorch  ( keras easier ? )
+week 11 :9optimalization techniques
+	(12:20)Meow meow meow - hyperparameter optimization,
+	exhaustive(brute-force) search
+		searches everythign
+
+	random search:
+		libe exhaustive but randomly
+	(12:24) local search
+	nature inspired optimization taxonomy:
+		swarm-inspired : particle swarm optimicatinon
+		evolution inspired:genetic algrotim	
+		physics inspired:simulated annealing
+		other :harmony search
+
+	(12:47) gradient descent algorithms
+	meowmeow hyperband optimization

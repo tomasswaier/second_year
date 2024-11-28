@@ -1,10 +1,78 @@
 mynotes:
+	wrong test questions:
+		An IPv6 enabled device sends a data packet with the destination address of FF02::2. What is the target of this packet?all IPv6 configured routers on the local link
+		What two ICMPv6 message types must be permitted through IPv6 access control lists to allow resolution of Layer 3 addresses to Layer 2 MAC addresses? (Choose two.):neighbor solicitation/advertisement
+		What is one main characteristic of the data link layer? :It shields the upper layer protocol from being aware of the physical medium to be used in the communication.
+ 		What are three characteristics of the CSMA/CD process? (Choose three.) A device listens and waits until the media is not busy before transmitting./After detecting a collision, hosts can attempt to resume transmission after a random time delay has expired. /All of the devices on a segment see data that passes on the network medium.
+		What are two primary responsibilities of the Ethernet MAC sublayer? (Choose two.)  /accessing the media /data encapsulation
+		Which two statements describe features of an IPv4 routing table on a router? (Choose two.)>It stores information about routes derived from the active router interfaces./If a default static route is configured in the router, an entry will be included in the routing table with source code S .
+		What two pieces of information are displayed in the output of the show ip interface brief command? (Choose two.) ip addresses ,layer 1 statuses
+		Which two protocols operate at the top layer of the TCP/IP protocol suite?: pop / dns
+		What are two ICMPv6 messages that are not present in ICMP for IPv4?/Neighbor solicitation , router advertisement
+		Which two functions are performed at the LLC sublayer of the OSI Data Link Layer to facilitate Ethernet communication?enables IPv4 and IPv6 to utilize the same physical medium /places information in the Ethernet frame that identifies which network layer protocol is being encapsulated by the frame 
+		What are two problems that can be caused by a large number of ARP request and reply messages?>The ARP request is sent as a broadcast, and will flood the entire subnet/All ARP request messages must be processed by all nodes on the local network.
+		During the process of forwarding traffic, what will the router do immediately after matching the destination IP address to a network on a directly connected routing table entry?> switch the packet to the directly connected interface 
+		Which frame field is created by a source node and used by a destination node to ensure that a transmitted data signal has not been altered by interference, distortion, or signal loss?frame check sequence field 
+		What two security solutions are most likely to be used only in a corporate environment?>virtual private networks/intrusion prevention systems 
+		A client packet is received by a server. The packet has a destination port number of 69. What service is the client requesting?tftp
+		Which two functions are performed at the MAC sublayer of the OSI Data Link Layer to facilitate Ethernet communication?responsible for internal structure of Ethernet frame/implements trailer with frame check sequence for error detection 
+
+	wrong question:
+		lean how pdu are named on each osi layer datagram/segment,packet,frame,bit
+		Which two OSI model layers have the same functionality as two layers of the TCP/IP model? (Choose two.):network, transport
+		Which two devices would be described as intermediary devices? (Choose two.) : ISP , wireless LAN
+		What OSI physical layer term describes the measure of the transfer of bits across a medium over a given period of time?:troughput
+		Which two statements describe the characteristics of fiber-optic cabling? (Choose two.):Fiber-optic cabling does not conduct electricity. ;Fiber-optic cabling is primarily used as backbone cabling.
+		What does a router do when it receives a Layer 2 frame over the network medium?:de-encapsulates the frame
+		If the default gateway is configured incorrectly on the host, what is the impact on communications?:The host can communicate with other hosts on remote networks, but is unable to communicate with hosts on the local network.
+		Which destination address is used in an ARP request frame?ffff.ffff.ffff
+		Which two ICMP messages are used by both IPv4 and IPv6 protocols? (Choose two.)protocol unreachable, route redirection
+		what task might a user be trying to accomplish by using the ping 2001:db8:FACE:39::10 command?verifying that there is connectivity to the internet
+		A Wireshark capture is shown with the Transmission Control Protocol section expanded. The item highlighted states Window size: 9017.
+		Refer to the exhibit. What does the value of the window size specify?the amount of data that can be sent before an acknowledgment is required
+		To which TCP port group does the port 414 belong? well-known
+		A small advertising company has a web server that provides critical business service. The company connects to the Internet through a leased line service to an ISP. Which approach best provides cost effective redundancy for the Internet connection?:Add a connection to the Internet via a DSL line to another ISP.
+		Which network design consideration would be more important to a large corporation than to a small business?redundancy
+		A network technician is investigating network connectivity from a PC to a remote host with the address 10.1.1.5. Which command, when issued on a Windows PC, will display the path to the remote host? tracert x.x.x.x
+		Where are Cisco IOS debug output messages sent by default? the console
+		What mechanism can be implemented in a small network to help minimize network latency for real-time streaming applications?QoS
+		A small company has only one router as the exit point to its ISP. Which solution could be adopted to maintain connectivity if the router itself, or its connection to the ISP, fails? have a second route that is connected to the isp
+
+
+		What is the difference between a virus and a worm? worms self replicate while viruses dont
+		What is the role of an IPS?detecting and blocking of attacks in real time
+		Which example of malicious code would be classified as a Trojan horse?malware that was written to look like a video game
+		What information about a Cisco router can be verified using the show version command?the value of a configuration register
+		What is the purpose of a small company using a protocol analyzer utility to capture network traffic on the network segments where the company is considering a network upgrade?:to document and analyze network traffic requirements on each network segment
+		By following a structured troubleshooting approach, a network administrator identified a network issue after a conversation with the user. What is the next step that the administrator should take?:establishe a theory of probable cause
+		Which command should be used on a Cisco router or switch to allow log messages to be displayed on remotely connected sessions using Telnet or SSH?terminal monitor
+		When configuring SSH on a router to implement secure network management, a network engineer has issued the login local and transport input ssh line vty commands. What three additional configuration actions have to be performed to complete the SSH configuration? (Choose three.)Create a valid local username and password database.Configure the correct IP domain name.Generate the asymmetric RSA keys.
+
+		Which type of server relies on record types such as A, NS, AAAA, and MX in order to provide services?/DNS
+		What is the purpose of the TCP sliding window? /to request that a source decrease the rate at which it transmits data 
+		What characteristic describes adware? /software that is installed on a user device and collects information about the user 
+		Which two statements are correct in a comparison of IPv4 and IPv6 packet headers? (Choose two.)/The Source Address field name from IPv4 is kept in IPv6./ The Time-to-Live field from IPv4 has been replaced by the Hop Limit field in IPv6.  
+		What is an advantage to using a protocol that is defined by an open standard? :It encourages competition and promotes choices.
+		What are three commonly followed standards for constructing and installing cabling? (Choose three.): cable lenght/pinouts/connector types
+		Refer to the exhibit. What is wrong with the displayed termination?The untwisted length of each wire is too long.
+		Which layer of the TCP/IP model provides a route to forward messages through an internetwork? :internet
+		A client packet is received by a server. The packet has a destination port number of 110. What service is the client requesting? :pop3
+		A wired laser printer is attached to a home computer. That printer has been shared so that other computers on the home network can also use the printer. What networking model is in use?p2p
+		A host is trying to send a packet to a device on a remote LAN segment, but there are currently no mappings in its ARP cache. How will the device obtain a destination MAC address? :it will send a arp request for mac address fo the local gateway
+		Which two functions are performed at the MAC sublayer of the OSI Data Link Layer to facilitate Ethernet communication?
+		A client packet is received by a server. The packet has a destination port number of 53. What service is the client requesting? DNS
+		Refer to the exhibit. The switches have a default configuration. Host A needs to communicate with host D, but host A does not have the MAC address for the default gateway. Which network devices will receive the ARP request >only hosts B, C, and router R1
+
+
+
+
+
+
+
 	question:
 		interface loopback
-		160
-		1010 0000
-		1010 1111
-		wewillrockyou
+		layer2 and layer3 switches
+
 	commands:
     		Configure the device name.
 		Router(config)# hostname hostname
@@ -44,6 +112,51 @@ mynotes:
 		R1# show ipv4 interface brief
 
 		To enable a router as an IPv6 router, the ipv6 unicast-routing
+
+		R1(config)# service password-encryption
+		R1(config)# security passwords min-length 8
+		R1(config)# login block-for 120 attempts 3 within 60
+		R1(config)# line vty 0 4
+		R1(config-line)# password cisco123
+		R1(config-line)# exec-timeout 5 30
+		R1(config-line)# transport input ssh
+		R1(config-line)# end
+		
+		Configure the IP domain name of the network by using the global configuration mode command ip domain name name.
+
+		crypto key generate rsa general-keys modulus bits (360-2048)
+
+
+		Router(config)# hostname R1
+		R1(config)# ip domain name span.com
+		R1(config)# crypto key generate rsa general-keys modulus 1024
+		The name for the keys will be: Rl.span.com % The key modulus size is 1024 bits
+		% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+		Dec 13 16:19:12.079: %SSH-5-ENABLED: SSH 1.99 has been enabled
+		R1(config)#
+		R1(config)# username Bob secret cisco
+		R1(config)# line vty 0 4
+		R1(config-line)# login local
+		R1(config-line)# transport input ssh
+		R1(config-line)# exit
+
+
+		Router# show control-plane host open-ports
+		Active internet connections (servers and established)
+		Prot        Local Address      Foreign Address                  Service    State
+		tcp                 *:23                  *:0                   Telnet   LISTEN
+		tcp                 *:80                  *:0                HTTP CORE   LISTEN
+		udp                 *:67                  *:0            DHCPD Receive   LISTEN
+		Router# configure terminal
+		Router(config)# no ip http server
+		Router(config)# line vty 0 15
+		Router(config-line)# transport input ssh
+
+		Router# no debug ip icmp
+
+		Router# undebug ip icmp
+
+		Router# undebug all
 	Not Sure:
 		TCP vs OSI model:
 		TCP: Application : Transport : Network : Network Access
@@ -148,6 +261,14 @@ mynotes:
 		selective acknowledgement-he receiver can explicitly acknowledge which segments (bytes) were received including any discontinuous segments
 		maximum segments size - in tcp iptions field it specifies largest amount of data in bytes that the device can receive (most common is 1460)
 		peer-peer : gnutela - sending files from multiple pcs go to another pc
+
+	Which field in the TCP header indicates the status of the three-way handshake process? control bits
+	Which factor determines TCP window size? the amount of data the destination can process at one time
+	What do the client/server and peer-to-peer network models have in common?Both models support devices in server and client roles.
+	Which OSI layer provides the interface between the applications used to communicate and the underlying network over which messages are transmitted?application
+	Which layer in the TCP/IP model is used for formatting, compressing, and encrypting data?application
+
+
 
 
 
@@ -520,3 +641,4 @@ week 9 cviko:
 week 10 cviko:
 	HIEZDICOVA , KRUHOVA A ZBERNICOVA TOPOLOGIA
 	multiplexing . ( frequency multiplexing , time division multiplexing , wavelength multiplexing , code division multiplexing, orthogonal frequency multiplexing)
+

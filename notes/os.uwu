@@ -59,3 +59,16 @@ os sem week 10:
 	ps -eLf
 	kill
 
+
+so sem week 11:
+	management of i/o
+	block devices - save info in blocks of fiixed length
+	character devices- mouse , keyboard ...
+	interrupt controller - collects all interrupts that can happen in the system
+	dman controller : má vykonať prenos dát medzi zariadením a pamäťou bez nutnosti použitia CPU
+	ciele I/O sw:
+		použiteľný sw je nezávislž od zariadení
+		uniformné pomenovanie zariadení
+		bottom-up error handling
+		synchrónne resp blokujúce volania
+		buffering
