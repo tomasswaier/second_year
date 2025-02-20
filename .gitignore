@@ -3,5 +3,7 @@ IAU-course/
 env/
 *.log
 *.zip
+*.sql
+*.docx
 **/test_files/
 

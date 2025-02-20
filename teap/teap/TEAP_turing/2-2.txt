@@ -1,0 +1,30 @@
+Úloha 2-2 (2b)
+
+Riešiť úlohu
+
+Jakubko sa učí sčitovať. Pre daný reťazec číslic určite koľko najmenej
+znamienok sčítania je potrebné do reťazca vložiť, aby výsledný výraz mal
+nejaký konkrétny súčet. Napr. ak chceme pre reťazec 303 dosiahnuť súčet
+6, tak stačí vložiť jedno znamienko sčítania (3+03=6).
+
+Vstup: Štandardný vstup môže obsahovať zápisy viacerých úloh. Každý
+zápis obsahuje reťazec čísel obsahujúci najviac 10 znakov a súčet, ktorý
+chceme dosiahnuť, oddelené medzerou.
+
+Výstup: Pre každé zadanie úlohy na vstupe vypíšte na štandardný výstup
+jeden riadok obsahujúci jedno číslo -- najmenší počet znamienok
+sčítania, ktoré je nutné do reťazca na vstupe vložiť, aby výsledný výraz
+mal požadovaný súčet. Ak nie je možné súčet dosiahnuť, vypíšte
+IMPOSSIBLE
+
+Ukážka vstupu:
+
+    999 27
+    101 2
+    999 100
+
+Výstup pre ukážkový vstup:
+
+    2
+    1
+    IMPOSSIBLE

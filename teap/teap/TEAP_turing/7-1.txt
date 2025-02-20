@@ -1,0 +1,45 @@
+Úloha 7-1 (3b)
+
+Riešiť úlohu
+
+Jakubkovi sa snívalo, že tancoval na plese. Na plese bolo N chlapcov a M
+dievčat. Pre správne zaplnenie parketu je potrebné ich prideliť do
+presne K párov. Toto však nie je úplne ľahké, pretože niektoré deti
+nemôžu tancovať s niektorými, kvôli rozdielnosti vo výške, tanečnej
+zručnosti príp. znalosti programovania. Jakubkovi sa ešte prisnil počet
+možností, koľkými je možné deti takto rozdeliť, nestihol si to však
+zapamätať. Napíšte program, ktorý vypočíta toto číslo.
+
+Na štandardnom vstupe bude viacero vstupov, každý vstup obsahuje najskôr
+číslo K (do 10), potom čísla N (počet chlapcov do 10) a M (počet dievčat
+do 10), a potom N riadkov každý s M znakmi Y (áno) alebo N (nie), podľa
+toho či i-ty chlapec môže tancovať s j-tym dievčaťom. Pre každý vstup
+výpište jeden riadok obsahujúci jedno číslo počet rôznych priradení detí
+tak, že na parkete tancuje presne K párov, ktoré spolu môžu tancovať.
+
+Ukážka vstupu:
+
+    3
+    3 4
+    YYYY
+    YYYY
+    YYYY
+    3
+    3 4
+    YYNN
+    NYYN
+    NNYY
+    3
+    6 6
+    YYNNNN
+    NYYNNN
+    NNYYNN
+    NNNYYN
+    NNNNYY
+    YNNNNY
+
+Výstup pre ukážkový vstup:
+
+    24
+    4
+    112

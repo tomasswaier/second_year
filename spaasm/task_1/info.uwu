@@ -1,0 +1,29 @@
+9. Vypísať obsah vstupu, pričom ak sa v ňom nachádza viacero rovnakých
+riadkov za sebou, vypíše sa vždy len jeden krát
+
+
+Časť 2: 5 bodov + max. 3 body bonus
+Každý si môže zvoliť ľubovoľnú kombináciu nasledujúcich úloh podľa toho, koľko
+bodov by chcel získať. Z tejto skupiny sa nad 5 bodov započítajú úlohy naviac za
+ďalšie 3 body (bonus).
+1. Plus 1 bod: Po zadaní prepínača '-p' bude výstup stránkovaný, teda po
+zaplnení obrazovky sa počká na stlačenie klávesu.
+2. Plus 2 body: Stránkovanie oboma smermi, teda aj naspäť.
+3. Plus 2 body: Pri stránkovaní sa zobrazí poradové číslo aktuálne zobrazenej
+strany, tiež celkový počet strán a časť už zobrazeného výstupu v percentách.
+4. Plus 1 bod: Pri stránkovaní sa vždy zobrazí aj aktuálny dátum a čas.
+5. Plus 1 bod: Pri stránkovaní sa vždy zobrazí aj absolútna cesta zobrazovaného
+(spracovávaného) vstupného súboru. Ak je dlhšia než riadok, bude v
+prostriedku vhodne skrátená.
+6. Plus 1 bod: Pri stránkovanom výpise bude možné zvýrazniť reťazec zadaný z
+klávesnice v práve zobrazenom texte.
+7. Plus 1 bod: Ak budú korektne spracované vstupné súbory s veľkosťou nad 64
+kB.
+8. Plus 1 bod: Prepínač '-r' spôsobí výpis v opačnom poradí (od konca).
+9. Plus 2 body: Ak bude možné zadať viacero vstupných súborov.
+10. Plus 2 body je možné získať ak pridelená úloha bude realizovaná ako externá
+procedúra (kompilovaná samostatne a prilinkovaná k výslednému programu).
+11. Plus 1 bod je možné získať za (zmysluplné) použitie reťazcových inštrukcií
+(MOVS, CMPS, STOS, atď.).
+12. Plus 1 bod je možné získať za (dobré) komentáre, resp. dokumentáciu, v
+anglickom jazyku.

@@ -1,0 +1,15 @@
+(2025-02-17 14:00)lecutre 1
+14:25 vypoctovy proces (VP)
+	ako sa realizuje vp
+		co je instrukcia
+
+
+	system init z adresy 0xFFFF0 (konkretna instrukcia) - je tam z biosu
+
+
+	zhirkov igor. Low-level programming : C, Assembly and program execution on 
+
+	https://evalandaply.neocities.org/books/lowlevelprogramming.pdf
+	https://theswissbay.ch/pdf/Gentoomen%20Library/Operating%20Systems/Linux/O%27Reilly%20Linux%20System%20Programming.pdf
+
+	yapping about software of i80x86

@@ -1,0 +1,40 @@
+Úloha 5-1 (1b)
+
+Riešiť úlohu
+
+Jakubko by vás chcel pochváliť. Doposiaľ ste mali príležitosť vyriešiť
+niekoľko príkladov. Pravidlá sú nasledovné:
+
+-   Ak vyriešite nejaký príklad, tak môžete ten ďalší preskočiť (ale
+    nemusíte).
+-   Každý príklad má určitú hodnotu radosti U_i, t.j. ako veľmi Jakubka
+    potešíte, keď vyriešite daný príklad.
+-   Jakubko vás pochváli vtedy, keď rozdiel medzi maximálnou a
+    minimálnou hodnotou radosti dosiahne (alebo presiahne) hodnotu K.
+    Musíte teda vyriešiť problémy, ktoré majú danú maximálnu a minimálnu
+    hodnotu radosti.
+-   Ak to nemôže nikdy nastať, musíte vyriešiť všetky úlohy.
+
+Vypočítajte, koľko najmenej problémov musíte vyriešiť, aby ste splnili
+Jakubkove požiadavky na pochvalu.
+
+Na vstupe je niekoľko prípadov. Pre každý prípad sú zadané čísla N a K.
+Nasleduje N čísel, kde každé vyjadruje hodnotu radosti U_i pre
+jednotlivé príklady.
+
+Obmedzenia:
+1 <= N <= 50,
+1 <= U_i <= 1000,
+0 <= K <= 1000
+
+Ukážka vstupu:
+
+    3 2
+    1 2 3
+    5 4
+    1 2 3 4 5
+
+Výstup pre ukážkový vstup:
+
+    2
+    3

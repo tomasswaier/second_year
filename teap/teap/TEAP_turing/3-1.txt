@@ -1,0 +1,30 @@
+Úloha 3-1 (2b)
+
+Riešiť úlohu
+
+Okolo roku 1924 vymyslel Jan Łukasiewicz Poľskú notáciu, ktorá
+nepotrebuje zátvorky. Dnes poznáme túto notáciu aj ako prefixovú
+notáciu. Na rozdiel od reverznej Poľskej (postfixovej) notácie však
+prefixová notácia nie je jednoznačná. Vypočítajte pre daný výraz koľkými
+spôsobmi ho vieme vyhodnotiť.
+
+Na vstupe je niekoľko výrazov v prefixovej notácii. Každý výraz
+pozostáva z najviac 50 znakov, čo môžu byť číslice, alebo znaky '+',
+'-', '*' a '/'.
+
+Operátor - (mínus) môže byť unárny iba pre čisto číselný výraz, napr. -3
+ale nie -(3*2).
+
+Ukážka vstupu:
+
+    11111111111110
+    2/3
+    *3-1-98
+    +++111111111
+
+Výstup pre ukážkový vstup:
+
+    1
+    0
+    2
+    56

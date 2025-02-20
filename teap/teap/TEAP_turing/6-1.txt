@@ -1,0 +1,26 @@
+Úloha 6-1 (1b)
+
+Riešiť úlohu
+
+Jakubko sa pripravuje na programátorský test z rekurzie. Prechádza si
+staršie úlohy a snaží sa ich vyriešiť rekurzívne. Našiel úlohu na
+určenie všetkých N prvkových variácií s opakovaním z K-prvkovej množiny.
+
+Na vstupe sú prirodzené čísla N a K, napíšte rekurzívny program, ktorý
+na výstup vypíše všetky N prvkové variácie s opakovaním z K-prvkovej
+množiny čísel 1, 2, ..., K.
+
+Ukážka vstupu:
+
+    3 2
+
+Výstup pre ukážkový vstup:
+
+    1 1 1 
+    1 1 2 
+    1 2 1 
+    1 2 2 
+    2 1 1 
+    2 1 2 
+    2 2 1 
+    2 2 2

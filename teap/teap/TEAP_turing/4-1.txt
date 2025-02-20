@@ -1,0 +1,33 @@
+Úloha 4-1 (2b)
+
+Riešiť úlohu
+
+Keď minule Jakubko nemohol zaspať, zobral si papier a začal si kresliť
+kopčeky.
+
+Prvý riadok vstupu obsahuje číslo N (1 ≤ N ≤ 20) vyjadrujúce počet úloh.
+Každá úloha pozostáva z riadku obsahujúceho dve celé čísla D (2 ≤ D ≤
+5000) a V (1 ≤ V ≤ 200).
+
+Výstup bude obsahovať N riadkov, pre každú úlohu jeden. Obsahovať budú
+počet rôznych kopcov majúcich šírku D metrov a výšku presne V metrov.
+Kopec pozostáva len z troch možných úsekov: stúpanie široké 1 meter a
+vysoké 1 meter, klesanie široké 1 meter a vysoké 1 meter a rovinka
+široká 1 meter. Jednotlivé úseky musia na seba nadväzovať, výška nesmie
+presiahnuť V metrov, na začiatku a na konci musí mať kopec nulovú výšku
+a nikde inde nesmie byť výška ≤ 0 (takže kopec napríklad nemôže začínať
+alebo končiť rovinkou).
+
+Keďže takých kopcov môže byť veľmi veľa, vypíšte počet kopcov ako zvyšok
+po delení číslom 100 000 007.
+
+Ukážka vstupu:
+
+    2
+    6 2
+    30 5
+
+Výstup pre ukážkový vstup:
+
+    7
+    11640085

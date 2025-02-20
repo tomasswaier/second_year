@@ -1,0 +1,33 @@
+Úloha 8-1 (3b)
+
+Riešiť úlohu
+
+Jakubko oslavuje narodeniny a na oslavu chce pozvať všetkých svojich
+kamarátov zo všetkých krúžkov, ktoré navštevuje. Kamarátov chce usadiť k
+stolom tak, aby sa nestalo, že pri jednom stole sedia dvaja (alebo
+viacerí) kamaráti z rovnakého krúžku. Pomôžte Jakubkovi rozhodnúť, či
+také usadenie všetkých kamarátov k stolom existuje.
+
+Na štandardnom vstupe bude viacero scenárov za sebou. Každý scenár
+obsahuje najskôr dve čísla N (1 <= N <= 100) počet krúžkov, ktoré
+Jakubko navštevuje, a M (1 <= M <= 100) počet stolov, ktoré má Jakubko
+na oslave k dispozícií. Nasleduje N čísel Ni (1 <= Ni <= 100) počet
+kamarátov z i-teho krúžku, a M čísel Mj (2 <= Mj <= 100) počet miest pri
+j-tom stole. Jakubko pri stole nesedí.
+
+Pre každý scenár na štandardný výstup vypíšte 1, ak také rozsadenie
+všetkých kamarátov k stolom existuje, inak vypíšte 0.
+
+Ukážka vstupu:
+
+    4 5 
+    4 5 3 5 
+    3 5 2 6 4 
+    4 5 
+    4 5 3 5 
+    3 5 2 6 3
+
+Výstup pre ukážkový vstup:
+
+    1
+    0

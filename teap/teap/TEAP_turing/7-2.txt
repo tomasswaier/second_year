@@ -1,0 +1,26 @@
+Úloha 7-2 (2b)
+
+Riešiť úlohu
+
+Jakubko stále nemôže zaspať a tak sa rozhodol spočítať všetky N-ciferné
+palindrómy, ktoré sú deliteľné číslom M a nezačínajú nulou.
+
+Na prvom riadku vstupu sa nachádza jediné celé číslo n (1 ≤ n ≤ 1000),
+ktoré vyjadruje počet úloh, ktoré budú nasledovať. Opis každej úlohy
+tvorí jeden riadok s dvoma celými číslami M a N (1 ≤ M ≤ 1000, 1 ≤ N ≤
+19).
+
+Výstup bude obsahovať n riadkov, na každom z nich jedno číslo
+vyjadrujúce počet palindrómov vypočítaný podľa vyššie uvedených
+pravidiel.
+
+Ukážka vstupu:
+
+    2
+    2 1
+    2 2
+
+Výstup pre ukážkový vstup:
+
+    4
+    4
