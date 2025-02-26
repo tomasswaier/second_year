@@ -27,3 +27,9 @@ procedúra (kompilovaná samostatne a prilinkovaná k výslednému programu).
 (MOVS, CMPS, STOS, atď.).
 12. Plus 1 bod je možné získať za (dobré) komentáre, resp. dokumentáciu, v
 anglickom jazyku.
+
+
+gcc -S -masm=intel -O0 -fno-asynchronous-unwind-tables -fno-stack-protector -fno-exceptions -fomit-frame-pointer -fverbose-asm -fno-pic -no-pie main.c -o a.out
+
+nasm -felf64 main.asm && gcc main.o && ./a.out
+
