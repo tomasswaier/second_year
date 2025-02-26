@@ -1,3 +1,5 @@
+// uloha-4-2.c -- Murárik Tom Meravý, 2025-02-22 09:06
+// EI?RQQ?A?WWQ?I?QRQ?A?QRQ?I?WQR?A?RWR?E?WQR?E?QRR
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
@@ -21,6 +23,9 @@ void meow(char *inputString) {
   int i = 0;
   // mimimiii why do u have so many weird vairable BECAUSE ITS DIGSTUGINGLY
   // BRAINDEAD TASK GO KYS RETARD
+
+  int helperValueVowel = 1;
+  int helperValueNotVowel = 1;
   int currentCountVowel = 0;
   int usedCountVowel = 0;
   int currentCountNotVowel = 0;
@@ -36,18 +41,26 @@ void meow(char *inputString) {
       currentCountVowel = 0;
       usedCountNotVowel = currentCountNotVowel;
       currentCountNotVowel = 0;
+      if (usedCountNotVowel > 0) {
+        questionMarkCount += usedQuestionMarkCount;
+      }
     } else if (expectedValue == -1) {
       requiredCount = 5;
       usedCountVowel = currentCountVowel;
       currentCountVowel = 0;
       usedCountNotVowel += currentCountNotVowel;
       currentCountNotVowel = 0;
+      if (usedCountNotVowel > 0) {
+        questionMarkCount += usedQuestionMarkCount;
+      }
     } else if (i == 0 && expectedValue == 0) {
       requiredCount = 3;
     } else {
-      usedCountVowel = currentCountVowel;
+      usedCountVowel += currentCountVowel;
+      helperValueVowel = currentCountVowel;
       currentCountVowel = 0;
-      usedCountNotVowel = currentCountNotVowel;
+      usedCountNotVowel += currentCountNotVowel;
+      helperValueNotVowel = currentCountNotVowel;
       currentCountNotVowel = 0;
     }
     usedQuestionMarkCount = questionMarkCount;
@@ -55,18 +68,11 @@ void meow(char *inputString) {
 
     int j;
     for (j = i; inputString[j] != '\0'; j++) {
-      printf(" curStr:%c countVowel:%d cVU:%d countNVowel:%d cNVU:%d "
-             "qMarkCount:%d "
-             "usedQmarkCount:%d ,required:%d, i:%d j:%d \n",
-             inputString[j], currentCountVowel, usedCountVowel,
-             currentCountNotVowel, usedCountNotVowel, questionMarkCount,
-             usedQuestionMarkCount, requiredCount, i, j);
 
       int currentLetterValue = isVowel(inputString[j]);
       if (currentLetterValue == expectedValue) {
         if (currentLetterValue == 0) {
           questionMarkCount++;
-
           if (currentCountNotVowel + usedCountNotVowel + usedQuestionMarkCount +
                       questionMarkCount >=
                   requiredCount ||
@@ -105,23 +111,11 @@ void meow(char *inputString) {
         if (expectedValue == 0) {
           // this code is so ungodly shit I can not
           if (currentLetterValue == -1) {
-            /*
-            printf("expectedValue=0 :curStr:%c countVowel:%d cVU:%d "
-                   "countNVowel:%d "
-                   "cNVU:%d "
-                   "qMarkCount:%d "
-                   "usedQmarkCount:%d ,required:%d, i:%d j:%d \n",
-                   inputString[j], currentCountVowel, usedCountVowel,
-                   currentCountNotVowel, usedCountNotVowel, questionMarkCount,
-                   usedQuestionMarkCount, requiredCount, i, j);
-                   */
-            if (usedCountVowel >= 2 && questionMarkCount == 1) {
-              // printf("nig\n");
+            if (helperValueVowel == 2 && questionMarkCount == 1) {
 
               usedCountVowel = 0;
               currentCountVowel = 0;
               inputString[j - 1] = 'X';
-              // printf("%c\n", inputString[j - 1]);
               questionMarkCount = 0;
               j = j - 1;
               break;
@@ -129,7 +123,7 @@ void meow(char *inputString) {
             usedCountVowel = 0;
             currentCountVowel = 0;
           } else if (currentLetterValue == 1) {
-            if (usedCountNotVowel >= 4 && questionMarkCount == 1) {
+            if (helperValueNotVowel == 4 && questionMarkCount == 1) {
               currentCountNotVowel = 0;
               usedCountNotVowel = 0;
               inputString[j - 1] = 'A';
@@ -145,8 +139,11 @@ void meow(char *inputString) {
         } else {
           if (currentLetterValue == 1) {
             currentCountNotVowel = 0;
-          } else {
+          } else if (currentLetterValue == -1) {
             currentCountVowel = 0;
+          } else {
+            questionMarkCount = usedQuestionMarkCount;
+            usedQuestionMarkCount = 0;
           }
         }
         break;
@@ -157,89 +154,20 @@ void meow(char *inputString) {
   if (unknown) {
     printf("neviem\n");
     return;
+  } else {
+    printf("nepaci\n");
   }
-
-  printf("nepaci\n");
+  fflush(stdout);
 }
 
 int main() {
-  char inputString[50];
-  while (fgets(inputString, sizeof(inputString), stdin)) {
-    inputString[strcspn(inputString, "\n")] = 0; // Remove newline
+  char *inputString = NULL;
+  size_t size = 0;
+  ssize_t length = 0;
+  while ((length = getline(&inputString, &size, stdin)) != -1) {
+    inputString[strcspn(inputString, "\r\n")] = '\0';
+    if (strlen(inputString) == 0)
+      continue;
     meow(inputString);
   }
 }
-/*nepaci
-paci
-neviem
-nepaci
-paci
-nepaci
-nepaci
-neviem
-neviem
-neviem
-neviem
-neviem
-neviem
-
-    int max = 0;
-    if (lookingForVowel == 1) {
-      max = 3;
-      if (question_mark_count == 1 && i > 1) {
-        max -= question_mark_count;
-      }
-    } else if (lookingForVowel == -1) {
-      max = 5;
-      if (question_mark_count == 1 && i > 1) {
-        max -= question_mark_count;
-      }
-    } else {
-      question_mark_count = 1;
-      max = 3;
-    }
-    question_mark_count = 0;
-
-    for (int j = i; inputString[j] != '\0'; j++) {
-      // printf("%c", inputString[j]);
-      int found_letter = isVowel(inputString[j]);
-      if (found_letter == lookingForVowel && found_letter != 0) {
-        used_question_marks += question_mark_count;
-        question_mark_count = 0;
-        max -= 1;
-        if (max <= 0) {
-          printf("paci\n");
-          return;
-        }
-        // printf("%d -%d\n", max, used_question_marks);
-        if (max - used_question_marks <= 0) {
-          neviem = true;
-          continue;
-        }
-      } else if (found_letter == 0) {
-        question_mark_count += 1;
-        // printf("%d\n", max - question_mark_count);
-        if (max - question_mark_count - used_question_marks <= 0) {
-          neviem = true;
-          continue;
-        }
-      } else if (found_letter != lookingForVowel &&
-                 lookingForVowel == 0) {
-        lookingForVowel = found_letter;
-        used_question_marks = question_mark_count;
-        break;
-      } else if (found_letter != lookingForVowel) {
-        i = j - 1;
-        used_question_marks = 0;
-        break;
-      }
-    }
-    i += 1;
-    // printf("\n");
-  }
-  i += 1;
-  if (neviem) {
-    printf("neviem\n");
-    return;
-  }
-*/
