@@ -31,5 +31,7 @@ anglickom jazyku.
 
 gcc -S -masm=intel -O0 -fno-asynchronous-unwind-tables -fno-stack-protector -fno-exceptions -fomit-frame-pointer -fverbose-asm -fno-pic -no-pie main.c -o a.out
 
-nasm -felf64 main.asm && gcc main.o && ./a.out
+nasm -f elf64 main.asm -o main.o
+
+ld main.o -o main -e main
 
