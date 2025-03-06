@@ -36,12 +36,50 @@ int checker(int foundMin, int foundMax, int *arr) {
   }
   int result = 1;
   if (indexMin != 0) {
-    result = getNumOfSteps(0, indexMax);
+    result += getNumOfSteps(0, indexMin);
   }
   // printf("%d %d %d\n", 0, indexMin, result);
   result += getNumOfSteps(indexMin, indexMax);
   // printf("%d %d %d\n", indexMin, indexMax, result);
   return result;
+}
+int cheating(int size, int *arr, int k) {
+  int foundMin = 1 << 29;
+  int foundMax = 0;
+  int minimini = -1;
+  for (int i = 0; i < size; i += 2) {
+    if (foundMin > arr[i]) {
+      foundMin = arr[i];
+    }
+    if (foundMax < arr[i]) {
+      foundMax = arr[i];
+    }
+
+    if (foundMax - foundMin >= k && minimini == -1) {
+      minimini = i / 2 + 1;
+      break;
+    }
+  }
+  // printf("miniminimini %d %d\n", foundMin, foundMax);
+  foundMin = 1 << 29;
+  foundMax = 0;
+  for (int i = 1; i < size; i += 2) {
+    if (foundMin > arr[i]) {
+      foundMin = arr[i];
+    }
+    if (foundMax < arr[i]) {
+      foundMax = arr[i];
+    }
+
+    if (foundMax - foundMin >= k &&
+        (minimini > foundMax - foundMin || minimini == -1)) {
+      minimini = (i + 1) / 2 + 1;
+      break;
+    }
+  }
+  // printf("miniminimini %d %d\n", foundMin, foundMax);
+
+  return minimini == -1 ? 1 << 29 : minimini;
 }
 
 int finder(int size, int k, int *array) {
@@ -68,9 +106,13 @@ int finder(int size, int k, int *array) {
       result = foundNum < result ? foundNum : result;
     }
   }
-  if (result == 999999999) {
+  int cheater = cheating(size, array, k);
+  // printf("cheater : %d\n", cheater);
+
+  if (result == 1 << 29) {
     return size;
   }
+  result = cheater < result ? cheater : result;
 
   return result;
 }

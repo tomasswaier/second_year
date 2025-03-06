@@ -7,3 +7,14 @@ lecture 2:
 	stff with dbs like orde by , between , operangs...
 
 	join : SELECT stlpec FROM tab1 INNER JOIN tab2 ON ...
+
+lecture 3:
+	sql syntax shit like create table , attributes / limiters like not null, unique , primary key ...
+	showing off updates
+	windowing -defining groups like by year
+						-dows have option of sliding window
+
+	important stuff is on slide 14,15 apperently mainly rank, denserank,rownumber
+	mentioned array_agg() over(),lag(),lead()
+	functions and procedures
+	triggers

@@ -16,3 +16,8 @@
 2025-02-24 13:04 lecture 2
 	gcc -S asmebler output
 	slide 81 bude na skuske teda vsetky operacie
+
+2025-03-03 14:01 lecutre 3	
+	jsi
+	intel segmentacia + strankovanie ostatne su iba segmentacia (i think)
+	base relative+index
