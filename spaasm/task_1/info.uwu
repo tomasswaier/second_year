@@ -29,9 +29,65 @@ procedúra (kompilovaná samostatne a prilinkovaná k výslednému programu).
 anglickom jazyku.
 
 
+General-Purpose Registers (GPRs)
+Register	Purpose / Usage
+rax	Accumulator: Used for return values of functions, multiplication/division, and system call numbers.
+rbx	Base register: Typically used as a general-purpose register but preserved across function calls.
+rcx	Counter register: Used for loops (e.g., loop instruction) and as an argument for certain instructions (e.g., rep movsb).
+rdx	Data register: Used for I/O operations, storing function arguments, and as a secondary register for division/multiplication.
+rsi	Source index: Typically used for string/memory operations (movsb, movsw, etc.) and as a function argument register.
+rdi	Destination index: Used for string/memory operations and as a function argument register.
+rsp	Stack pointer: Points to the top of the stack and is modified by function calls and stack operations (push / pop).
+rbp	Base pointer: Used as a reference for function stack frames, but can be repurposed in modern calling conventions.
+r8 – r15	Additional general-purpose registers (temporary): Used for passing extra function arguments or temporary storage.
+Calling Convention (System V AMD64 ABI)
+
+When calling functions in Linux x86-64, function arguments are passed in specific registers:
+Argument #	Register
+1st	rdi
+2nd	rsi
+3rd	rdx
+4th	rcx
+5th	r8
+6th	r9
+7th+	Passed on the stack
+
+    Return values are stored in rax (or rdx:rax for larger values).
+    Caller-saved (volatile) registers: rax, rcx, rdx, rsi, rdi, r8–r11 (can be changed by a function).
+    Callee-saved (non-volatile) registers: rbx, rbp, r12–r15 (must be preserved across function calls).
+
+Special-Purpose Registers
+
+These registers have predefined roles in certain operations:
+Register	Special Use
+rip	Instruction pointer (points to the next instruction to execute).
+rsp	Stack pointer (always points to the top of the stack).
+rbp	Base pointer (used for stack frames, though not always necessary).
+rflags	Status flags register (contains flags like Zero Flag, Carry Flag, etc.).
+Segment Registers (Rarely Used in x86-64)
+
+    cs (Code Segment)
+    ds (Data Segment)
+    ss (Stack Segment)
+    es, fs, gs (Extra segments, sometimes used for thread-local storage)
+
+Floating Point and SIMD Registers
+
+For floating point and vectorized operations, you have:
+Register	Purpose
+xmm0 - xmm15	Used for floating-point operations (SSE/AVX).
+ymm0 - ymm15	Used for AVX 256-bit operations.
+zmm0 - zmm31	Used for AVX-512 operations.
+
+
+
+
 gcc -S -masm=intel -O0 -fno-asynchronous-unwind-tables -fno-stack-protector -fno-exceptions -fomit-frame-pointer -fverbose-asm -fno-pic -no-pie main.c -o a.out
 
-nasm -f elf64 main.asm -o main.o
+nasm -felf64 main.asm && ld main.o -o main && ./main
 
-ld main.o -o main -e main
+nasm -f elf64 main.asm -o main.o
+gcc main.o -o main -no-pie  # Link with C library
+./main
+
 
