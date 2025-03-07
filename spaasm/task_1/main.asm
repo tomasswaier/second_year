@@ -3,10 +3,11 @@ filename  db 'double.txt', 0; The name of the file to open
 ;filename db 'single.txt', 0; The name of the file to open
 message   db 'closing', 10
 fmt       db "%d", 10, 0; Format string "%d\n" (newline included)
+newline   db 10
 
 section .bss
 buffer  resb 512; Reserve space for the buffer (512 bytes)
-current_bufferresb 512;for storing a string
+current_buffer resb 512;for storing a string
 prev_buffer resb 512;for storing prev string
 num_buffer resb 20
 
@@ -27,7 +28,8 @@ main:
 
 	mov rdi, rax; Store file descriptor in rdi
 	mov r12, 0; Initialize buffer index
-	mov r14, 0; pointer in output_buffer
+	mov r14, 0; pointer in current_buffer
+	mov r15, 0; pointer in prev_buffer
 
 	jmp load_file; Jump to read the file
 
@@ -51,14 +53,14 @@ read_file_by_char:
 	cmp r12, r13; Compare index with bytes read
 	jge close_file; If index >= bytes read, close the file
 
-	lea     rsi, [buffer + r12]; Load address of buffer[r12]
-	mov     rax, 1; sys_write syscall
-	mov     rdi, 1; File descriptor (stdout)
-	mov     rdx, 1; Print 1 byte
-	syscall ; Make the system call
+	;lea     rsi, [buffer + r12]; Load address of buffer[r12]
+	;mov     rax, 1; sys_write syscall
+	;mov     rdi, 1; File descriptor (stdout)
+	;mov     rdx, 1; Print 1 byte
+	;syscall ; Make the system call
 
 	;     Append the current character to the output buffer
-	lea   rdi, [output_buffer + r14]; Address of output_buffer[r13]
+	lea   rdi, [current_buffer + r14]; Address of current_buffer[r13]
 	mov   al, [buffer + r12]; Load the character from the input buffer
 	mov   [rdi], al; Store the character in the output buffer
 	inc   r12; Move to the next character
@@ -68,20 +70,55 @@ read_file_by_char:
 	jmp   read_file_by_char
 
 cmp_strings:
-	mov byte [output_buffer + r14], 10; ASCII 10 is newline '\n'
-	inc r14
+	cmp r14, r15
+	jne prepare_copy
+
+prepare_copy:
+	mov rdi, prev_buffer; Destination buffer (prev_buffer)
+	mov rsi, current_buffer; Source buffer (current_buffer)
+	mov rcx, r14
+	mov r15, r14
+	jmp copy_buffer
+
+copy_buffer:
+	mov al, [rsi]; Load byte from current_buffer
+	mov [rdi], al; Store byte in prev_buffer
+	inc rsi; Move to next byte in current_buffer
+	inc rdi; Move to next byte in prev_buffer
+	dec rcx
+	jnz copy_buffer; Repeat until all bytes are copied
+
+	; After copy, reset current_buffer
+
+	;   Append the newline to current_buffer
+	mov rdi, current_buffer; Destination (current_buffer)
+	mov rcx, 512; Size of buffer
+	xor rax, rax; Set AL to 0
+	rep stosb; Fill buffer with 0s
+
+	mov r14, 0; Reset index in current_buffer
+
+	;   Print the current_buffer
 	jmp print_message
 
 print_message:
-	mov rax, 1; system call for write
-	mov rdi, 1; file handle 1 is stdout
-	mov rsi, output_buffer; address of string to output
-	mov rdx, r14; number of bytes
+	inc  r15
+	;mov byte [prev_buffer+r15], 10
+	inc  r15
+	mov  rax, 1; system call for write
+	mov  rdi, 1; file handle 1 is stdout
+	mov  rsi, prev_buffer; address of string to output
+	mov  rdx, r15; number of bytes
 	syscall
-	mov r14, 0
-	inc r14
-	inc r12
-	jmp read_file_by_char
+	mov  rax, 1; system call for write
+	mov  rdi, 1; file handle 1 is stdout
+	mov  rsi, newline; address of string to output
+	mov  rdx, 1; number of bytes
+	syscall
+	mov  r14, 0
+	inc  r14
+	inc  r12
+	jmp  read_file_by_char
 
 close_file:
 	mov     rax, 1; system call for write

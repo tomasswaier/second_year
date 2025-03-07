@@ -6,4 +6,4 @@ env/
 *.sql
 *.docx
 **/test_files/
-
+vgcore.*
