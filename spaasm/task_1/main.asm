@@ -1,5 +1,6 @@
 section   .data
-filename  db 'double.txt', 0; The name of the file to open
+filename  db 'example.txt', 0; The name of the file to open
+;filename db 'double.txt', 0; The name of the file to open
 ;filename db 'single.txt', 0; The name of the file to open
 message   db 'closing', 10
 fmt       db "%d", 10, 0; Format string "%d\n" (newline included)
@@ -65,20 +66,46 @@ read_file_by_char:
 	mov   [rdi], al; Store the character in the output buffer
 	inc   r12; Move to the next character
 	inc   r14; Increment the output buffer index
-	mov   rax, r12; debug thing for printing the position of pointer
+	;mov  rax, r12; debug thing for printing the position of pointer
 	;call print_number; meow
 	jmp   read_file_by_char
 
 cmp_strings:
-	cmp r14, r15
-	jne prepare_copy
+	inc   r12; move it to next buffer char
+	cmp   r14, r15
+	jne   prepare_copy
+	lea   rdi, [prev_buffer+ r15+1]
+	mov   al, 0; load null terminator
+	mov   [rdi], al; Store the character in the output buffer
+	;mov  rax, 1; debug thign
+	;call print_number; meow
+
+	mov rsi, current_buffer; Load address of first string
+	mov rdi, prev_buffer; Load address of second string
+
+compare_loop:
+	mov  al, [rsi]; Load byte from current_buffer
+	mov  bl, [rdi]; Load byte from prev_buffer
+	test bl, bl; Check if we reached null terminator (end of string)
+	je   strings_equal; If yes, strings are equal
+	cmp  al, bl; Compare characters
+	jne  prepare_copy; Jump if they are not equal
+	inc  rsi; Move to next character in current_buffer
+	inc  rdi; Move to next character in prev_buffer
+	jmp  compare_loop; Repeat until mismatch or end
+
+strings_equal:
+	mov r14, 0
+	je  read_file_by_char; If yes, strings are equal
 
 prepare_copy:
-	mov rdi, prev_buffer; Destination buffer (prev_buffer)
-	mov rsi, current_buffer; Source buffer (current_buffer)
-	mov rcx, r14
-	mov r15, r14
-	jmp copy_buffer
+	;mov  rax, 2; debug thign
+	;call print_number; meow
+	mov   rdi, prev_buffer; Destination buffer (prev_buffer)
+	mov   rsi, current_buffer; Source buffer (current_buffer)
+	mov   rcx, r14
+	mov   r15, r14
+	jmp   copy_buffer
 
 copy_buffer:
 	mov al, [rsi]; Load byte from current_buffer
@@ -102,9 +129,7 @@ copy_buffer:
 	jmp print_message
 
 print_message:
-	inc  r15
 	;mov byte [prev_buffer+r15], 10
-	inc  r15
 	mov  rax, 1; system call for write
 	mov  rdi, 1; file handle 1 is stdout
 	mov  rsi, prev_buffer; address of string to output
@@ -116,16 +141,14 @@ print_message:
 	mov  rdx, 1; number of bytes
 	syscall
 	mov  r14, 0
-	inc  r14
-	inc  r12
 	jmp  read_file_by_char
 
 close_file:
-	mov     rax, 1; system call for write
-	mov     rdi, 1; file handle 1 is stdout
-	mov     rsi, message; address of string to output
-	mov     rdx, 8; number of bytes
-	syscall
+	;mov    rax, 1; system call for write
+	;mov    rdi, 1; file handle 1 is stdout
+	;mov    rsi, message; address of string to output
+	;mov    rdx, 8; number of bytes
+	;syscall
 	;       Close the file (sys_close)
 	mov     rax, 3; sys_close system call number (3)
 	mov     rdi, rdi; File descriptor (stored in rdi)
