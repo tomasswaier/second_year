@@ -18,3 +18,22 @@ lecture 3:
 	mentioned array_agg() over(),lag(),lead()
 	functions and procedures
 	triggers
+
+lecture 4:
+	Data modeling
+	he keepsyapping to us like a fren about this and that but it's all theoretical
+	modeling layers:
+		conceptual -> abstract / highlevel view for managers
+		logical model-> detailed structure of talbes ...
+		implementation -> postgres / working version
+	entity relationship model:
+		entities:
+			entity:object irl
+			attributes:property describing it
+			entity set:similar entities
+		relationships:
+			relationship;association among two + entities
+			-||- set set of relationships of the same type
+			-||- degree number of entitiy sets participating( unary, binary , ternary)
+		cardinality
+		database relationships one to many , one to one , many to many , many to one

@@ -18,6 +18,11 @@
 	slide 81 bude na skuske teda vsetky operacie
 
 2025-03-03 14:01 lecutre 3	
-	jsi
+	jsi - jazyk symbolickych instrukcii
 	intel segmentacia + strankovanie ostatne su iba segmentacia (i think)
 	base relative+index
+2025-03-10 14:00 lecture 4
+	jazyk symbolickych adreis
+	aplication binary interface
+	vysvetluje syntax asm
+	start of system progamming

@@ -1,157 +1,168 @@
-section   .data
-filename  db 'example.txt', 0; The name of the file to open
-;filename db 'double.txt', 0; The name of the file to open
-;filename db 'single.txt', 0; The name of the file to open
-message   db 'closing', 10
-fmt       db "%d", 10, 0; Format string "%d\n" to include newline
-newline   db 10
+section    .data
+filename1  db 'example.txt', 0; first file name
+filename2  db 'double.txt', 0; second file name
+;filename3 db '64kb.txt', 0; third file name
+file_count   dq 3                        ; number of files in our table
+buffer_size dq 69536; number of files in our table
+message    db 'closing', 10
+fmt        db "%d", 10, 0; Format string with newline
+newline    db 10
 
-section .bss
-buffer  resb 512; Reserve space for buffer . This var will be the first one to hold the file input
-current_buffer resb 512;this variable will be loading chars till newline or 0
-prev_buffer resb 512;for storing prev string
-num_buffer resb 20 ; used for debugging
+	; Table of filename pointers:
 
-section .text
-global  main; Entry point for the program
-extern  printf
+filenames:
+	dq  filename1
+	dq  filename2
+	;dq filename3
+
+	section .bss
+	buffer  resb 69536; Buffer for file input
+	current_buffer resb 512; Holds characters until newline/0
+	prev_buffer    resb 512                  ; Holds previous string
+	num_buffer     resb 20                   ; For debugging
+
+	section .text
+	global  main
+	extern  printf
 
 main:
+	mov rbx, 0; index = 0
+
+file_loop:
+	mov rcx, [file_count]; rcx = file count
+	cmp rbx, rcx
+	jge all_files_done; if index >= file_count, we're done
+
+	;   Get the pointer to the filename from the table:
+	mov rax, rbx
+	shl rax, 3; Multiply index by 8 (size of pointer)
+	lea rsi, [filenames + rax]; rsi points to the pointer in the table
+	mov rdi, [rsi]; load the filename pointer into rdi
+
 	;   Open the file (sys_open)
-	mov rax, 2; sys_open
-	mov rdi, filename; Pointer to the file name
-	mov rsi, 0; Flags readonly
-	mov rdx, 0
+	mov rax, 2; sys_open system call
+	mov rsi, 0; Flags: read-only
+	mov rdx, 0; Mode (not needed for read-only)
 	syscall
 
-	test rax, rax; ensure file has been opened
-	js   exit; If no then exit
+	test rax, rax; Check if file was opened successfully
+	js   next_file; If error, skip to next file
 
 	mov rdi, rax; Store file descriptor in rdi
-	mov r12, 0; Initialize buffer index
-	mov r14, 0; Index in current_buffer
-	mov r15, 0; Index in prev_buffer
+
+	;   Initialize indices for file processing:
+	mov r12, 0; index into buffer (buffer index)
+	mov r14, 0; index in current_buffer
+	mov r15, 0; index in prev_buffer
+
+	; ---- File Processing Loop ----
 
 load_file:
-	;   Read into buffer
-	mov rax, 0; sysread
-	mov rsi, buffer; Pointer to the buffer
-	mov rdx, 512; Number of bytes to read (buffer size)
+	mov rax, 0; sys_read system call
+	mov rsi, buffer; read into buffer
+	mov rdx, buffer_size; buffer size
 	syscall
 
-	test rax, rax; Check if EOF (0 bytes read) or error (-1)
-	jle  close_file; If 0 or negative, close and exit
+	test rax, rax; if EOF (0) or error (<0)
+	jle  close_current_file; then close the file
 
-	mov r13, rax; Store number of bytes read
+	mov r13, rax; r13 = number of bytes read
 	jmp read_file_by_char
 
 read_file_by_char:
-	cmp byte [buffer +r12], 10
+	cmp r12, r13; if we've reached end of bytes read...
+	jge close_current_file; close the file
+
+	cmp byte [buffer + r12], 10; If newline encountered...
 	je  cmp_strings
 
-	cmp r12, r13
-	jge close_file; If index >= bytes read, close the file
-
-	;debug   part
-	;lea     rsi, [buffer + r12]; Load address of buffer[r12]
-	;mov     rax, 1; sys_write syscall
-	;mov     rdi, 1; File descriptor (stdout)
-	;mov     rdx, 1; Print 1 byte
-	;syscall ; Make the system call
-
-	;      Append the current character to the currentbuffer
-	lea    rdi, [current_buffer + r14]; Address of current_buffer[r14]
-	mov    al, [buffer + r12]; Load the character from the input buffer
-	mov    [rdi], al; Store the character in the current buffer
-	inc    r12; Move to the next character
-	inc    r14; Increment the output buffer index
-	;debug part
-	;mov   rax, r12; debug thing for printing the position of pointer
-	;call  print_number; meow
-	jmp    read_file_by_char
+	;   Append the current character from buffer into current_buffer:
+	lea rdi, [current_buffer + r14]
+	mov al, [buffer + r12]
+	mov [rdi], al
+	inc r12
+	inc r14
+	jmp read_file_by_char
 
 cmp_strings:
-	inc r12; Move to the next buffer character
-	cmp r14, r15; Compare lengths of current and previous buffers
-	jne prepare_copy; If lengths are different, copy the new string
+	inc r12; move past the newline in buffer
+	cmp r14, r15; compare current_buffer length vs. previous
+	jne prepare_copy; if lengths differ, update prev_buffer
 
 	lea rdi, [prev_buffer + r15 + 1]
-	mov byte [rdi], 0; Append null terminator to prev_buffer
+	mov byte [rdi], 0; append null terminator to prev_buffer
 
-	;    Use rep cmpsb to compare strings efficiently
-	mov  rsi, current_buffer; Load address of current_buffer
-	mov  rdi, prev_buffer; Load address of prev_buffer
-	mov  rcx, r14; Set number of bytes to compare (length of current_buffer)
-	cld  ; Clear direction flag for forward comparison
-	repe cmpsb; Compare bytes while equal
+	;    Use rep cmpsb to compare strings efficiently:
+	mov  rsi, current_buffer; pointer to current_buffer
+	mov  rdi, prev_buffer; pointer to prev_buffer
+	mov  rcx, r14; number of bytes to compare
+	cld  ; clear direction flag
+	repe cmpsb; compare bytes
+	jnz  prepare_copy; if mismatch, copy new string
 
-	jnz prepare_copy; If a mismatch is found, copy the string
-	mov r14, 0; Reset index in current_buffer
-	jmp read_file_by_char; Continue reading the file
-
-strings_equal:
-	mov r14, 0; reset r14 pointer
-	je  read_file_by_char
+	;   If strings are equal, reset current_buffer and continue:
+	mov r14, 0
+	jmp read_file_by_char
 
 prepare_copy:
-	mov rdi, prev_buffer; Destination buffer (prev_buffer)
-	mov rsi, current_buffer; Source buffer (current_buffer)
-	mov rcx, r14; Number of bytes to copy (length of current_buffer)
-	mov r15, r14; Save length for later use
-	cld ; Ensure forward copying
-	rep movsb; Copy RCX bytes from [RSI] to [RDI]
+	;   Copy current_buffer to prev_buffer using rep movsb:
+	mov rsi, current_buffer; source pointer
+	mov rdi, prev_buffer; destination pointer
+	mov rcx, r14; number of bytes to copy
+	mov r15, r14; save length for printing later
+	cld ; ensure forward copying
+	rep movsb; copy RCX bytes
 
-	;   After copy, reset current_buffer
-	mov rdi, current_buffer; Destination (current_buffer)
-	mov rcx, 512; Size of buffer
-	xor rax, rax; Set AL to 0
-	rep stosb; Fill buffer with 0s
+	;   Reset current_buffer by clearing it:
+	mov rdi, current_buffer
+	mov rcx, 512
+	xor rax, rax
+	rep stosb
 
-	mov r14, 0; Reset index in current_buffer
+	mov r14, 0; reset current_buffer index
 
-	;   Print the prev_buffer
+	;   Print the previous buffer:
 	jmp print_message
 
 print_message:
-	;mov byte [prev_buffer+r15], 10
-	mov  rax, 1; system call for write
-	mov  rdi, 1; file handle 1 is stdout
-	mov  rsi, prev_buffer; address of string to output
-	mov  rdx, r15; number of bytes
+	mov rax, 1; sys_write for stdout
+	mov rdi, 1
+	mov rsi, prev_buffer; print prev_buffer
+	mov rdx, r15; number of bytes to print
 	syscall
-	mov  rax, 1; system call for write
-	mov  rdi, 1; file handle 1 is stdout
-	mov  rsi, newline; address of string to output
-	mov  rdx, 1; number of bytes
+	mov rax, 1; sys_write for newline
+	mov rdi, 1
+	mov rsi, newline
+	mov rdx, 1
 	syscall
-	mov  r14, 0
-	jmp  read_file_by_char
 
-close_file:
-	;debug
-	;mov    rax, 1; system call for write
-	;mov    rdi, 1; file handle 1 is stdout
-	;mov    rsi, message; address of string to output
-	;mov    rdx, 8; number of bytes
-	;syscall
-	;       Close the file (sys_close)
-	mov     rax, 3; sys_close system call number (3)
-	mov     rdi, rdi; File descriptor (stored in rdi)
-	syscall ; Make the system call
+	mov r14, 0; reset current_buffer index
+	jmp read_file_by_char; continue processing current file
 
-exit:
-	mov rax, 60; System call for exit
-	xor rdi, rdi; Exit code 0
+close_current_file:
+	;   Close the file (sys_close)
+	mov rax, 3; sys_close
 	syscall
+
+	; Move to next file:
+
+next_file:
+	inc rbx; next index in filenames table
+	jmp file_loop
+
+all_files_done:
+	;   All files processed; exit program
+	mov rax, 60; sys_exit
+	xor rdi, rdi
+	syscall
+
+	;-------------------------------------------------
 
 print_number:
-	;   debug functions
-	sub rsp, 8; Align stack (System V ABI requires 16-byte alignment)
-
-	mov  rdi, fmt; 1st argument: format string
-	mov  rsi, rax; 2nd argument: integer to print
-	xor  rax, rax; Clear rax (printf uses it for float handling)
-	call printf; Call printf
-
-	add rsp, 8; Restore stack alignment
+	sub  rsp, 8; align stack
+	mov  rdi, fmt; format string
+	mov  rsi, rax; number to print
+	xor  rax, rax
+	call printf
+	add  rsp, 8
 	ret

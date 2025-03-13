@@ -39,3 +39,9 @@ CLEAN <- na.omit(BABIES)
 dim(BABIES)
 dim(CLEAN)
 complete.cases(BABIES)
+
+
+
+
+
+
