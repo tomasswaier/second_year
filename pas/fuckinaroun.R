@@ -1,4 +1,8 @@
 setwd("~/arch/second_year/pas/")
+7*3 + 12/2 -7^2 +sqrt(4)
+
+
+
 (7-8)+5**3 -5/6+ sqrt(62)
 
 log10(5)+sqrt(2)*sin(pi)-exp(3)

@@ -1,0 +1,1 @@
+with meowkity as (select count(team_id) as count from team_history group by team_id)select * from meowkity where count>0;
