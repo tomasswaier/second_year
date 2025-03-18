@@ -5,9 +5,10 @@ select * from teams t limit 100;
 
 
 --first
+
 WITH sorted AS (SELECT pr.*, p.first_name, p.last_name FROM play_records pr
-JOIN players p ON pr.player1_id = p.id
---WHERE pr.game_id = '22000529'
+JOIN players p ON pr.player1_id = p.id 
+WHERE pr.game_id = '22000529' and pr.event_msg_type != 'INSTANT_REPLAY'
 ORDER BY pr.game_id, pr.event_number)
 SELECT player1_id AS player_id,first_name,last_name,period,pctimestring AS period_time
 FROM (SELECT *,LAG(event_msg_type) OVER (
