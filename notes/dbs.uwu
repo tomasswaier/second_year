@@ -37,3 +37,12 @@ lecture 4:
 			-||- degree number of entitiy sets participating( unary, binary , ternary)
 		cardinality
 		database relationships one to many , one to one , many to many , many to one
+lecure 5:
+	he keepsyapping to us like a fren about this and that 
+	kardinalita - relationship between entities that has some weight (just some lines between ...)
+	keys n stuff primary , foreign , super 
+	normal forms:
+		1st normal form - each entity has a primary key nad each column has an attribute
+		2nd normal form - eliminate partitial dependencies: every non-key attribute depends on the entire composite key
+		3rd normal form - each non-key attribute depends only on the whole primary key and nothing else
+	kept yapping bout some abstract stuff
