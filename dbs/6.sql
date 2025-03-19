@@ -1,13 +1,5 @@
 
-with player_info as (
-select
-	id as player_id
-from
-	players
-where
-	first_name = 'LeBron'
-	and last_name = 'James'
-),
+with 
 player_games as (
 select
 	pr.game_id,
@@ -19,11 +11,13 @@ from
 	play_records pr
 join games g on
 	pr.game_id = g.id
-join player_info p on
-	pr.player1_id = p.player_id
+join players p on
+	pr.player1_id = p.id
 where
 	g.season_type = 'Regular Season'
 	and pr.event_msg_type in ('FIELD_GOAL_MADE', 'FIELD_GOAL_MISSED')
+	and p.first_name = 'LeBron'
+	and p.last_name = 'James'
 group by
 	pr.game_id,
 	g.season_id,
@@ -32,35 +26,31 @@ order by
 	g.season_id,
 	g.game_date 
 ),
-season_game_counts as (
-select
-	season_id,
-	COUNT(distinct game_id) as total_games
-from
-	player_games
-group by
-	season_id
-having
-	COUNT(distinct game_id) >= 50
-),
 ordered_games as (
 select
-	season_id,
-	game_id,
-	game_date,
-	case
-		when (made + missed) = 0 then 0
-		else made::FLOAT / nullif((made + missed),
+	pg.season_id,
+	pg.game_id,
+	pg.game_date,
+        case
+		when (pg.made + pg.missed) = 0 then 0
+		else pg.made::FLOAT / nullif((pg.made + pg.missed),
 		0)
-	end as success_rate
+	end as success_rate,
+	gc.total_games
 from
-	player_games
-where
-	season_id in (
+	player_games pg
+join (
 	select
-		season_id
+		season_id,
+		COUNT(distinct game_id) as total_games
 	from
-		season_game_counts)
+		player_games
+	group by
+		season_id
+	having
+		COUNT(distinct game_id) >= 50
+    ) gc on
+	pg.season_id = gc.season_id
 ),
 game_diffs as (
 select
