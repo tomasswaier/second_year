@@ -1,5 +1,6 @@
 
-with 
+with players as (select * from players where first_name = '{{first_ame}}'
+	and last_name = '{{last_name}}'),
 player_games as (
 select
 	pr.game_id,
@@ -16,8 +17,6 @@ join players p on
 where
 	g.season_type = 'Regular Season'
 	and pr.event_msg_type in ('FIELD_GOAL_MADE', 'FIELD_GOAL_MISSED')
-	and p.first_name = 'LeBron'
-	and p.last_name = 'James'
 group by
 	pr.game_id,
 	g.season_id,

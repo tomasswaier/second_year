@@ -1,7 +1,13 @@
 
-
 --emow
-with single_player_records as (
+with games as (
+select
+	*
+from
+	games
+where
+	season_id = '{{season_id}}'),
+single_player_records as (
 select
 	p.id,
 	g.season_id,
@@ -27,9 +33,8 @@ join games g on
 	role)
 where
 	event_msg_type in ('FREE_THROW', 'FIELD_GOAL_MADE', 'FIELD_GOAL_MISSED', 'REBOUND')
-	and player_id is not null
-	and team_id is not null
-	and g.season_id = '22017'
+		and player_id is not null
+		and team_id is not null
 ),
 player_records_with_games_count as (
 select
@@ -60,7 +65,8 @@ from
 	having
 		COUNT(distinct team_id) > 1
 )
-	where row_num <= 5
+where
+	row_num <= 5
 	and number_of_teams_played_for>1),
 	ppg_tab as (
 select
@@ -69,10 +75,12 @@ select
 		ROUND(
       (
         COUNT(*) filter (
-	where spr.event_msg_type = 'FIELD_GOAL_MADE'
+where
+	spr.event_msg_type = 'FIELD_GOAL_MADE'
 	and spr.role = 0) * 2.0
         + COUNT(*) filter (
-	where spr.event_msg_type = 'FREE_THROW'
+where
+	spr.event_msg_type = 'FREE_THROW'
 	and spr.score_margin is not null
 	and spr.role = 0)
       ) / MAX(prwgc.games_played_count),
@@ -100,9 +108,10 @@ select
 		ROUND(
       (
         COUNT(*) filter (
-		where spr.event_msg_type = 'FIELD_GOAL_MADE' 
-		and spr.role = 1)
-      ) * 1.0/ MAX(prwgc.games_played_count),
+where
+	spr.event_msg_type = 'FIELD_GOAL_MADE'
+	and spr.role = 1)
+      ) * 1.0 / MAX(prwgc.games_played_count),
 	2
     ) as apg
 from
@@ -125,9 +134,9 @@ group by
 		p.last_name,
 		ppg.team_id,
 		t.full_name,
-		ppg.ppg,
-		apg.apg,
-		prwgc.games_played_count
+		ppg.ppg as "PPG",
+		apg.apg as "APG",
+		prwgc.games_played_count as games
 from
 		distinct_teams_count dtc
 join ppg_tab ppg on
