@@ -1,19 +1,19 @@
-section    .data
-filename1  db 'example.txt', 0; first file name
-filename2  db 'double.txt', 0; second file name
-;filename3 db '64kb.txt', 0; third file name
+section   .data
+filename1 db 'example.txt', 0; first file name
+filename2 db 'double.txt', 0; second file name
+filename3 db '64kb.txt', 0; third file name
 file_count   dq 3                        ; number of files in our table
 buffer_size dq 69536
-message    db 'closing', 10
-fmt        db "%d", 10, 0; Format string with newline
-newline    db 10
+message   db 'closing', 10
+fmt       db "%d", 10, 0; Format string with newline
+newline   db 10
 
 	; Table of filename pointers:
 
 filenames:
-	dq  filename1
-	dq  filename2
-	;dq filename3
+	dq filename1
+	dq filename2
+	dq filename3
 
 	section .bss
 	buffer  resb 69536; Buffer for file input

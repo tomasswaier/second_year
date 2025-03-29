@@ -4,7 +4,7 @@ select
 from
 	games
 where
-	season_id = '{{season_id}}'
+	season_id = '22018'
 ),
 single_player_records as (
 select
@@ -92,7 +92,7 @@ where
 group by
 	player_id,
 	streak_id
-)
+)--select * from streak_groups where player_id=201566;
 select
 	player_id,
 	coalesce(MAX(streak_length),

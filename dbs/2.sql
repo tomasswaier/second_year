@@ -6,7 +6,7 @@ select
 from
 	games
 where
-	season_id = '{{season_id}}'),
+	season_id = '22017'),
 single_player_records as (
 select
 	p.id,

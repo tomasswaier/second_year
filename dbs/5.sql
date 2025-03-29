@@ -1,3 +1,5 @@
+
+
 WITH team_names AS (
   SELECT
     team_id,
