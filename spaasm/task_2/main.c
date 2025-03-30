@@ -1,10 +1,11 @@
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-int changeDirCall(char **line_args) {
+int change_dir_call(char **line_args) {
   if (line_args[1] == NULL) {
     perror("missing second argument");
   } else {
@@ -15,35 +16,60 @@ int changeDirCall(char **line_args) {
 
   return 1;
 }
-int externalCall(char **line_args) {
+void execute_child(char **line_args) {
+  // kinder
+  char *input = NULL, *output = NULL;
+  char **clean_args = malloc(32 * sizeof(char *));
+  int idx = 0;
+
+  // Parse command and find redirections
+  for (int i = 0; line_args[i]; i++) {
+    if (strcmp(line_args[i], ">") == 0) {
+      output = line_args[++i];
+    } else {
+      clean_args[idx++] = line_args[i];
+    }
+  }
+  clean_args[idx] = NULL;
+
+  // Handle output redirection
+  if (output) {
+    int fd = open(output, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    if (fd == -1) {
+      perror("open");
+      exit(EXIT_FAILURE);
+    }
+    dup2(fd, STDOUT_FILENO);
+    close(fd);
+  }
+
+  execvp(clean_args[0], clean_args);
+  perror("execvp");
+  free(clean_args);
+  exit(EXIT_FAILURE);
+}
+int external_call(char **line_args) {
   pid_t pid, wpid;
   int status = 1;
   pid = fork();
   if (pid > 0) {
-    // Parent process
-    do {
-      wpid = waitpid(pid, &status, WUNTRACED);
-    } while (!WIFEXITED(status) && !WIFSIGNALED(status));
+    // eltern
+    waitpid(pid, NULL, 0);
   } else if (pid == 0) {
-    if (execvp(line_args[0], line_args) == -1) {
-      perror("execute args");
-    }
-    exit(EXIT_FAILURE);
-    ;
-    EXIT_SUCCESS;
+    execute_child(line_args);
   }
   return 1;
 }
-int executeExitCall() { exit(1); }
+int execute_exit_call() { exit(1); }
 
 int execute_args(char **line_args) {
   if (strcmp(line_args[0], "cd") == 0) {
-    changeDirCall(line_args);
+    change_dir_call(line_args);
   } else if (strcmp(line_args[0], "exit") == 0) {
-    executeExitCall();
+    execute_exit_call();
 
   } else {
-    externalCall(line_args);
+    external_call(line_args);
   }
 
   return 1;
@@ -74,13 +100,7 @@ char *read_line() {
   characters = getline(&buffer, &bufsize, stdin);
   char *ptr = buffer;
   // remove \n from the end
-  while (ptr) {
-    if (ptr[0] == '\n') {
-      ptr[0] = '\0';
-      break;
-    }
-    ptr++;
-  }
+  buffer[strcspn(buffer, "\n")] = '\0';
   return buffer;
 }
 char *remove_comment(char *line_read) {
@@ -116,7 +136,10 @@ void main_loop() {
       char **line_args;
       line_args = devide_line(separated_lines[i], &number_of_args, " ");
       status = execute_args(line_args);
+      free(line_args);
     }
+    free(separated_lines);
+    free(line_read);
   }
 }
 
