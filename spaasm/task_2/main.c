@@ -17,23 +17,30 @@ int change_dir_call(char **line_args) {
   return 1;
 }
 void execute_child(char **line_args) {
-  // kinder
+  //  kinder
   char *input = NULL, *output = NULL;
-  char **clean_args = malloc(32 * sizeof(char *));
+  char **clean_args = malloc(128 * sizeof(char *));
   int idx = 0;
 
-  // Parse command and find redirections
   for (int i = 0; line_args[i]; i++) {
-    if (strcmp(line_args[i], ">") == 0) {
+    if (strcmp(line_args[i], "<") == 0) {
+      input = line_args[++i];
+    } else if (strcmp(line_args[i], ">") == 0) {
       output = line_args[++i];
-    } else {
+    } else if (strcmp(line_args[i], "") != 0) {
       clean_args[idx++] = line_args[i];
     }
   }
   clean_args[idx] = NULL;
-
-  // Handle output redirection
-  if (output) {
+  if (input) {
+    int fd = open(input, O_RDONLY);
+    if (fd == -1) {
+      perror("open");
+      exit(EXIT_FAILURE);
+    }
+    dup2(fd, STDIN_FILENO);
+    close(fd);
+  } else if (output) {
     int fd = open(output, O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (fd == -1) {
       perror("open");
@@ -42,7 +49,6 @@ void execute_child(char **line_args) {
     dup2(fd, STDOUT_FILENO);
     close(fd);
   }
-
   execvp(clean_args[0], clean_args);
   perror("execvp");
   free(clean_args);
@@ -77,7 +83,7 @@ int execute_args(char **line_args) {
 
 char **devide_line(char *line_read, int *index, char *delimiter) {
   char *token;
-  char **tokens = (char **)malloc(32 * sizeof(char *));
+  char **tokens = (char **)malloc(128 * sizeof(char *));
 
   if (!tokens) {
     perror("allocation error");
@@ -85,11 +91,12 @@ char **devide_line(char *line_read, int *index, char *delimiter) {
   }
   token = strtok(line_read, delimiter);
   *index = 0;
-  while (token != NULL) {
+  while (token != NULL && *index < 31) {
     tokens[*index] = token;
     (*index)++;
     token = strtok(NULL, delimiter);
   }
+  tokens[*index] = NULL;
   return tokens;
 }
 
