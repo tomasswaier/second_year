@@ -1,0 +1,9 @@
+total 64
+drwxr-xr-x 2 aliceliddle users  4096 mar 31 08:57 .
+drwxr-xr-x 4 aliceliddle users  4096 mar 29 13:06 ..
+-rw-r--r-- 1 aliceliddle users  1504 mar 31 08:37 client.c
+-rwxr-xr-x 1 aliceliddle users 33648 mar 31 08:57 main
+-rw-r--r-- 1 aliceliddle users  6804 mar 31 08:56 main.c
+-rw-r--r-- 1 aliceliddle users  2281 mar 31 08:37 server.c
+-rw-r--r-- 1 aliceliddle users   194 mar 30 15:10 shell.nix
+-rw-r--r-- 1 aliceliddle users     0 mar 31 08:57 uwu.txt
