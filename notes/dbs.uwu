@@ -46,3 +46,7 @@ lecure 5:
 		2nd normal form - eliminate partitial dependencies: every non-key attribute depends on the entire composite key
 		3rd normal form - each non-key attribute depends only on the whole primary key and nothing else
 	kept yapping bout some abstract stuff
+
+lecture 7:
+	types ; in memory /disc oriented  
+	-- paging and benchmarks/speeds overeall like rn he's talking about rule-based optimizer

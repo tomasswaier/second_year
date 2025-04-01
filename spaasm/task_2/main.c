@@ -7,10 +7,11 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <unistd.h>
+#include <time.h>
+#include <unistd.h> // name
 
-#define PORT 8080
 #define MAX_CONNECTIONS 5
+int PORT;
 
 void help();
 int run_server();
@@ -77,7 +78,12 @@ int external_call(char **line_args) {
   }
   return 1;
 }
-int execute_exit_call() { exit(1); }
+int execute_exit_call() {
+  printf("halt");
+  fflush(stdout);
+
+  exit(1);
+}
 
 int execute_args(char **line_args) {
   if (strcmp(line_args[0], "cd") == 0) {
@@ -90,7 +96,6 @@ int execute_args(char **line_args) {
 
   } else if (strcmp(line_args[0], "quit") == 0) {
     // execute_exit_call();
-
   } else {
     external_call(line_args);
   }
@@ -120,7 +125,9 @@ char **devide_line(char *line_read, int *index, char *delimiter) {
 char *read_line() {
   char *buffer = NULL;
   size_t bufsize = 0;
-  getline(&buffer, &bufsize, stdin);
+  if (getline(&buffer, &bufsize, stdin) == -1) {
+    perror("getline");
+  }
   buffer[strcspn(buffer, "\n")] = '\0';
   return buffer;
 }
@@ -142,10 +149,12 @@ char *remove_comment(char *line_read) {
 
   return new_line;
 }
-void main_loop() {
+int main_loop() {
+  char *name = getlogin();
   int status = 1;
   while (status) {
-    printf(">");
+    printf("%s>", name);
+    fflush(stdout);
     char *line_read;
     line_read = read_line();
     line_read = remove_comment(line_read);
@@ -161,6 +170,7 @@ void main_loop() {
     free(separated_lines);
     free(line_read);
   }
+  return 1;
 }
 void help() {
   printf("Autor:Tomáš Meravý Murárik\nThis program should be used as "
@@ -168,18 +178,25 @@ void help() {
 }
 
 int main(int argc, char *argv[]) {
-  if (argc > 1) {
-    if (strcmp(argv[1], "-h") == 0) {
-      help();
-      return EXIT_SUCCESS;
-    } else if (strcmp(argv[1], "-s") == 0) {
-      return run_server();
-    } else if (strcmp(argv[1], "-c") == 0) {
-      return run_client();
+  int (*run_func)() = &main_loop;
+  for (int i = 1; i < argc; i++) {
+    if (argc > 1) {
+      if (strcmp(argv[i], "-h") == 0) {
+        help();
+        return 1;
+      } else if (i + 1 < argc && strcmp(argv[i], "-p") == 0) {
+        PORT = atoi(argv[i + 1]);
+        i++;
+      }
+      if (strcmp(argv[i], "-s") == 0) {
+        run_func = run_server;
+      } else if (strcmp(argv[i], "-c") == 0) {
+        run_func = run_client;
+      }
     }
   }
-
-  return run_server();
+  run_func();
+  return 1;
 }
 
 int run_server() {
@@ -223,7 +240,6 @@ int run_server() {
 
   dup2(new_socket, STDIN_FILENO);
   dup2(new_socket, STDOUT_FILENO);
-
   main_loop();
 
   close(new_socket);
@@ -250,12 +266,21 @@ int run_client() {
     return EXIT_FAILURE;
   }
   printf("Connected to server\n");
+
   pid_t pid = fork();
   if (pid == 0) {
-    char buf[1024];
+    char *buffer = NULL;
+    size_t bufsize = 0;
     while (1) {
-      if (fgets(buf, sizeof(buf), stdin)) {
-        write(sock, buf, strlen(buf));
+      if (getline(&buffer, &bufsize, stdin) != -1) {
+        if (write(sock, buffer, strlen(buffer)) == -1) {
+          perror("write");
+        }
+        if (strcmp(buffer, "halt\n") == 0) {
+          close(sock);
+          free(buffer);
+          exit(0);
+        }
       }
     }
   } else {
@@ -264,6 +289,9 @@ int run_client() {
       ssize_t n = read(sock, resp, sizeof(resp) - 1);
       if (n > 0) {
         resp[n] = '\0';
+        if (strcmp("halt", resp) == 0) {
+          exit(1);
+        }
         printf("%s", resp);
         fflush(stdout);
       }

@@ -1,0 +1,82 @@
+visual paradigm
+character{
+	id int [unique] PK
+	name varchar
+	classID int  FK
+	health varchar
+	actionPonits int 
+	strength varchar
+	dexterity varchar
+	constitution varchar
+	intelligence varchar
+
+}
+
+
+class{
+	id int [unique] PK
+	name varchar [unique]
+	//class bonuses
+	actionPoints int
+	health varchar
+	strength varchar
+	dexterity varchar
+	constitution varchar
+	intelligence varchar
+	armorClass int ?
+	inventorySize int
+}
+characterSpells{
+	uwu
+}
+
+//spell{
+//	id int [unique] PK
+//	name varchar [unique]
+//	// may I state that for clarity purposes I only want spell to depend on MAX 3 character attributes or do I just need to use second tab
+//
+//}
+//order -> what the fuck ?? like in BG3 may I move once first another time last ? may I move 1st then 2nd then 3rd because I decided ?
+//maybe only player chooses when he acts ??
+// will we be rewarded for more features in game design like ability to leave and enter combat or are those not things that should be thought about
+// will expandability be counted in ? like may I have combat logs as enum for clarity or will i be rewarded for thinking to the future and expandability so i make it a separate tab
+
+//bude sa hodnotiť aj prehladnosť alebo môžem dať proste do vyzvetlenie "V kode sa selectne sum(combat_id unique) where type="enter combat"
+combat{
+	id int [unique] PK
+}
+action{ //list of all actions and spells n shit
+	id int [unique] PK
+	name varchar(50) [unique] //move , fireball , 
+	description varchar(1028) 
+	effect_range int
+	range int
+	effect enum("demage","take","stun",...)
+	item_id int FK ?
+}
+
+combat_log{
+	id int [unique] PK
+	combat_id int FK
+	character int FK
+	action_event int FK
+}
+
+action_log{
+	id int [unique] PK
+	type enum("rest","enter combat","take item","idk",...)
+	character_id int FK
+}
+
+comabat_action{
+	id int [unique] PK
+	type enum("take item","fireball","fireball","fireball",...)
+
+}
+combat_action_effect{
+	id int [unique] PK
+	combat_action_id int [unique] FK
+	
+
+}
+
