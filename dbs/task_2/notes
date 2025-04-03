@@ -11,8 +11,6 @@ character{
 	intelligence varchar
 
 }
-
-
 class{
 	id int [unique] PK
 	name varchar [unique]
@@ -26,7 +24,7 @@ class{
 	armorClass int ?
 	inventorySize int
 }
-characterSpells{
+characterSpells{ //spellbook ??
 	uwu
 }
 
@@ -44,39 +42,49 @@ characterSpells{
 //bude sa hodnotiť aj prehladnosť alebo môžem dať proste do vyzvetlenie "V kode sa selectne sum(combat_id unique) where type="enter combat"
 combat{
 	id int [unique] PK
+	status bool
+	round int
 }
-action{ //list of all actions and spells n shit
+action_type{ 
 	id int [unique] PK
 	name varchar(50) [unique] //move , fireball , 
+	category enum(	fire magic, close combat,move ,die,die,I ,want,to die,die,die,...)
 	description varchar(1028) 
 	effect_range int
 	range int
 	effect enum("demage","take","stun",...)
 	item_id int FK ?
+	// may I state that for clarity purposes I only want spell to depend on MAX 3 character attributes or do I just need to use second tab like action_dependancy{action_type_id int FK , dependancy enum()}
 }
 
-combat_log{
+action{
 	id int [unique] PK
-	combat_id int FK
-	character int FK
-	action_event int FK
+	action_type_id int FK
+	action_effect_id FK
+	action_cost int 
+	round int 
+}
+action_effect{
+	id int [unique] PK
+	character_id int FK as caster 
+	character_id int FK as target
+	effect_value int (demage : 30 , stun , 15)
+	item_id int FK ?
+}
+characterSpells{
+	actino_type_id int FK
+	character_id int FK 
 }
 
-action_log{
-	id int [unique] PK
-	type enum("rest","enter combat","take item","idk",...)
-	character_id int FK
+inventory{
+	chatacter_id int unique
+	item_id int FK
 }
-
-comabat_action{
-	id int [unique] PK
-	type enum("take item","fireball","fireball","fireball",...)
-
-}
-combat_action_effect{
-	id int [unique] PK
-	combat_action_id int [unique] FK
-	
-
+item{
+	id int unique PK
+	name varchar unique 
+	description varchar 
+	strength int 
+	weight int
 }
 
