@@ -1,10 +1,12 @@
-#include "signal.h"
 #include <arpa/inet.h>
 #include <fcntl.h>
 #include <netinet/in.h>
+#include <signal.h>
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/select.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -15,11 +17,22 @@
 int PORT = 3000;
 int NUM = 0;
 int server_fd;
+int TIMEOUT = 10;
+int VERBOSE = 0;
 
 void help();
 int run_server();
 int run_client();
 
+void debug_print(const char *format, ...) {
+  if (!VERBOSE)
+    return;
+
+  va_list args;
+  va_start(args, format);
+  vfprintf(stderr, format, args);
+  va_end(args);
+}
 int change_dir_call(char **line_args) {
   if (line_args[1] == NULL) {
     perror("missing second argument");
@@ -70,8 +83,8 @@ void execute_child(char **line_args) {
   exit(EXIT_FAILURE);
 }
 int external_call(char **line_args) {
-  pid_t pid; // wpid;
-  // int status = 1;
+  debug_print("[DEBUG] Executing command: %s\n", line_args[0]);
+  pid_t pid;
   pid = fork();
   if (pid > 0) {
     // eltern
@@ -163,32 +176,72 @@ char *remove_comment(char *line_read) {
 int main_loop(int client_socket) {
   char *name = getlogin();
   int status = 1;
+  fd_set read_fds;
+  struct timeval timeout;
+
   while (status) {
     printf("%s %d >", name, NUM);
     fflush(stdout);
-    char *line_read;
-    line_read = read_line();
-    line_read = remove_comment(line_read);
-    int number_of_lines;
-    char **separated_lines = devide_line(line_read, &number_of_lines, ";");
-    for (int i = 0; i < number_of_lines; i++) {
-      int number_of_args;
-      char **line_args;
-      line_args = devide_line(separated_lines[i], &number_of_args, " ");
-      status = execute_args(line_args);
-      free(line_args);
+
+    FD_ZERO(&read_fds);
+    FD_SET(STDIN_FILENO, &read_fds);
+    timeout.tv_sec = TIMEOUT;
+    timeout.tv_usec = 0;
+
+    int activity = select(STDIN_FILENO + 1, &read_fds, NULL, NULL, &timeout);
+    if (activity < 0) {
+      perror("select");
+      break;
+    } else if (activity == 0) {
+      printf("\nNo input for %d seconds. Closing connection.\n", TIMEOUT);
+      break;
     }
-    free(separated_lines);
+
+    char *line_read = read_line();
+    if (!line_read)
+      break;
+
+    line_read = remove_comment(line_read);
+    int num_commands;
+    char **commands = devide_line(line_read, &num_commands, ";");
+
+    for (int i = 0; i < num_commands; i++) {
+      int num_args;
+      char **args = devide_line(commands[i], &num_args, " ");
+      status = execute_args(args);
+      free(args);
+    }
+
+    free(commands);
     free(line_read);
   }
+
   close(client_socket);
-  kill(getpid(), SIGUSR1);
   exit(1);
-  // return 1;
 }
 void help() {
   printf("Autor:Tomáš Meravý Murárik\nThis program should be used as "
          "normal shell\ncommands: cd,ls,help,quit,halt\n");
+}
+void execute_script(const char *filename) {
+  FILE *script = fopen(filename, "r");
+  if (!script) {
+    perror("fopen");
+    return;
+  }
+
+  char line[1024];
+  while (fgets(line, sizeof(line), script)) {
+    line[strcspn(line, "\n")] = '\0';
+
+    if (VERBOSE)
+      debug_print("[DEBUG] Processing script command: %s\n", line);
+    int num_args;
+    char **args = devide_line(line, &num_args, " ");
+    execute_args(args);
+    free(args);
+  }
+  fclose(script);
 }
 
 int main(int argc, char *argv[]) {
@@ -201,7 +254,18 @@ int main(int argc, char *argv[]) {
       } else if (i + 1 < argc && strcmp(argv[i], "-p") == 0) {
         PORT = atoi(argv[i + 1]);
         i++;
+      } else if (i + 1 < argc && strcmp(argv[i], "-t") == 0) {
+        TIMEOUT = atoi(argv[i + 1]);
+        i++;
+      } else if (strcmp(argv[i], "-v") == 0) {
+        VERBOSE = 1;
+      } else if (i + 1 < argc && strcmp(argv[i], "-f") == 0) {
+        execute_script(argv[i + 1]);
+        exit(1);
+      } else if (strcmp(argv[i], "-l") == 0 && i + 1 < argc) {
+        freopen(argv[i + 1], "a", stdout);
       }
+
       if (strcmp(argv[i], "-s") == 0) {
         run_func = run_server;
       } else if (strcmp(argv[i], "-c") == 0) {
@@ -264,6 +328,7 @@ int run_server() {
       continue;
     }
 
+    debug_print("[DEBUG] New connection (socket %d)\n", new_socket);
     pid_t pid = fork();
     NUM++;
     if (pid < 0) {
@@ -275,7 +340,6 @@ int run_server() {
       dup2(new_socket, STDIN_FILENO);
       dup2(new_socket, STDOUT_FILENO);
       close(new_socket);
-
       main_loop(new_socket);
       close(new_socket);
       exit(EXIT_SUCCESS);
