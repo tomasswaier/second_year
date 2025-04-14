@@ -1,3 +1,4 @@
+#include "signal.h"
 #include <arpa/inet.h>
 #include <fcntl.h>
 #include <netinet/in.h>
@@ -11,7 +12,9 @@
 #include <unistd.h> // name
 
 #define MAX_CONNECTIONS 5
-int PORT;
+int PORT = 3000;
+int NUM = 0;
+int server_fd;
 
 void help();
 int run_server();
@@ -81,8 +84,16 @@ int external_call(char **line_args) {
 int execute_exit_call() {
   printf("halt");
   fflush(stdout);
-
+  kill(getppid(), SIGUSR1);
   exit(1);
+}
+void handle_shutdown(int sig) {
+  if (server_fd > 0)
+    close(server_fd);
+
+  kill(-getpid(), SIGTERM);
+
+  exit(0);
 }
 
 int execute_args(char **line_args) {
@@ -95,7 +106,7 @@ int execute_args(char **line_args) {
     execute_exit_call();
 
   } else if (strcmp(line_args[0], "quit") == 0) {
-    // execute_exit_call();
+    return 0;
   } else {
     external_call(line_args);
   }
@@ -149,11 +160,11 @@ char *remove_comment(char *line_read) {
 
   return new_line;
 }
-int main_loop() {
+int main_loop(int client_socket) {
   char *name = getlogin();
   int status = 1;
   while (status) {
-    printf("%s>", name);
+    printf("%s %d >", name, NUM);
     fflush(stdout);
     char *line_read;
     line_read = read_line();
@@ -170,7 +181,10 @@ int main_loop() {
     free(separated_lines);
     free(line_read);
   }
-  return 1;
+  close(client_socket);
+  kill(getpid(), SIGUSR1);
+  exit(1);
+  // return 1;
 }
 void help() {
   printf("Autor:Tomáš Meravý Murárik\nThis program should be used as "
@@ -199,8 +213,13 @@ int main(int argc, char *argv[]) {
   return 1;
 }
 
+void sigchld_handler(int signo) {
+  while (waitpid(-1, NULL, WNOHANG) > 0)
+    ;
+}
+
 int run_server() {
-  int server_fd, new_socket;
+  int new_socket;
   struct sockaddr_in address;
   int opt = 1;
   int addrlen = sizeof(address);
@@ -232,21 +251,42 @@ int run_server() {
 
   printf("Server running on port %d\n", PORT);
 
-  if ((new_socket = accept(server_fd, (struct sockaddr *)&address,
-                           (socklen_t *)&addrlen)) < 0) {
-    perror("accept");
-    exit(EXIT_FAILURE);
+  struct sigaction sa_shutdown;
+  sa_shutdown.sa_handler = handle_shutdown;
+  sigemptyset(&sa_shutdown.sa_mask);
+  sa_shutdown.sa_flags = 0;
+  sigaction(SIGUSR1, &sa_shutdown, NULL);
+
+  while (1) {
+    if ((new_socket = accept(server_fd, (struct sockaddr *)&address,
+                             (socklen_t *)&addrlen)) < 0) {
+      perror("accept");
+      continue;
+    }
+
+    pid_t pid = fork();
+    NUM++;
+    if (pid < 0) {
+      perror("fork failed");
+      close(new_socket);
+    } else if (pid == 0) {
+      close(server_fd);
+
+      dup2(new_socket, STDIN_FILENO);
+      dup2(new_socket, STDOUT_FILENO);
+      close(new_socket);
+
+      main_loop(new_socket);
+      close(new_socket);
+      exit(EXIT_SUCCESS);
+    } else {
+      close(new_socket);
+    }
   }
 
-  dup2(new_socket, STDIN_FILENO);
-  dup2(new_socket, STDOUT_FILENO);
-  main_loop();
-
-  close(new_socket);
   close(server_fd);
   return EXIT_SUCCESS;
 }
-
 int run_client() {
   int sock = 0;
   struct sockaddr_in serv_addr;
@@ -275,6 +315,9 @@ int run_client() {
       if (getline(&buffer, &bufsize, stdin) != -1) {
         if (write(sock, buffer, strlen(buffer)) == -1) {
           perror("write");
+          close(sock);
+          free(buffer);
+          exit(EXIT_FAILURE);
         }
         if (strcmp(buffer, "halt\n") == 0) {
           close(sock);
@@ -290,10 +333,21 @@ int run_client() {
       if (n > 0) {
         resp[n] = '\0';
         if (strcmp("halt", resp) == 0) {
+          kill(pid, SIGTERM);
+          close(sock);
           exit(1);
         }
         printf("%s", resp);
         fflush(stdout);
+      } else if (n == 0) {
+        printf("\nServer closed connection\n");
+        kill(pid, SIGTERM);
+        close(sock);
+        exit(EXIT_SUCCESS);
+      } else {
+        perror("read");
+        close(sock);
+        exit(EXIT_FAILURE);
       }
     }
   }
