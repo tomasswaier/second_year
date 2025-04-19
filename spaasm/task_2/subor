@@ -1,2 +1,9 @@
-ls -la
-
+total 72
+drwxr-xr-x 2 aliceliddle users  4096 apr 19 12:46 .
+drwxr-xr-x 4 aliceliddle users  4096 mar 29 13:06 ..
+-rwxr-xr-x 1 aliceliddle users 38816 apr 19 12:44 main
+-rw-r--r-- 1 aliceliddle users 11692 apr 19 12:46 main.c
+-rw-r--r-- 1 aliceliddle users    58 mar 31 13:53 questions
+-rw-r--r-- 1 aliceliddle users    18 apr 14 20:02 script
+-rw-r--r-- 1 aliceliddle users   194 mar 30 15:10 shell.nix
+-rw-r--r-- 1 aliceliddle users     0 apr 19 14:00 subor
