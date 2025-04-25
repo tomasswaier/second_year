@@ -1,0 +1,5 @@
+library(PASWR2)
+install.packages("PASWR2")
+library(MASS)
+ggplot(data=iris,aes(x=Sepal.Length))+geom_density(fill="pink")
+ggplot(data=iris,aes(sample=Sepal.Length),)

@@ -1,0 +1,97 @@
+class
+"id","name","health","action_points","strength","dexterity","constitution","intelligence","armor_class","inventory_size"
+1,Warrior,90,4,16,12,14,10,16,20
+2,Mage,70,6,10,14,12,18,12,15
+
+
+chracter
+"id","name","class_id","health","action_points","strength","dexterity","constitution","intelligence","in_combat"
+1,Joe,1,150,224,12,8,10,7,false
+2,Mark,2,70,132,7,8,10,14,false
+
+action_category
+"id","name","cost"
+1,Physical Attack,6
+2,Fire Magic,14
+4,Healing Magic,6
+7,Out Of Combat Action,0
+8,System,0
+9,Default,0
+
+action_type
+"id","name","action_category","item_id","description","effect","cost","effect_value"
+1,FIREBALL,2,,big ball of fire that deals massive amount of damage,damage,40,40
+2,Stab,1,1,FIERCE ATTACK WITH LONG STICK,damage,20,20
+3,Heal Wounds,4,,Healig spell,heal,10,10
+7,Rest,7,,Rest instantly,heal,0,300000
+9,Enter Combat,8,,System announcment for entering combat,damage,0,0
+11,Die,8,,System announcment for dying in combat,damage,0,0
+12,Pick Up Item,9,,Pick Up Item from the playground,damage,0,0
+13,Leave Combat,9,,Removes your character from combat,damage,0,0
+14,Join Game,8,,Character Joined Game,damage,0,0
+15,Restore Action Points,9,,Restores action points of your character to max,damage,0,1
+
+item
+"id","name","description","base_damage","weight"
+1,spear,Kind of a very long sword,10,4
+2,sword,Kind of a very normal length sword,7,2
+3,spear,Kind of a very long sword,10,4
+
+class_attribute_modifier
+"action_category_id","class_id","attribute","value"
+1,1,strength,10
+1,1,dexterity,3
+2,1,dexterity,2
+2,1,intelligence,3
+4,1,strength,13
+7,1,intelligence,1
+1,2,constitution,7
+2,2,intelligence,10
+2,2,constitution,5
+4,2,strength,4
+7,2,intelligence,1
+
+item_attribute_modifier
+"item_id","class_id","attribute","value"
+1,1,strength,7
+1,2,strength,13
+2,1,strength,14
+3,1,strength,9
+2,2,strength,2
+3,2,dexterity,6
+
+
+
+calculate_max_health(
+    player_id INTEGER
+)
+calculate_damage(
+    player_id INTEGER,
+    action_type_id INTEGER
+)
+calculate_max_action_points(
+    player_id INTEGER
+)
+calculate_cost(
+    player_id INTEGER,
+    action_type_id INTEGER,
+    used_item_id INTEGER
+)
+run_damage_action(
+	action_type_num INT,
+	target_num INT,
+	character_num INT,
+	combat_num INT,
+	item_num INT,
+	hit_val BOOL
+)
+run_damage_action(
+p_action_type_id integer,
+p_target_id integer,
+p_player_id integer,
+p_item_id integer);
+
+p2 enters combat
+they smack eachother till death
+the end
+
