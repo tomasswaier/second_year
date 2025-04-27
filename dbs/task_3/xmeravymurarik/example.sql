@@ -84,9 +84,14 @@ BEGIN
     RAISE NOTICE 'Environment successfully defined with all initial data';
 END;
 $$;
+
+-- example data that may appear in database. 
+INSERT INTO combat (id,combat_num,round,status)
+values
+	(1,1,1,'on-going'),
+	(15,1,2,'on-going'),(16,1,3,'finished');
 INSERT INTO action (id, action_type, target, character_id, combat_id, item_id, effect_value, hit)
 VALUES
--- First batch
 (276, 14, 1, 1, NULL, NULL, 0, true),
 (277, 14, 2, 2, NULL, NULL, 0, true),
 (278, 9, 1, 1, 1, NULL, 0, true),
@@ -130,12 +135,9 @@ VALUES
 (316, 2, 2, 1, 15, 1, 0, false),
 (317, 1, 1, 2, 15, NULL, 42, true),
 (318, 11, 1, 1, 15, NULL, 0, true),
-(319, 13, 2, 2, 15, NULL, 0, true);
+(319, 13, 2, 2, 15, NULL, 0, true),
+(320,7,2,2,null,null,70,true);
 
-INSERT INTO combat (id,combat_num,round,status)
-values
-	(1,1,1,'on-going'),
-	(15,1,2,'on-going'),(16,1,3,'finished');
 INSERT INTO playground(combat_id ,item_id )
 values
 	(1,1);
@@ -167,11 +169,10 @@ values (6,1,1,1,null,0,true);
 insert into action(action_type ,target,character_id ,combat_id,item_id,effect_value,hit)
 values (6,2,2,1,null,0,true);
 select reset_round(1);
-select * from combat;
 SELECT * FROM v_combat_state;
 select * from v_strongest_characters;
 select * from v_most_damage;
-select * from v_combat_damage;
+select * from v_combat_damage;	
 select * from v_spell_statistics;
 insert into "action"(action_type,target,character_id ,combat_id,item_id,effect_value,hit) values(14,3,3,null,null,0,true);
 
@@ -184,21 +185,8 @@ select run_damage_action(4,2,3,NULL);
 insert into action(action_type ,target,character_id ,combat_id,item_id,effect_value,hit)
 values (13,2,2,15,null,0,true);
 select reset_round(1);
-select * from inventory;
-select * from playground;
-select define_environment();
-    INSERT INTO combat(id,combat_num, round,status) VALUES (3,1, 1,'on-going');
-    INSERT INTO character (id,"name", class_id, health, action_points, strength, dexterity, constitution, intelligence, in_combat)
-    VALUES (123,'Musketeer Dumbo', 1, 1, 1, 1, 1, 1, 1, 3);
-    INSERT INTO item (id, name, description, base_damage, weight)
-    VALUES
-        (123, 'spear', 'Kind of a very long sword', 10, 40000); -- Very heavy item
-	INSERT INTO playground(combat_id ,item_id )
-	values(3,123);
-    select loot_item(3, 3, 123);
-    BEGIN
-        select loot_item(3, 3, 123);
-        RAISE EXCEPTION 'Should have failed - over weight limit';
-    EXCEPTION WHEN others THEN
-        RAISE NOTICE 'Passed: Correctly blocked overweight loot';
-    END;
+
+
+select * from action;
+select rest_character(2);
+select * from action;

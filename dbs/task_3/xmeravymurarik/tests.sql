@@ -3,7 +3,7 @@ DECLARE
     v_result NUMERIC;
     v_expected NUMERIC := 60;
 BEGIN
-
+	
     -- Execution
     v_result := calculate_max_action_points(1);
     
@@ -102,6 +102,3 @@ BEGIN
     RAISE NOTICE '
 Test passed successfully';
 END $$;
-
-select * from inventory;
-select * from playground;
