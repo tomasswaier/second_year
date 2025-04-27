@@ -189,7 +189,7 @@ CREATE TABLE public."character" (
     dexterity integer NOT NULL,
     constitution integer NOT NULL,
     intelligence integer NOT NULL,
-    in_combat boolean NOT NULL
+    in_combat integer 
 );
 
 

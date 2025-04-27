@@ -22,10 +22,12 @@ action_type
 "id","name","action_category","item_id","description","effect","cost","effect_value"
 1,FIREBALL,2,,big ball of fire that deals massive amount of damage,damage,40,40
 2,Stab,1,1,FIERCE ATTACK WITH LONG STICK,damage,20,20
-3,Heal Wounds,4,,Healig spell,heal,10,10
+3,Heal Wounds,4,,Healing spell,heal,10,10
+4,Punch,1,,Punches Opponent,damage,10,10
+6,PASS,9,,Pass to the next round,damage,0,0
 7,Rest,7,,Rest instantly,heal,0,300000
-9,Enter Combat,8,,System announcment for entering combat,damage,0,0
-11,Die,8,,System announcment for dying in combat,damage,0,0
+9,Enter Combat,8,,System announcement for entering combat,damage,0,0
+11,Die,8,,System announcement for dying in combat,damage,0,0
 12,Pick Up Item,9,,Pick Up Item from the playground,damage,0,0
 13,Leave Combat,9,,Removes your character from combat,damage,0,0
 14,Join Game,8,,Character Joined Game,damage,0,0
@@ -65,33 +67,45 @@ item_attribute_modifier
 calculate_max_health(
     player_id INTEGER
 )
-calculate_damage(
-    player_id INTEGER,
-    action_type_id INTEGER
+effective_action_damage(
+	player_id integer,
+	o
+	action_type_id integer
 )
 calculate_max_action_points(
     player_id INTEGER
 )
-calculate_cost(
-    player_id INTEGER,
-    action_type_id INTEGER,
-    used_item_id INTEGER
+effective_spell_cost(
+	player_id integer,
+	action_type_id integer,
+	used_item_id integer
 )
 run_damage_action(
-	action_type_num INT,
-	target_num INT,
-	character_num INT,
-	combat_num INT,
-	item_num INT,
-	hit_val BOOL
+	p_action_type_id integer,
+	p_target_id integer,
+	p_player_id integer,
+	p_item_id integer
 )
-run_damage_action(
-p_action_type_id integer,
-p_target_id integer,
-p_player_id integer,
-p_item_id integer);
-
-p2 enters combat
-they smack eachother till death
-the end
-
+loot_item(
+    p_player_id INTEGER,
+    p_combat_id INTEGER,
+    p_item_id INTEGER
+)
+enter_combat(
+    p_combat_id INTEGER,
+    p_character_id INTEGER
+)
+rest_character(
+    p_character_id INTEGER
+)
+delete_all_data()
+reset_round(
+    p_combat_id INTEGER
+)
+enter_combat(
+    p_combat_id INTEGER,
+    p_character_id INTEGER
+)
+rest_character(
+    p_character_id INTEGER
+)

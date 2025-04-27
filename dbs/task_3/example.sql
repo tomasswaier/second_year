@@ -25,9 +25,8 @@ insert into playground(combat_id,item_id) values(1,1);
 --mark deals damage with fireball
 select run_damage_action(1,1,2,1,null,true);
 -- Joe picks up an item
-insert into action(action_type,target,character_id,combat_id,item_id,effect_value,hit)
-values(12,1,1,1,1,0,true);
-insert into inventory(character_id,item_id) values(1,1);
+
+
 update character set action_points=character.action_points-calculate_cost(1,12,1) where character.id=1;
 -- Joe stabs Mike
 select run_damage_action(2,2,1,1,1);
@@ -44,4 +43,17 @@ select * from character_actions ca;
 
 select run_damage_action(1, 1, 2,1, null);
 select * from action;
+select * from inventory;
+select * from playground;
 select pick_up_item(1,1,1);
+select * from character;
+select rest_character(2);
+select * from action;
+select * from combat;
+select enter_combat(2,1);
+select reset_character_stats();
+
+select reset_round(1);y
+select * from combat;
+select enter_combat(1,1);
+
