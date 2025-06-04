@@ -50,3 +50,23 @@ lecure 5:
 lecture 7:
 	types ; in memory /disc oriented  
 	-- paging and benchmarks/speeds overeall like rn he's talking about rule-based optimizer
+
+
+
+exam prep:
+	relačná algebra:
+		procedurálny prístup
+		dopyt definuje iba plán ako má dbms nájsť požadované dáta	
+		využíva sa napr v oblasti optimalizácie exekučných plánov sql
+
+	relačný kalkulus:
+		neprocedurálny prístup 
+		dopyt hovorí aké dáta chceme získať a nie ako sa k nim dostať
+	sql:stavia na relačnej algebre a relačnom kalkule
+
+
+	Identity map pattern
+		basicallly just a thing that stores db data in cache and returns em if same query is done 
+	
+	Unit of Work pattern
+		makes query after changes are commited . Usually combined with Identity map or an ORM session or entity manager

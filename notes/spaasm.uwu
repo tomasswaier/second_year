@@ -30,3 +30,109 @@
 	stuff this lecture will be about
 	seems like i forgot ot take notes
 	
+
+exam explenation
+	1)
+	Majme nasledujúci program uložený v súbore p1 (samozrejme, skompilovaný): 
+	main(int argc, char *argv[]){
+	...
+	execl(argv[2],argv[2],argv[3]);
+	...
+	}
+	Vyberte príkaz na povelovom riadku, ktorý by sa vykonal ako ekvivalent tu uvedenej funkcie execl() po spustení, programu p1 nasledujúcim prikázom z povelového riadku: 
+	$ p1 grep ls date find cp 
+	Riešenie:execl ukazuje na druhý a tretí vstup teda výsledok bude "ls date"
+
+	2)
+	Aplikácie (zvyčajne sprostredkovane, cez knižničné funkcie) žiadajú operačný systém o vykonanie konkrétnej služby príslušnou inštrukciou, pričom kód služby je uložený v príslušnom registri (tzv.ABI). Pre OS MS-DOS uvedťe NÁZOV registra, v ktorom OS očakáva špecifikáciu služby a príslušný KÓD SLUŽBY pre OTVORENIE SÚBORU (Open file resp. OPEN FCB).
+	Názov registra : 1)___
+	Číslo služby : 2)___
+	
+	Riešenie:MS-DOS nepoužíva AX ale iba horný bajt teda AH a kód služby pre otvorenie súboru je 0FH takže výsledok bude : 1)AH 2)0FH
+
+	3)
+	Jeden z procesorov spoločnosti INTEL disponuje sadou registrov s nasledujúcou štruktúrou 
+	Jedná sa o procesor :
+	(obrázok ktorý snáď pridám neskôr)
+	Výsledok:Intel 8080
+
+	4)Vyberte potrebnú postupnosť krokov pre vykonanie operácie sčítania v pohyblivej rádovej čiarke z nasledujúceho zoznamu : 
+	1. sčítanie mantís
+	2. odčítanie mantís
+	3. násobenie mantís 
+	4. delenie mantís
+	5. sčítanie exponentov
+	6. odčítanie exponentov
+	7. normalizácia výsledku
+	8. denormalizácia mantís (vyšší exponent na nižší)
+	9. denormalizácia mantís (nižśí exponent na vyšší)
+	Odpoveď uveďte ako postupnosť príslušných krokov vyjadrenú poradovými číslami krokov (1-9) v správnom poradí 
+	like (1,2,3) - neviem či takto to je aj oficial ale idk hf
+	Riešenie:podľa prednášky 917 (:podľa mňa 6917). Ak by to bolo násobenie a nie sčítanie tak by to bolo 357 delenie by bolo 467
+
+	5)
+	Algoritmus je konečná postupnosť presne definovaných krokov na splnenie určitej úlohy, majúca určité vlastnosti. Medzizákladné vlastnosti patria: 
+	- konečnosť
+	- rezultatívnosť
+	- hromadnosť 
+	- determinizmus
+
+	6)
+	Majme súbor qwe.txt, aktuálny stav ktorého (obsah a súborový kurzor) je v MIESTE VYKONANIA SLUŽBY WRITE() definovaný takto: 
+	Špecifikujte vo forme postupnosti znakov obsah súboru qwe.txt po vykonaní uvedeného fragmentu kódu v jazyku C - 
+
+	znaky:bpiwchwfuy
+	ptr  :--^
+
+	kód:
+	 int fd,i;
+	 char buffer[80]="CLJLXFHREH";
+	 ...
+	 i=write(fd,&buffer[2],3);
+
+	Riešenie:write(fd,value,num) hovorí že napíš do súboru fd na pozíciu jeho ptr , num hodnôt z value. V tomto prípade do súboru so znakmi bpiwchwfuy zapíš hodnoty z buffer od DRUHÉHO indexu 3 hodnoty čo bude mať za výsledok bpJLXhwfuy
+
+	7)
+	Majme inštrukciu procesora 8086: 
+	JMP 0305:1025 
+	Tento typ skoku sa nazýva 1)___-segmentový
+	Doplňte príslušný prefix. Veľkosť písmen (malé/veľké) a diakritika nerozhoduje.
+
+	Riešenie: asm má 5 typov skokov: nepodmienené(/inter-segmentové) JMP label , ktorý skočí vždy.
+																 : podmienené JE,JZ,JNE,JL,JG,JNGE,JC,JO .... ktoré skočia pod nejakou podmienkou.
+																 : podľa tabuľky/nepriame:jmp eax, jmp [mem]
+																 : loopy
+																 : returns
+					toto je teda "inter"-segmentový skok
+	
+	8)
+	Hodnota relevantných registrov procesora 8086m uvedená ako postupnosť šestnástkových číslic, je nasledujúca: 
+	CS: 8765
+	IP: 1234
+	Určte výslednú adresu na zbernici procesora 1)___
+	Riešenie:Fyzická adresa = (CS << 4) + IP =87650+1234 = 88884
+
+
+	9)
+	potrebujete zrealizovať program, ktorý vykoná nasledovnú činnosť:
+	Skopíruje obsah súboru zadaného na štandardnom vstupe do súboru zadaného na príkazovom riadku (využije presmerovanie vstupu).
+	Vyberte minimálny súbor služieb jadra operačného systému UNIX/Linux, ktoré musíte použiť pre napísanie takéhoto programu.
+	Riešenie:ngl kinda self explenatory just abc
+
+	10)
+	Majme príklad inštrukcií, ktoré využívajú rôzne spôsoby adresácie : 
+	Ktorá inštrukcia využíva spôsob adresovania - bezprostredný operand (immediate)? 
+	Odpoveď uveďte ako číslo uvedené pred inštrukciou (bez bodky) - 1)___
+	Riešenie: MOV AH,24H . Pre immediate operand chceme konštantu a preto 24H (24 v hexadecimal) je správna odpoveď
+
+	11)
+	Pre špecifikáciu zdrojových textov  v asembléri ASM x86 sa ustálili dve syntaxe. Nasledujúci zdrojový text je reprezentovaný v ______ syntaxi.
+	Riešenie:ATT syntax. registre majú % prefix
+	12)
+	Určte kategóriu inštrukcií procesora INTEL 8086, do ktorej radíme inštrukciu TEST. Vyberte iba jednu z nasledujúcich možných odpovedí.
+	Riešenie:Logická (idk čo viac sem dať je to proste logická)
+
+	13)
+	Na obrázku je uvedená jedna zo základných typov architektúr
+	Jedná sa o 1)___ . 
+	Riešenie: ak je má oddelenú instruction/program memory od data memory tak to harvardska. Inak to von neunmanovská
