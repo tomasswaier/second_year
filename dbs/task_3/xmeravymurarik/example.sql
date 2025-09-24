@@ -156,13 +156,14 @@ select * from playground;
 insert into playground  values(1,1);
 select enter_combat(1,1);
 select enter_combat(1,2);
-
+select * from inventory i ;
 select run_damage_action(1,1,2,NULL);
 select * from action;
 select loot_item(1,1);
 select run_damage_action(2,2,1,1);
 select * from action;
 select * from character;
+select * from combat;
 select run_damage_action(1,1,2,NULL);
 insert into action(action_type ,target,character_id ,combat_id,item_id,effect_value,hit)
 values (6,1,1,1,null,0,true);

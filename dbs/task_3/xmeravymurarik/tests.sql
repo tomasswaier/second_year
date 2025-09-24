@@ -1,3 +1,4 @@
+-- Test: AP restoration character
 DO $$
 DECLARE
     v_result NUMERIC;
@@ -16,7 +17,9 @@ BEGIN
     
     RAISE NOTICE 'Test passed!';
 END $$;
--- Test: AP restoration
+
+
+-- Test: AP restoration group
 DO $$
 BEGIN
 	perform define_environment();
@@ -57,7 +60,7 @@ BEGIN
     
     -- Create item that JUST exceeds capacity
     INSERT INTO item (id, name,description,base_damage, weight)
-    VALUES (123, 'Overweight Spear', 'dummy desc',10,v_max_weight +1);
+    VALUES (123, 'Overweight Spear', 'dummy desc',10,v_max_weight -1);
     
     INSERT INTO playground(combat_id, item_id) VALUES (3, 123);
     
