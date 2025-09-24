@@ -32,3 +32,43 @@ lecture 3:
 lecture X:
 	maju tam byt sluzby lebo bude nahnevany a nie nekonecne dlhe nieco
 	ma to mat hierarchicku logiku
+
+
+exam prep:
+	definuj www
+	def Webový server 
+	def WHATWG
+	def HTML
+	def prázdne elementy
+	def attributy
+	def semantika 
+	aké sú elementy rozdelujúce obsah na sekcie ?
+	aké sú elementy určujúce sémantiku
+	ako by si sa pohol v historii dozadu ? "<button onclick="history.back()">Go Back</button>"
+	popíšte prácu s obrázkami a multimédiami
+	def Elementy umožňujúce vložiť skripty a ich best practices
+	def css a z čoho sa skladajú pravidlá
+	def css selectors and their types
+	Ake typy hodnôt používa css? (num,color,coordinates,function)
+	Ako funguju kaskady v css ? ake pravidla obsahuju?
+	def dedenie
+	def boxmodel and it's parts
+	def responsive disigne and how one might achieve it
+	describe grid vs flexbox layout their advantages , disadvantages and differences
+	def positioning and it's types
+	def webApi and manipulation of dom
+	def asyncJs and it's use
+	def čo sa používa na získanie údajov zo servera v js ? popíš proces
+	popíš udalosti a uved príklad
+	def REST
+	def Eloquent orm
+	def Authorization
+	def Sessions
+	def Cache
+	def Unit Testing
+	describe structure of the app mainly these directories app,public,public,routes,vendor (others bootstrap,config,storage,tests)
+	def service container laravel
+	def service provider
+	def middleware
+	def View composer
+

@@ -1,0 +1,145 @@
+Tomáš Meravý Murárik
+Statická a dynamická analýza programu
+
+
+1)Statickou analýzou pomocou nástroja IDA (Ghidra, OllyDbg) zistite aká je správna dĺžka
+akceptovaného reťazca. Odpoveď, resp. postup, zdôvodnite:
+
+V hlavnej funkcií ktorá spravuje chod vstupného okna je podmienka “if (UVar2 == 8) {“ , ktorá stanovuje , že obsah musí byť presne rovný 8 znakom
+
+2)Uveďte aký je tvar akceptovaného reťazca. Odpoveď aj postup podrobne zdôvodnite:
+Po skontrolovaní správnej dĺžky vstupného textu sa vykoná nasledujúci blok kódu:
+
+if (UVar2 == 8) {
+        FUN_00401146(s_I4561AsEmblerySuPOhodicka2x3Xzgv_00403010,s_J#ki80Ys_0040304f);
+        cVar1 = FUN_00401115(0x403058,8);
+        iVar3 = CONCAT31(extraout_var,cVar1);
+}
+
+teda je zavolaná táto funckai 
+undefined1 * FUN_00401146(undefined1 *param_1,undefined1 *param_2)
+
+{
+  *param_2 = param_1[0x2a];
+  param_2[1] = *param_1;
+  param_2[2] = *param_1;
+  param_2[3] = param_1[0x37];
+  param_2[4] = param_1[0x1e];
+  param_2[5] = param_1[0xb];
+  param_2[6] = param_1[0xb];
+  param_2[7] = param_1[0x17];
+  return param_2;
+}
+ktorá  zmení obsah druhého vstupného stringu na “FIITgeek” a tento text sa následne porovná pomocou tejto funckie 
+
+char FUN_00401115(int param_1,uint param_2)
+
+{
+  uint uVar1;
+  int unaff_EBX;
+  
+  uVar1 = 0;
+  while( true ) {
+    if (param_2 <= uVar1) {
+      return '\x01';
+    }
+    if (*(char *)(uVar1 + param_1) != *(char *)(uVar1 + unaff_EBX)) break;
+    uVar1 = uVar1 + 1;
+  }
+  return *(char *)(uVar1 + param_1);
+}
+
+Teda očakávaný vstupný text je FIITgeek.
+
+3)Stručne uveďte aké argumenty a návratové hodnoty majú nasledujúce funkcie z
+Windows API: DialogBoxParam, GetDlgItemText, MessageBox a aký je ich účel.
+
+DialogBoxParam
+Argumenty:
+    • HINSTANCE hInstance – inštancia aplikácie
+    • LPCSTR lpTemplateName – názov šablóny dialógového okna
+    • HWND hWndParent – rodičovské okno
+    • DLGPROC lpDialogFunc – ukazateľ na funkciu spracovania dialógu
+    • LPARAM dwInitParam – používateľom definovaný parameter
+Návratová hodnota:
+    • Ak je úspešná, návratová hodnota je hodnota vrátená funkciou EndDialog.
+    • Ak zlyhá, vráti -1.
+Účel:
+Vytvorí dialógové okno na základe zadanej šablóny a spustí obsluhu správ pomocou zadanej funkcie.
+
+
+GetDlgItemText
+Argumenty:
+    • HWND hDlg – handle na dialógové okno
+    • int nIDDlgItem – identifikátor prvku (textové pole)
+    • LPSTR lpString – buffer, kam sa uloží text
+    • int cchMax – veľkosť bufferu
+Návratová hodnota:
+    • Počet znakov skopírovaných do lpString, nezahŕňa \0.
+Účel:
+Získa text z určitého prvku (napr. textového poľa) v dialógovom okne.
+
+MessageBox
+Argumenty:
+    • HWND hWnd – rodičovské okno
+    • LPCSTR lpText – text správy
+    • LPCSTR lpCaption – titulok okna
+    • UINT uType – typ okna (ikona, tlačidlá, atď.)
+Návratová hodnota:
+Identifikátor stlačeného tlačidla (napr. IDOK, IDCANCEL atď.)
+Účel:
+Zobrazí jednoduché dialógové okno so správou a jedným alebo viacerými tlačidlami.
+
+Na akých adresách sa volá GetDlgItemText , aký je jej význam (čo spôsobí)?	
+4)
+GetDlgItemText:
+Adresa: 0x00401196
+Význam: Načíta text z textového poľa v dialógovom okne	, tento text sa následne kontroluje ako heslo.
+5)
+DialogBoxParam:
+Adresa: 0x0040118a
+Význam: Vytvorí dialógové okno podľa šablóny a nastaví jeho spracovanie pomocou funkcie lpDialogFunc.
+
+
+
+
+6)
+Adresa volania: 0x004011a2
+Text pri správne zadanom reťazci: "Right!" ktorý sa nastavý v tejto časti
+“      if (iVar3 == 1) {
+        lpCaption = s_Right_!_00403000;
+        lpText = s_Right_!_00403000;
+      }”
+Význam: Zobrazí informačné okno s textom a titulkom "Right!", ak používateľ zadá správny reťazec (heslo).
+
+
+
+7)
+Vytvorte upravený program (nový exe súbor) ktorý akceptuje reťazec vytvorený z
+vášho mena (v prípade potreby skráteného alebo doplneného o ďalšie znaky, napríklad
+z priezviska). Zmeny robte v texte (kóde) programu, v dátach len v nevyhnutnom
+prípade. Uveďte postup.
+
+Postup zmeny programu bol nasledovný: 
+    1. Analýza zdrojového textu
+    2. Nájdenie spôsobu výpisu môjho priezvyska
+    3. prepis indexov v programe 
+Výstupná funkcia vyzerá následovne:
+
+undefined1 * FUN_00401146(undefined1 *param_1,undefined1 *param_2)
+
+{
+  *param_2 = param_1[0x2b];
+  param_2[7] = *param_1;
+  param_2[6] = *param_1;
+  param_2[1] = param_1[7];
+  param_2[2] = param_1[0x35];
+  param_2[3] = param_1[5];
+  param_2[4] = param_1[0x39];
+  param_2[5] = param_1[0x3c];
+  return param_2;
+}
+a očakávaný vstup je MERAVYII.
+Žiadne zmeny v dátach(samotnom stringu) neboli vykonané.
+
+
