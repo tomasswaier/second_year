@@ -140,19 +140,3 @@ Zamykanie (locking)
 	• V prípade, že transakcia T žiada o zámok typu WL nad objektom X, tak je to možné iba v prípade, že nad objektom nie je žiaden zámok.
 	• V prípade, že nemôže v daný okamžik získať požadovaný typ zámku tak je transakcia priradená na čakaciu listinu.
 	• Čo ak transakcia T vlastní ako jedina zámok typu RL nad objektom X a žiada o zámok WL nad objektom X ?
-	relačná algebra:
-		procedurálny prístup
-		dopyt definuje iba plán ako má dbms nájsť požadované dáta	
-		využíva sa napr v oblasti optimalizácie exekučných plánov sql
-
-	relačný kalkulus:
-		neprocedurálny prístup 
-		dopyt hovorí aké dáta chceme získať a nie ako sa k nim dostať
-	sql:stavia na relačnej algebre a relačnom kalkule
-
-
-	Identity map pattern
-		basicallly just a thing that stores db data in cache and returns em if same query is done 
-	
-	Unit of Work pattern
-		makes query after changes are commited . Usually combined with Identity map or an ORM session or entity manager

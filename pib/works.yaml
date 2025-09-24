@@ -1,0 +1,6 @@
+securityVulnerability:
+  type: Web
+  title: Security Vulnerability
+  serial-number: v1
+  author:
+  url: https://www.sciencedirect.com/topics/computer-science/security-vulnerability
