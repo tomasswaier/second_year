@@ -1,6 +1,50 @@
-securityVulnerability:
+securityVulnerability: 
+  type:  Web
+  title:  Security Vulnerability
+  serial-number:  v1
+  url:  https://www.sciencedirect.com/topics/computer-science/security-vulnerability
+
+cweCSRF: 
   type: Web
-  title: Security Vulnerability
-  serial-number: v1
-  author:
-  url: https://www.sciencedirect.com/topics/computer-science/security-vulnerability
+  title: Cross Site Request Forgery (CSRF)
+  url: https://owasp.org/www-community/attacks/csrf
+
+cweDirectRequest: 
+  type: Web
+  title: Direct Request ('Forced Browsing')
+  url: https://owasp.org/www-community/attacks/Forced_browsing
+
+cweExposureOfResourceToWrongSphere: 
+  type: Web
+  title: Exposure of Resource to Wrong Sphere
+  url: https://cwe.mitre.org/data/definitions/668.html
+cweFilesOrDirectoriesAccessibleToExternalParties: 
+  type: Web
+  title: Files or Directories Accessible to External Parties
+  url: https://cwe.mitre.org/data/definitions/552.html
+
+cweImproperAuthentication: 
+  type: Web
+  title: Improper Authentication
+  url: https://cwe.mitre.org/data/definitions/287.html
+
+cweImproperNeutralizationOfInputDuringWebPageGeneration: 
+  type: Web
+  title: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')
+  url: https://cwe.mitre.org/data/definitions/79.html
+
+
+cweInconsistentInterpretationOfHTTPRequests: 
+  type: Web
+  title: Inconsistent Interpretation of HTTP Requests
+  url: https://cwe.mitre.org/data/definitions/444.html
+
+cweInsufficientSessionExpiration: 
+  type: Web
+  title: Insufficient Session Expiration
+  url: https://cwe.mitre.org/data/definitions/613.html
+
+cweServerSideRequestForgery: 
+  type: Web
+  title: Server-Side Request Forgery (SSRF)
+  url: https://cwe.mitre.org/data/definitions/918.html

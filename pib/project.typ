@@ -29,13 +29,13 @@ All of which you can read more about on official nvd website.
 
 = Characteristics
 == *Cross-site request forgery*(csrf)
-is a vulnerability that takes advantage of web application in which target is currently authenticated and by gaining the targets authentication token the attacker proceed to make actions as if they were the target. This attack can lead to anything from sending messages on victims behalf up to transfering money. In worst cases entire web applications can be compromised if user has high level of auhtorization.
+is a vulnerability that takes advantage of web application in which target is currently authenticated and by gaining the targets authentication token the attacker proceed to make actions as if they were the target. This attack can lead to anything from sending messages on victims behalf up to transfering money. In worst cases entire web applications can be compromised if user has high level of auhtorization@cweCSRF.
 
 == *CWE-425: Direct Request ('Forced Browsing')*
-Direct Request or more commonly known as Forced browsing is a type of vulnerability that allows resctricted conten be accessed by unathorized users. This can be achieved by searching trough bruteforce for unlinked content on the server such as directories, temporary files or configuration files. As these files can contain sensitive information, prevention against this attack is vital. These attacks can be done both manually if too much context is given to user or trough automated tools such as Nitko. Nikto, open source too used for scanning vulnerabilities is capable of searching trough most common directories based on it's database and report the results to user. Example: with the use of nikto, an example website "www.exampl.com" would be scanned for most common directories like example.com/users , example.com/logs, example.com/images and more. 
+Direct Request or more commonly known as Forced browsing is a type of vulnerability that allows resctricted conten be accessed by unathorized users. This can be achieved by searching trough bruteforce for unlinked content on the server such as directories, temporary files or configuration files. As these files can contain sensitive information, prevention against this attack is vital. These attacks can be done both manually if too much context is given to user or trough automated tools such as Nitko. Nikto, open source too used for scanning vulnerabilities is capable of searching trough most common directories based on it's database and report the results to user. Example: with the use of nikto, an example website "www.exampl.com" would be scanned for most common directories like example.com/users , example.com/logs, example.com/images and more@cweDirectRequest. 
 
 == *CWE-668: Exposure of Resource to Wrong Sphere*
-Exposure of Resource to Wrong Sphere vulnerability allows a wrong person to access files meant for someone else. It's a vulnerability may sound similar to CWE-425 but main difference between these 2 CWEs is that CWE-668 could allow unauthorized person to read sensitive data from database or images from folder not accessible to them due to logical error. CWE-425 however attempts read all vulnerable information from files the serever. For easier understanding you can imagine it as someone accessing groupchat access to group he's not a part of.
+Exposure of Resource to Wrong Sphere vulnerability allows a wrong person to access files meant for someone else. It's a vulnerability may sound similar to CWE-425 but main difference between these 2 CWEs is that CWE-668 could allow unauthorized person to read sensitive data from database or images from folder not accessible to them due to logical error. CWE-425 however attempts read all vulnerable information from files the serever. For easier understanding you can imagine it as someone accessing groupchat access to group he's not a part of@cweExposureOfResourceToWrongSphere.
 
 == *CWE-200: Exposure of Sensitive Information to an Unauthorized Actor*
 todo:wtf is the difference between this and 668 ?
@@ -46,10 +46,28 @@ This CWE is a relatively common mistake for beginners and missconfiguration of a
 Improper Authentication is quite self explenatory. Even tho it's not a common vulnerability in this day and age the concept itself is something which needs to be addressed whenever a new security system is being made. Simply put, one needs to make sure that user trying to log in is who they say they are. Example of improper Aithentication would be a website where use logs in with username only. 
 
 == *CWE-79:  Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')*
-Cross-site Scripting is a practice in which attacker injects into website a malicious piece of code trough form of a social media post, a message or anything that other user may display. This malicios code when loaded by another user can cause harm in form of sharing private session key causing csrf or perhaps even by just collecting sensitive user data. It is up to the developer to analyze and properly neutralize user input so this type attack is not possible.
+Cross-site Scripting is a practice in which attacker injects into website a malicious piece of code trough form of a social media post, a message or anything that other user may display. This malicios code when loaded by another client can cause harm in form of sharing private session key causing csrf or perhaps even by collecting sensitive user data. It is up to the developer to analyze and properly neutralize user input so this type attack is not possible.
 
 == *CWE-307: Improper Restriction of Excessive Authentication Attempts*
-Password cracking is to this day a huge topic and one of it's simplest forms is brute force attack. This type of attack will attempt to try every possible combination of available options to get past authentication. As inneficient as it might seem, it's still very effective to this day because numerous systems still use a 4 digit authentication which can theoretically be broken in mere milliseconds. As precaution against this vulnerability a restriction is put into place which prevents user to login for set time after failing login some number of times.
+Password cracking is to this day a huge topic and one of it's simplest forms is brute force attack. This type of attack will attempt to try every possible combination of available options to get past authentication system. As inneficient as it might seem, it's still very effective to this day because numerous systems still use a 4 digit authentication which can theoretically be broken in mere milliseconds. Standard precaution against this vulnerability is a restriction that is put into place which prevents user to login for set time after failing login some number of times.
+
+== *CWE-444: Inconsistent Interpretation of HTTP Requests ('HTTP Request/Response Smuggling')*
+This vulnerability has once again to do with inproper configuration. Attacker may use bad configuration of http response length to inject target device with malicious code that is given to client after the original message but pretends to be a part of it. This way even tho the web server deems the message to be safe the program will interprete it as 2 different actions allowing attacker to take unwanted action in the server.
+
+== *CWE-613: Insufficient Session Expiration*
+Insufficient Session Expiration can be abused by anyone listening in on your network.As web browsers put sessions informatino in your cookies, anyone listening on your nework may record this session. A recorded conversation over the network could be later used to access someones account and unwanted actions can be made in place of the user causing potential harm.
+
+== *CWE-918: Server-Side Request Forgery (SSRF)*
+SSRF is an attack which attempts to infiltrate internal network. By deceiving a web server, attacker may force server to send malicious action to devices in internal network therefore bypassing security as it's sent from a trusteddevice. Difference between SSRF and CSRF is that SSRF targets server itself. CSRF is on the other hand targeting user itself and making action on client side.
+
+== *CWE-521: Weak Password Requirements*
+
+
+
+
+
+
+
 
 
 
