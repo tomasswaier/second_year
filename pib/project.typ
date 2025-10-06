@@ -69,6 +69,9 @@ SSRF is an attack which attempts to infiltrate internal network. By deceiving a 
 
 
 
+= Testing Environment
+First test will be conducted on a very faulty website that I coded myself. Whole project can be found here https://github.com/tomasswaier/infinityFreeWebsite/tree/c2569b1d7e5e77da0d68f011babb96452e250ba0 and link already contains exact sha I will be using as well. This website is faulty in multiple ways but 2 most important ones are sql injections in basically all php files.
+
 
 
 = Tools For Finding Web Vulnerabilities 
