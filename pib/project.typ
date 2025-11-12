@@ -72,6 +72,20 @@ SSRF is an attack which attempts to infiltrate internal network. By deceiving a 
 = Testing Environment
 First test will be conducted on a very faulty website that I coded myself. Whole project can be found here https://github.com/tomasswaier/infinityFreeWebsite/tree/c2569b1d7e5e77da0d68f011babb96452e250ba0 and link already contains exact sha I will be using as well. This website is faulty in multiple ways but 2 most important ones are sql injections in basically all php files.
 
+wordlist which all 
+
+
+
+== Hidden files
+For the purpose of testing hidden file discovery I've added to my vulnerable website couple of suspicious hidden files. These files are ".env","admin.db","admin.html","db.log","kernel.conf","output.json",".logs/user.log","admin/.passwords/passwords.db","admin/adds.dev","admin/scala.run","config/config","config/config.log","config/config.php","config/initiate_connection.php" and some which should be harder ot detect :"dbx309183vbg$.out","presentation.pptx","quiyana.log","userLog321393029gx.txt","x321.log". For the purpose of this project all .log files have been filled with data from real project
+
+
+Extra parameters used :
+nitko:
+-Tuning 123457b9 -mutate 6 -mutate-options wordfile=~/common.txt -nointeractive
+
+
+
 
 
 = Tools For Finding Web Vulnerabilities 
