@@ -1,0 +1,10 @@
+[INF] Current nuclei version: v3.4.10 (latest)
+[INF] Current nuclei-templates version: v10.3.1 (latest)
+[INF] New templates added in latest release: 119
+[INF] Templates loaded for current scan: 8701
+[INF] Executing 5 signed templates from projectdiscovery/nuclei-templates
+[WRN] Loading 8696 unsigned templates for scan. Use with caution.
+[INF] Targets loaded for current scan: 1
+[INF] Templates clustered: 1825 (Reduced 1714 Requests)
+[INF] Scan completed in 15.23695888s. No results found.
+

@@ -36,7 +36,7 @@ This project will compare different open-source tools for scanning servers and f
 These applications are highly varied, with most being multi-functional black-box tools, which are capable of detecting SQL injections, subdomain guessing, file detection, credential guessing, and more. One exception is Dirsearch, which is application built and optimized for a specific task. It is a program designed solely for blindly discovering hidden files and directories using a predefined dictionary.
 
 = Tools and Tests
-The tools for this project were selected based on their differing implementations and approaches to detecting the CWEs being tested. The tools used will include Dirsearch, w3af, Nikto, Wapiti, Vega, and Grabber. Applications used as targets will be PHP web apps with varying implementations. Tested will be simple web apps with few lines of php all the way to larger projects written in laravel framework as well as DVWA. 
+The tools for this project were selected based on their differing implementations and approaches to detecting the CWEs being tested. The tools used will include Dirsearch, w3af, Nikto, Wapiti, and Grabber. Applications used as targets will be PHP web apps with varying implementations. Tested will be simple web apps with few lines of php all the way to larger projects written in laravel framework as well as DVWA. 
 
 = Methodology
 This section will explain the systematic approach which testing will take to ensure fair and consistent comparison.

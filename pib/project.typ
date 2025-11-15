@@ -83,7 +83,21 @@ For the purpose of testing hidden file discovery I've added to my vulnerable web
 Extra parameters used :
 nitko:
 -Tuning 123457b9 -mutate 6 -mutate-options wordfile=~/common.txt -nointeractive
+wapiti:
+wapiti -u http://localhost/ -m file --scope folder --scan-force aggressive --timeout 10 --max-scan-time 0 -f html -o ~/arch/second_year/pib/outputs/wapitiWebsiteOptDirS
+zap
+ boli pridané do nastavení tieto file types :php, html, js, bak, txt, zip, tar, conf, env,log,out,json
+ boli zapnuté nastavenia force browse files without extension a force browse files
+ Program bol schopný nájsť nie len všetky súbory ale aj najdôležitejšie súbory:
+  config/initiate_connection.php
+       /config.php
+       /local.php
+       /config
+  test/get_data.php
+      /load_tests.php
+Nuclei
 
+    
 
 
 
