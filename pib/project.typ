@@ -3,6 +3,27 @@
 
 #show link: set text(fill: blue, weight: 700)
 #show link: underline
+Freely distributable tools for finding web vulnerabilities
+
+= Introduction
+
+In this project I will be attempting to measure most some of the popular freely distributable open source tools for finding vulnerabilities in web applications. Here I will comparing tools based on how they perform in tests on 3 different appplications in 3 different activities. Emphasis will be put on number of true positives returned when executed. Activities include detection of sqli , unmaintained components and finding files accessible to external parties.
+
+= theoretical part
+ Tools selected are both specialized tools and blackbox tools. Specialized tools are programs made for one specific task. Black-box tools on the other hand are made to be capable of detecting all kinds of vulnerabilities. Since their focus is spread over a large area and each have very different implementations I will be running tests to compare their peformance and effectivness. While performing tests for hidden file detetion a specialized tool will be tested as well to show the differences between blackbox and specialized tool.
+
+
+= Scope of project
+determine goals,
+constraints ,
+strategies,
+tasks,
+and deliverables
+
+
+= project detail
+
+
 
 = Volunerabilities
 By definition Security vulnerabilities are defined as weaknesses in technology, software, or operational practices that can be exploited by threats, leading to potential risks such as unauthorized access or information leakage @securityVulnerability. These vulnerabilities can tak on various forms and in this paper I will be focusing on open source tools designed for finding flaws in networks and web applications.
@@ -12,90 +33,139 @@ Security vulnerability can be categorized into four categories those being softw
 Classification of Common Vulnerabilities and Exposures(CVE) is provided by NVD which is using Common Weakness Enumeration(CWE) classification mechanism that differentiates CVEs by the type of vulnerability they represent. This classification distributes CVEs into a hierarchical structure CWE on higher level provide overview of vulnerability type and can have many subtypes. CWE are classified based on their nature and effect. 
 
 Main types of CVE this paper will be focusing on will be
-- CWE-352: Cross-Site Request Forgery
-- CWE-425: Direct Request ('Forced Browsing')
-- CWE-668: Exposure of Resource to Wrong Sphere
-- CWE-200: Exposure of Sensitive Information to an Unauthorized Actor
+
+- CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
 - CWE-552: Files or Directories Accessible to External Parties
-- CWE-287: Improper Authentication
-//- CWE-295: Improper Certificate Validation
-- CWE-79:  Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')
-- CWE-307: Improper Restriction of Excessive Authentication Attempts
-- CWE-444: Inconsistent Interpretation of HTTP Requests ('HTTP Request/Response Smuggling')
-- CWE-613: Insufficient Session Expiration
-- CWE-918: Server-Side Request Forgery (SSRF)
-- CWE-521: Weak Password Requirements
+- CWE-1104: Use of Unmaintained Third Party Components
+
 All of which you can read more about on official nvd website.
 
 = Characteristics
-== *Cross-site request forgery*(csrf)
-is a vulnerability that takes advantage of web application in which target is currently authenticated and by gaining the targets authentication token the attacker proceed to make actions as if they were the target. This attack can lead to anything from sending messages on victims behalf up to transfering money. In worst cases entire web applications can be compromised if user has high level of auhtorization@cweCSRF.
 
-== *CWE-425: Direct Request ('Forced Browsing')*
-Direct Request or more commonly known as Forced browsing is a type of vulnerability that allows resctricted conten be accessed by unathorized users. This can be achieved by searching trough bruteforce for unlinked content on the server such as directories, temporary files or configuration files. As these files can contain sensitive information, prevention against this attack is vital. These attacks can be done both manually if too much context is given to user or trough automated tools such as Nitko. Nikto, open source too used for scanning vulnerabilities is capable of searching trough most common directories based on it's database and report the results to user. Example: with the use of nikto, an example website "www.exampl.com" would be scanned for most common directories like example.com/users , example.com/logs, example.com/images and more@cweDirectRequest. 
 
-== *CWE-668: Exposure of Resource to Wrong Sphere*
-Exposure of Resource to Wrong Sphere vulnerability allows a wrong person to access files meant for someone else. It's a vulnerability may sound similar to CWE-425 but main difference between these 2 CWEs is that CWE-668 could allow unauthorized person to read sensitive data from database or images from folder not accessible to them due to logical error. CWE-425 however attempts read all vulnerable information from files the serever. For easier understanding you can imagine it as someone accessing groupchat access to group he's not a part of@cweExposureOfResourceToWrongSphere.
+== *CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')*
+Sqli injection is a common mistake make which is made by using unsanitized user input concatenated into SQL, unsafe ORM usage, dynamic query building without param binding. Impact of this mistake includes but isn't limited to unauthorized data access, modification, authentication bypass.
+Detection: injection payloads, error message analysis, blind/time-based tests.
 
-== *CWE-200: Exposure of Sensitive Information to an Unauthorized Actor*
-todo:wtf is the difference between this and 668 ?
 
 == *CWE-552: Files or Directories Accessible to External Parties*
 This CWE is a relatively common mistake for beginners and missconfiguration of a server that allows unathorized user to access files not meant for them. This can affect any type of web server, ftp or similar server and is nearly always caused by missconfigured authorization. Most common way of abusing this missconfiguration is by using chroot() function.
-== *CWE-287: Improper Authentication*
-Improper Authentication is quite self explenatory. Even tho it's not a common vulnerability in this day and age the concept itself is something which needs to be addressed whenever a new security system is being made. Simply put, one needs to make sure that user trying to log in is who they say they are. Example of improper Aithentication would be a website where use logs in with username only. 
-
-== *CWE-79:  Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')*
-Cross-site Scripting is a practice in which attacker injects into website a malicious piece of code trough form of a social media post, a message or anything that other user may display. This malicios code when loaded by another client can cause harm in form of sharing private session key causing csrf or perhaps even by collecting sensitive user data. It is up to the developer to analyze and properly neutralize user input so this type attack is not possible.
-
-== *CWE-307: Improper Restriction of Excessive Authentication Attempts*
-Password cracking is to this day a huge topic and one of it's simplest forms is brute force attack. This type of attack will attempt to try every possible combination of available options to get past authentication system. As inneficient as it might seem, it's still very effective to this day because numerous systems still use a 4 digit authentication which can theoretically be broken in mere milliseconds. Standard precaution against this vulnerability is a restriction that is put into place which prevents user to login for set time after failing login some number of times.
-
-== *CWE-444: Inconsistent Interpretation of HTTP Requests ('HTTP Request/Response Smuggling')*
-This vulnerability has once again to do with inproper configuration. Attacker may use bad configuration of http response length to inject target device with malicious code that is given to client after the original message but pretends to be a part of it. This way even tho the web server deems the message to be safe the program will interprete it as 2 different actions allowing attacker to take unwanted action in the server.
-
-== *CWE-613: Insufficient Session Expiration*
-Insufficient Session Expiration can be abused by anyone listening in on your network.As web browsers put sessions informatino in your cookies, anyone listening on your nework may record this session. A recorded conversation over the network could be later used to access someones account and unwanted actions can be made in place of the user causing potential harm.
-
-== *CWE-918: Server-Side Request Forgery (SSRF)*
-SSRF is an attack which attempts to infiltrate internal network. By deceiving a web server, attacker may force server to send malicious action to devices in internal network therefore bypassing security as it's sent from a trusteddevice. Difference between SSRF and CSRF is that SSRF targets server itself. CSRF is on the other hand targeting user itself and making action on client side.
-
-== *CWE-521: Weak Password Requirements*
+Detection: forced directory enumeration, public file checks, crawling for common backup/hidden file names.
 
 
+== *CWE-1104: Use of Unmaintained Third Party Components*
+Common missmanagement mistake which happens when server admin does not properly update components and third party libraries of their application. Reliance on these components may result in third pary exploting vulnerabilities in these components which afterwards may result in any kind of damage from data leakage to whole servers or networks being compromised. 
+Detection: static analysis of dependency manifests, CVE database matching.
 
 
+= Tools
+Dirsearch – Specialized hidden file & directory enumeration
+w3af – Full-featured web vulnerability scanner (extensible plug-in architecture)
+Nikto – High-performance server scanner with large signature database
+Nuclei – One of the most popular open source projects of this sort
+Wapiti – Black-box scanner focusing on injection and file disclosure flaws
+Zap – GUI-based scanner developed by owasp
+Grabber – Lightweight scanner for small web applications
 
 
+= Experiments
+Experiments will be done
+
+
+= scope of experiments
 
 
 = Testing Environment
-First test will be conducted on a very faulty website that I coded myself. Whole project can be found here https://github.com/tomasswaier/infinityFreeWebsite/tree/c2569b1d7e5e77da0d68f011babb96452e250ba0 and link already contains exact sha I will be using as well. This website is faulty in multiple ways but 2 most important ones are sql injections in basically all php files.
+First test will be conducted on 3 targets.
 
-wordlist which all 
-
-
-
+First target is a very faulty website that I coded myself. Whole project can be found on github https://github.com/tomasswaier/infinityFreeWebsite/tree/c2569b1d7e5e77da0d68f011babb96452e250ba0 and link already contains exact sha I will be using as well. This website is faulty in multiple ways but 2 most important ones are sql injections in basically all php files and hidden files
+== SQLi
+Thjis project uses unsanitized user input directly in string concatendate sql injections making it very visibly vulnerable.
 == Hidden files
-For the purpose of testing hidden file discovery I've added to my vulnerable website couple of suspicious hidden files. These files are ".env","admin.db","admin.html","db.log","kernel.conf","output.json",".logs/user.log","admin/.passwords/passwords.db","admin/adds.dev","admin/scala.run","config/config","config/config.log","config/config.php","config/initiate_connection.php" and some which should be harder ot detect :"dbx309183vbg$.out","presentation.pptx","quiyana.log","userLog321393029gx.txt","x321.log". For the purpose of this project all .log files have been filled with data from real project
+For the purpose of testing hidden file discovery I've added to my vulnerable website couple of suspicious hidden files. These files are ".env","admin.db","admin.html","db.log","kernel.conf","output.json",".logs/user.log","admin/.passwords/passwords.db","admin/adds.dev","admin/scala.run","config/config","config/config.log","config/config.php","config/initiate_connection.php" and some which should be harder ot detect :"dbx309183vbg\$.out","presentation.pptx","quiyana.log","userLog321393029gx.txt","x321.log". For the purpose of this project all .log files have been filled with data from real project.
+
+Second target is custom made laravel application. This application should be an example of well made and secure application with no vulnerabilities. It will serve as a test for applications to see if they will be still able to find vulnerability even in a well secured environment.
 
 
-Extra parameters used :
-nitko:
--Tuning 123457b9 -mutate 6 -mutate-options wordfile=~/common.txt -nointeractive
-wapiti:
-wapiti -u http://localhost/ -m file --scope folder --scan-force aggressive --timeout 10 --max-scan-time 0 -f html -o ~/arch/second_year/pib/outputs/wapitiWebsiteOptDirS
-zap
- boli pridané do nastavení tieto file types :php, html, js, bak, txt, zip, tar, conf, env,log,out,json
- boli zapnuté nastavenia force browse files without extension a force browse files
- Program bol schopný nájsť nie len všetky súbory ale aj najdôležitejšie súbory:
-  config/initiate_connection.php
-       /config.php
-       /local.php
-       /config
-  test/get_data.php
-      /load_tests.php
-Nuclei
+Third targett is an open source project called Damn Vulnerable Web Application(DVWA) which is used specifically for these same purposes. It's an app designed to be vulnerable in every way possible so that security experts may test their skills against it.
+
+
+
+
+
+
+Optimal configuration used :
+  
+  nitko: 
+    dirsearch
+      -Tuning 123457b9 
+      -mutate 6 
+      -mutate-options wordfile=~/common.txt 
+      -nointeractive
+
+  wapiti:
+    dirsearch
+      -u http://localhost/ 
+      -m file --scope folder 
+      --scan-force aggressive 
+      --timeout 10 
+      --max-scan-time 0 
+      -f html 
+      -o ~/arch/second_year/pib/outputs/wapitiWebsiteOptDirS
+  
+  dirsearch 
+    dirsearch 
+      -u http://localhost:8000/ \
+      --extensions php,html,htm,txt,log,conf,env,ini,json,xml,bak,zip,old,sql \
+      --exclude-status 404 \
+      --recursive \
+      --deep-recursive \
+      --max-recursion-depth 5 \
+      --force-recursive \
+      --threads 50 \
+      --full-url \
+      --random-agent \
+      --no-color \
+      --format json \
+      --output results.json
+  
+  
+  
+  zap
+    dirsearch
+      These file types were added to the  settings :php, html, js, bak, txt, zip, tar, conf, env,log,out,json
+      Options force browse files without extension and force browse files were turned on 
+      Program was able to find the most relevant files 
+      config/initiate_connection.php
+           /config.php
+           /local.php
+           /config
+      test/get_data.php
+          /load_tests.php
+  
+  Nuclei
+    dirsearch
+      Optimal configuration for nuclei includes adding templates for exposures,configs,files and logs.
+  
+  Results:
+    dirsearch
+      nikto 
+        config, admin , test, .git and .env
+      
+      wapiti
+        0 potentially dangerous files
+  
+      zap
+        Program was able to find the most relevant files 
+        config/initiate_connection.php
+             /config.php
+             /local.php
+             /config
+        test/get_data.php
+            /load_tests.php
+      nuceli
+        This configuration resulted in nuclei finding .git , /config/ and .env.  
+  
 
     
 
@@ -103,9 +173,12 @@ Nuclei
 
 
 = Tools For Finding Web Vulnerabilities 
-applications to describe Dirsearch,w3af,nikto,CloudSploit,Wapiti,Vega,Grabber
+applications to describe Dirsearch,w3af,nikto,nuclei,Wapiti,zap,Grabber
 = w3af 
 w3af includes csrf testing
+
+
+= Result Evaluation
 
 
 #bibliography("works.yaml",style:"ieee")

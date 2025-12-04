@@ -1,0 +1,4978 @@
+{
+    "info": {
+        "args": "/home/MaryAnn/arch/second_year/pib/wapiti3/bin/dirsearch -u http://localhost/ --extensions php,html,htm,txt,log,conf,env,ini,json,xml,bak,zip,old,sql --exclude-status 404 --recursive --deep-recursive --max-recursion-depth 5 --force-recursive --threads 50 --full-url --random-agent --no-color --format json --output outputs/dirsearchWebsiteOpt.txt",
+        "time": "Thu Dec  4 22:06:34 2025"
+    },
+    "results": [
+        {
+            "content-length": 1128,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.env"
+        },
+        {
+            "content-length": 2772,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.git/"
+        },
+        {
+            "content-length": 230,
+            "content-type": "text/html",
+            "redirect": "http://localhost/.git/",
+            "status": 301,
+            "url": "http://localhost/.git"
+        },
+        {
+            "content-length": 275,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.git/config"
+        },
+        {
+            "content-length": 41,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.git/HEAD"
+        },
+        {
+            "content-length": 73,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.git/description"
+        },
+        {
+            "content-length": 3831,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.git/hooks/"
+        },
+        {
+            "content-length": 1477,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.git/index"
+        },
+        {
+            "content-length": 897,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.git/info/"
+        },
+        {
+            "content-length": 240,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.git/info/exclude"
+        },
+        {
+            "content-length": 1102,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.git/logs/"
+        },
+        {
+            "content-length": 199,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.git/logs/refs/remotes/origin/HEAD"
+        },
+        {
+            "content-length": 402,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.git/logs/HEAD"
+        },
+        {
+            "content-length": 240,
+            "content-type": "text/html",
+            "redirect": "http://localhost/.git/logs/refs/",
+            "status": 301,
+            "url": "http://localhost/.git/logs/refs"
+        },
+        {
+            "content-length": 246,
+            "content-type": "text/html",
+            "redirect": "http://localhost/.git/logs/refs/heads/",
+            "status": 301,
+            "url": "http://localhost/.git/logs/refs/heads"
+        },
+        {
+            "content-length": 255,
+            "content-type": "text/html",
+            "redirect": "http://localhost/.git/logs/refs/remotes/origin/",
+            "status": 301,
+            "url": "http://localhost/.git/logs/refs/remotes/origin"
+        },
+        {
+            "content-length": 1108,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.git/objects/"
+        },
+        {
+            "content-length": 112,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.git/packed-refs"
+        },
+        {
+            "content-length": 250,
+            "content-type": "text/html",
+            "redirect": "http://localhost/.git/refs/remotes/origin/",
+            "status": 301,
+            "url": "http://localhost/.git/refs/remotes/origin"
+        },
+        {
+            "content-length": 1314,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.git/refs/"
+        },
+        {
+            "content-length": 241,
+            "content-type": "text/html",
+            "redirect": "http://localhost/.git/refs/heads/",
+            "status": 301,
+            "url": "http://localhost/.git/refs/heads"
+        },
+        {
+            "content-length": 243,
+            "content-type": "text/html",
+            "redirect": "http://localhost/.git/refs/remotes/",
+            "status": 301,
+            "url": "http://localhost/.git/refs/remotes"
+        },
+        {
+            "content-length": 30,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.git/refs/remotes/origin/HEAD"
+        },
+        {
+            "content-length": 240,
+            "content-type": "text/html",
+            "redirect": "http://localhost/.git/refs/tags/",
+            "status": 301,
+            "url": "http://localhost/.git/refs/tags"
+        },
+        {
+            "content-length": 33,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.gitignore"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.httr-oauth"
+        },
+        {
+            "content-length": 248,
+            "content-type": "text/html",
+            "redirect": "http://localhost/.git/logs/refs/remotes/",
+            "status": 301,
+            "url": "http://localhost/.git/logs/refs/remotes"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.html"
+        },
+        {
+            "content-length": 231,
+            "content-type": "text/html",
+            "redirect": "http://localhost/admin/",
+            "status": 301,
+            "url": "http://localhost/admin"
+        },
+        {
+            "content-length": 0,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/admin.html"
+        },
+        {
+            "content-length": 1098,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/admin/"
+        },
+        {
+            "content-length": 1067,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 500,
+            "url": "http://localhost/cgi-bin/printenv"
+        },
+        {
+            "content-length": 1067,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 500,
+            "url": "http://localhost/cgi-bin/test-cgi"
+        },
+        {
+            "content-length": 1032,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/cgi-bin/"
+        },
+        {
+            "content-length": 232,
+            "content-type": "text/html",
+            "redirect": "http://localhost/config/",
+            "status": 301,
+            "url": "http://localhost/config"
+        },
+        {
+            "content-length": 1753,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/config/"
+        },
+        {
+            "content-length": 356929,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/db.log"
+        },
+        {
+            "content-length": 1032,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/"
+        },
+        {
+            "content-length": 114226,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/favicon.ico"
+        },
+        {
+            "content-length": 236,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin"
+        },
+        {
+            "content-length": 15118,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/doc/html/index.html"
+        },
+        {
+            "content-length": 148973,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/"
+        },
+        {
+            "content-length": 71006,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/ChangeLog"
+        },
+        {
+            "content-length": 1520,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/README"
+        },
+        {
+            "content-length": 148973,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php"
+        },
+        {
+            "content-length": 111,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/README.md"
+        },
+        {
+            "content-length": 896,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/resources/"
+        },
+        {
+            "content-length": 235,
+            "content-type": "text/html",
+            "redirect": "http://localhost/resources/",
+            "status": 301,
+            "url": "http://localhost/resources"
+        },
+        {
+            "content-length": 2295,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/test/"
+        },
+        {
+            "content-length": 230,
+            "content-type": "text/html",
+            "redirect": "http://localhost/test/",
+            "status": 301,
+            "url": "http://localhost/test"
+        },
+        {
+            "content-length": 356929,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/user.log"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/.httr-oauth"
+        },
+        {
+            "content-length": 235,
+            "content-type": "text/html",
+            "redirect": "http://localhost/.git/info/",
+            "status": 301,
+            "url": "http://localhost/.git/info"
+        },
+        {
+            "content-length": 235,
+            "content-type": "text/html",
+            "redirect": "http://localhost/.git/logs/",
+            "status": 301,
+            "url": "http://localhost/.git/logs"
+        },
+        {
+            "content-length": 238,
+            "content-type": "text/html",
+            "redirect": "http://localhost/.git/objects/",
+            "status": 301,
+            "url": "http://localhost/.git/objects"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/hooks/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/hooks/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/hooks/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/hooks/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/hooks/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/hooks/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/hooks/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/hooks/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/hooks/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/hooks/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/hooks/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/hooks/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/hooks/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/hooks/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/hooks/.httr-oauth"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/hooks/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/info/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/info/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/info/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/info/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/info/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/info/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/info/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/info/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/info/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/info/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/info/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/info/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/info/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/info/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/info/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/info/.httr-oauth"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/.httr-oauth"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/.httr-oauth"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/heads/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/heads/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/heads/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/heads/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/heads/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/heads/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/heads/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/heads/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/heads/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/heads/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/heads/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/heads/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/heads/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/heads/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/heads/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/heads/.httr-oauth"
+        },
+        {
+            "content-length": 199,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.git/logs/refs/heads/main"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/.httr-oauth"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/origin/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/origin/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/origin/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/origin/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/origin/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/origin/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/origin/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/origin/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/origin/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/origin/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/origin/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/origin/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/origin/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/origin/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/origin/.httr-oauth"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/logs/refs/remotes/origin/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/.httr-oauth"
+        },
+        {
+            "content-length": 243,
+            "content-type": "text/html",
+            "redirect": "http://localhost/.git/objects/info/",
+            "status": 301,
+            "url": "http://localhost/.git/objects/info"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/.httr-oauth"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/heads/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/heads/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/heads/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/heads/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/heads/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/heads/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/heads/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/heads/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/heads/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/heads/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/heads/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/heads/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/heads/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/heads/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/heads/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/heads/.httr-oauth"
+        },
+        {
+            "content-length": 41,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/.git/refs/heads/main"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/.httr-oauth"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/origin/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/origin/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/origin/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/origin/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/origin/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/origin/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/origin/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/origin/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/origin/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/origin/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/origin/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/origin/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/origin/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/origin/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/origin/.httr-oauth"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/remotes/origin/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/tags/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/tags/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/tags/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/tags/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/tags/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/tags/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/tags/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/tags/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/tags/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/tags/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/tags/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/tags/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/tags/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/tags/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/tags/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/refs/tags/.httr-oauth"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.httr-oauth"
+        },
+        {
+            "content-length": 242,
+            "content-type": "text/html",
+            "redirect": "http://localhost/admin/.passwords/",
+            "status": 301,
+            "url": "http://localhost/admin/.passwords"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/cgi-bin/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/cgi-bin/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/cgi-bin/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/cgi-bin/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/cgi-bin/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/cgi-bin/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/cgi-bin/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/cgi-bin/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/cgi-bin/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/cgi-bin/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/cgi-bin/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/cgi-bin/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/cgi-bin/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/cgi-bin/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/cgi-bin/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/cgi-bin/.httr-oauth"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/config/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/config/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/config/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/config/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/config/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/config/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/config/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/config/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/config/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/config/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/config/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/config/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/config/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/config/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/config/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/config/.httr-oauth"
+        },
+        {
+            "content-length": 269,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/config/config"
+        },
+        {
+            "content-length": 0,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/config/config.php"
+        },
+        {
+            "content-length": 356929,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/config/config.log"
+        },
+        {
+            "content-length": 1,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/config/local.php"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/.httr-oauth"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/accounts.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/adm.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/admin.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/apply.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/AT-admin.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/auth.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/cachemgr.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/dcadmin.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/debug.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/hndUnblock.cgi"
+        },
+        {
+            "content-length": 239,
+            "content-type": "text/html",
+            "redirect": "http://localhost/error/include/",
+            "status": 301,
+            "url": "http://localhost/error/include"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/login.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/members.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/mt-check.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/mt.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/mt-xmlrpc.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/out.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/perlcmd.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/ps_admin.cgi"
+        },
+        {
+            "content-length": 2267,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/error/README"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/signin.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/test.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/WebShell.cgi"
+        },
+        {
+            "content-length": 240,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/sql/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/sql"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/.htaccess.bak1"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/.htaccess.sample"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/.htaccess.save"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/.htaccess.orig"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/.htaccess_extra"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/.htaccess_orig"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/.htaccess_sc"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/.htaccessOLD"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/.htaccessBAK"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/.htaccessOLD2"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/.html"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/.htm"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/.htpasswds"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/.htpasswd_test"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/.httr-oauth"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/accounts.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/adm.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/admin.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/apply.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/AT-admin.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/auth.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/cachemgr.cgi"
+        },
+        {
+            "content-length": 5323,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/composer.json"
+        },
+        {
+            "content-length": 305844,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/composer.lock"
+        },
+        {
+            "content-length": 0,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/config.inc.php"
+        },
+        {
+            "content-length": 2587,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/CONTRIBUTING.md"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/dcadmin.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/debug.cgi"
+        },
+        {
+            "content-length": 240,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/doc/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/doc"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/examples/"
+        },
+        {
+            "content-length": 245,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/examples/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/examples"
+        },
+        {
+            "content-length": 22486,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/favicon.ico"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/hndUnblock.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/js/"
+        },
+        {
+            "content-length": 239,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/js/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/js"
+        },
+        {
+            "content-length": 246,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/libraries/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/libraries"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/libraries/"
+        },
+        {
+            "content-length": 18092,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/LICENSE"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/login.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/members.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/mt-xmlrpc.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/mt-check.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/mt.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/out.cgi"
+        },
+        {
+            "content-length": 2787,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/package.json"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/perlcmd.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/ps_admin.cgi"
+        },
+        {
+            "content-length": 26,
+            "content-type": "text/plain",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/robots.txt"
+        },
+        {
+            "content-length": 1002,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/setup/"
+        },
+        {
+            "content-length": 242,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/setup/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/setup"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/signin.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/sql/"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/templates/"
+        },
+        {
+            "content-length": 246,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/templates/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/templates"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/test.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/themes/"
+        },
+        {
+            "content-length": 243,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/themes/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/themes"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/tmp/"
+        },
+        {
+            "content-length": 240,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/tmp/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/tmp"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/vendor/"
+        },
+        {
+            "content-length": 0,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/vendor/composer/autoload_files.php"
+        },
+        {
+            "content-length": 0,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/vendor/composer/autoload_namespaces.php"
+        },
+        {
+            "content-length": 0,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/vendor/composer/autoload_real.php"
+        },
+        {
+            "content-length": 0,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/vendor/composer/autoload_psr4.php"
+        },
+        {
+            "content-length": 0,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/vendor/autoload.php"
+        },
+        {
+            "content-length": 0,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/vendor/composer/autoload_classmap.php"
+        },
+        {
+            "content-length": 0,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/vendor/composer/autoload_static.php"
+        },
+        {
+            "content-length": 150009,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/vendor/composer/installed.json"
+        },
+        {
+            "content-length": 0,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/vendor/composer/ClassLoader.php"
+        },
+        {
+            "content-length": 1070,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/vendor/composer/LICENSE"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/WebShell.cgi"
+        },
+        {
+            "content-length": 253106,
+            "content-type": "unknown",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/yarn.lock"
+        },
+        {
+            "content-length": 245,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/doc/html/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/doc/html"
+        },
+        {
+            "content-length": 15118,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/doc/html/"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/.htaccess.bak1"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/.htaccess.orig"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/.htaccess.save"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/.htaccess.sample"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/.htaccess_extra"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/.htaccess_sc"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/.htaccess_orig"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/.htaccessBAK"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/.htaccessOLD"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/.htaccessOLD2"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/.htm"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/.html"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/.htpasswds"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/.htpasswd_test"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/.httr-oauth"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/accounts.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/adm.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/admin.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/apply.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/AT-admin.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/auth.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/cachemgr.cgi"
+        },
+        {
+            "content-length": 356313,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/doc/html/config.html"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/dcadmin.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/debug.cgi"
+        },
+        {
+            "content-length": 206394,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/doc/html/faq.html"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/hndUnblock.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/login.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/members.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/mt-check.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/mt-xmlrpc.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/mt.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/out.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/perlcmd.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/ps_admin.cgi"
+        },
+        {
+            "content-length": 3167,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/doc/html/search.html"
+        },
+        {
+            "content-length": 5950,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/doc/html/settings.html"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/signin.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/test.cgi"
+        },
+        {
+            "content-length": 8373,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/doc/html/user.html"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/doc/html/WebShell.cgi"
+        },
+        {
+            "content-length": 148490,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/translation-table?type=mst&textdomain=/%2bCSCOE%2b/portal_inc.lua&default-language&lang=../"
+        },
+        {
+            "content-length": 148490,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/remote/fgt_lang?lang=/../../../../////////////////////////bin/sslvpnd"
+        },
+        {
+            "content-length": 148490,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/remote/fgt_lang?lang=/../../../..//////////dev/cmdb/sslvpn_websession"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/resources/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/resources/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/resources/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/resources/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/resources/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/resources/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/resources/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/resources/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/resources/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/resources/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/resources/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/resources/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/resources/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/resources/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/resources/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/resources/.httr-oauth"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/test/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/test/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/test/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/test/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/test/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/test/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/test/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/test/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/test/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/test/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/test/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/test/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/test/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/test/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/test/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/test/.httr-oauth"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/info/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/info/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/info/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/info/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/info/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/info/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/info/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/info/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/info/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/info/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/info/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/info/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/info/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/info/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/info/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/.git/objects/info/.httr-oauth"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.passwords/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.passwords/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.passwords/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.passwords/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.passwords/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.passwords/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.passwords/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.passwords/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.passwords/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.passwords/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.passwords/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.passwords/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.passwords/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.passwords/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.passwords/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/admin/.passwords/.httr-oauth"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/.htaccess.bak1"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/.htaccess.orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/.htaccess.save"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/.htaccess_orig"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/.htaccess_extra"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/.htaccess_sc"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/.htaccessOLD"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/.htaccessBAK"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/.htaccessOLD2"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/.htm"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/.html"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/.htpasswd_test"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/.htpasswds"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/.httr-oauth"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/.htaccess.sample"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/accounts.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/adm.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/admin.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/apply.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/AT-admin.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/auth.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/cachemgr.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/dcadmin.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/debug.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/hndUnblock.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/login.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/members.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/mt-check.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/mt-xmlrpc.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/mt.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/out.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/perlcmd.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/ps_admin.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/signin.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/test.cgi"
+        },
+        {
+            "content-length": 1018,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/error/include/WebShell.cgi"
+        },
+        {
+            "content-length": 246,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/js/config/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/js/config"
+        },
+        {
+            "content-length": 244,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/js/dist/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/js/dist"
+        },
+        {
+            "content-length": 243,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/js/src/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/js/src"
+        },
+        {
+            "content-length": 252,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/libraries/cache/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/libraries/cache"
+        },
+        {
+            "content-length": 254,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/libraries/classes/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/libraries/classes"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/.ht_wsr.txt"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/.htaccess.bak1"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/.htaccess.sample"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/.htaccess.orig"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/.htaccess_orig"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/.htaccess_extra"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/.htaccess.save"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/.htaccess_sc"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/.htaccessBAK"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/.htaccessOLD"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/.htaccessOLD2"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/.htm"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/.html"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/.htpasswd_test"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/.htpasswds"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/.httr-oauth"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/accounts.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/adm.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/admin.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/apply.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/AT-admin.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/auth.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/cachemgr.cgi"
+        },
+        {
+            "content-length": 20,
+            "content-type": "text/html",
+            "redirect": "index.php?page=config",
+            "status": 303,
+            "url": "http://localhost/phpmyadmin/setup/config.php"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/dcadmin.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/debug.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/hndUnblock.cgi"
+        },
+        {
+            "content-length": 246,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/setup/lib/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/setup/lib"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/lib/"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/login.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/members.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/mt-check.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/mt.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/mt-xmlrpc.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/out.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/perlcmd.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/ps_admin.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/signin.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/test.cgi"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/themes/"
+        },
+        {
+            "content-length": 249,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/setup/themes/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/setup/themes"
+        },
+        {
+            "content-length": 1187,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 403,
+            "url": "http://localhost/phpmyadmin/setup/WebShell.cgi"
+        },
+        {
+            "content-length": 250,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/templates/sql/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/templates/sql"
+        },
+        {
+            "content-length": 257,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/templates/components/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/templates/components"
+        },
+        {
+            "content-length": 253,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/templates/config/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/templates/config"
+        },
+        {
+            "content-length": 254,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/templates/console/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/templates/console"
+        },
+        {
+            "content-length": 255,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/templates/database/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/templates/database"
+        },
+        {
+            "content-length": 254,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/templates/display/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/templates/display"
+        },
+        {
+            "content-length": 252,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/templates/error/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/templates/error"
+        },
+        {
+            "content-length": 253,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/templates/export/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/templates/export"
+        },
+        {
+            "content-length": 251,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/templates/home/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/templates/home"
+        },
+        {
+            "content-length": 253,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/templates/import/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/templates/import"
+        },
+        {
+            "content-length": 257,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/templates/javascript/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/templates/javascript"
+        },
+        {
+            "content-length": 252,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/templates/login/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/templates/login"
+        },
+        {
+            "content-length": 251,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/templates/menu/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/templates/menu"
+        },
+        {
+            "content-length": 254,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/templates/plugins/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/templates/plugins"
+        },
+        {
+            "content-length": 253,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/templates/server/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/templates/server"
+        },
+        {
+            "content-length": 252,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/templates/setup/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/templates/setup"
+        },
+        {
+            "content-length": 250,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/vendor/google/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/vendor/google"
+        },
+        {
+            "content-length": 254,
+            "content-type": "text/html",
+            "redirect": "http://localhost/phpmyadmin/vendor/phpmyadmin/",
+            "status": 301,
+            "url": "http://localhost/phpmyadmin/vendor/phpmyadmin"
+        },
+        {
+            "content-length": 148355,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/%3f/"
+        },
+        {
+            "content-length": 148490,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table?type=mst&textdomain=/%2bCSCOE%2b/portal_inc.lua&default-language&lang=../"
+        },
+        {
+            "content-length": 148373,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/translation-table/%3f/"
+        },
+        {
+            "content-length": 148354,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/remote/%3f/"
+        },
+        {
+            "content-length": 148363,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/remote/fgt_lang/%3f/"
+        },
+        {
+            "content-length": 148490,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/remote/fgt_lang/+CSCOT+/translation-table?type=mst&textdomain=/%2bCSCOE%2b/portal_inc.lua&default-language&lang=../"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/txt.tar"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/php.tar"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/html.tar"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/htm.tar"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/log.tar"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/sql.php"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/conf.tar"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/env.tar"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/ini.tar"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/json.tar"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/ini.old"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/%2e%2e//google.com"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/zip.old"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/log"
+        },
+        {
+            "content-length": 148381,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/%3f/"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/php.php"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/ini.bak"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/conf.old"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/sql.old"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/json.old"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/+CSCOT+/translation-table/!.htpasswd"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/translation-table/%3f/%2e%2e//google.com"
+        },
+        {
+            "content-length": 148526,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/+CSCOT+/translation-table/%3f/+CSCOT+/translation-table?type=mst&textdomain=/%2bCSCOE%2b/portal_inc.lua&default-language&lang=../"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/remote/%3f/%2e%2e//google.com"
+        },
+        {
+            "content-length": 148337,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/remote/fgt_lang/%3f/%2e%2e//google.com"
+        },
+        {
+            "content-length": 148371,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/remote/fgt_lang/+CSCOT+/%3f/"
+        },
+        {
+            "content-length": 148490,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/remote/fgt_lang/+CSCOT+/+CSCOT+/translation-table?type=mst&textdomain=/%2bCSCOE%2b/portal_inc.lua&default-language&lang=../"
+        },
+        {
+            "content-length": 148490,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/remote/fgt_lang/+CSCOT+/remote/fgt_lang?lang=/../../../../////////////////////////bin/sslvpnd"
+        },
+        {
+            "content-length": 148490,
+            "content-type": "text/html",
+            "redirect": "",
+            "status": 200,
+            "url": "http://localhost/phpmyadmin/index.php/remote/fgt_lang/+CSCOT+/remote/fgt_lang?lang=/../../../..//////////dev/cmdb/sslvpn_websession"
+        }
+    ]
+}

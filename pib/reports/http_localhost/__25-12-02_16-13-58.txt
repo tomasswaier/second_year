@@ -1,0 +1,55 @@
+# Dirsearch started Tue Dec  2 16:14:20 2025 as: /home/MaryAnn/arch/second_year/pib/wapiti3/bin/dirsearch -u http://localhost/
+
+200     1KB  http://localhost/.env
+301   230B   http://localhost/.git    -> REDIRECTS TO: http://localhost/.git/
+200   275B   http://localhost/.git/config
+200     3KB  http://localhost/.git/
+200    73B   http://localhost/.git/description
+200    41B   http://localhost/.git/HEAD
+200     4KB  http://localhost/.git/hooks/
+200     1KB  http://localhost/.git/index
+200   897B   http://localhost/.git/info/
+200   240B   http://localhost/.git/info/exclude
+200     1KB  http://localhost/.git/logs/
+301   240B   http://localhost/.git/logs/refs    -> REDIRECTS TO: http://localhost/.git/logs/refs/
+301   246B   http://localhost/.git/logs/refs/heads    -> REDIRECTS TO: http://localhost/.git/logs/refs/heads/
+200   402B   http://localhost/.git/logs/HEAD
+301   248B   http://localhost/.git/logs/refs/remotes    -> REDIRECTS TO: http://localhost/.git/logs/refs/remotes/
+301   255B   http://localhost/.git/logs/refs/remotes/origin    -> REDIRECTS TO: http://localhost/.git/logs/refs/remotes/origin/
+200   199B   http://localhost/.git/logs/refs/remotes/origin/HEAD
+200     1KB  http://localhost/.git/objects/
+200     1KB  http://localhost/.git/refs/
+200   112B   http://localhost/.git/packed-refs
+301   241B   http://localhost/.git/refs/heads    -> REDIRECTS TO: http://localhost/.git/refs/heads/
+301   243B   http://localhost/.git/refs/remotes    -> REDIRECTS TO: http://localhost/.git/refs/remotes/
+301   250B   http://localhost/.git/refs/remotes/origin    -> REDIRECTS TO: http://localhost/.git/refs/remotes/origin/
+200    30B   http://localhost/.git/refs/remotes/origin/HEAD
+301   240B   http://localhost/.git/refs/tags    -> REDIRECTS TO: http://localhost/.git/refs/tags/
+200    33B   http://localhost/.gitignore
+403  1018B   http://localhost/.ht_wsr.txt
+403  1018B   http://localhost/.htaccess.bak1
+403  1018B   http://localhost/.htaccess.save
+403  1018B   http://localhost/.htaccess.sample
+403  1018B   http://localhost/.htaccess_extra
+403  1018B   http://localhost/.htaccess.orig
+403  1018B   http://localhost/.htaccess_orig
+403  1018B   http://localhost/.htaccess_sc
+403  1018B   http://localhost/.htaccessBAK
+403  1018B   http://localhost/.htaccessOLD
+403  1018B   http://localhost/.htaccessOLD2
+403  1018B   http://localhost/.htm
+403  1018B   http://localhost/.html
+403  1018B   http://localhost/.htpasswds
+403  1018B   http://localhost/.htpasswd_test
+403  1018B   http://localhost/.httr-oauth
+301   231B   http://localhost/admin    -> REDIRECTS TO: http://localhost/admin/
+200     0B   http://localhost/admin.html
+200     1KB  http://localhost/admin/
+403     1KB  http://localhost/cgi-bin/
+500     1KB  http://localhost/cgi-bin/printenv
+500     1KB  http://localhost/cgi-bin/test-cgi
+301   232B   http://localhost/config    -> REDIRECTS TO: http://localhost/config/
+200     2KB  http://localhost/config/
+200   349KB  http://localhost/db.log
+403     1KB  http://localhost/error/
+200   112KB  http://localhost/favicon.ico
