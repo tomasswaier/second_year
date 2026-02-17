@@ -70,7 +70,7 @@ Neurónová sieť AlphaCode2 na tento príklad (z anglického zadania) našla ri
 						pop island 
 					operations++ 
 			return the number of operations
-		log2(maxGap+1)
+		log2(maxGap+1)zq
 
 
 3 Analýza algoritmu (15 bodov)
@@ -91,13 +91,13 @@ Máme daný graf a n vrcholmi a chceme nájsť najväčšiu nezávislú množinu
 2. (10 bodov) Máme n vrcholov očíslovaných 1,..., n. Na vstupe je q príkazov, ktoré môžu byť dvoch typov: príkaz '1 u v' pridá hranu medzi u a v, príkaz '2 u v' odoberie hranu (vstup je korektný, t.j. pri '1 u v' hrana medzi u a v neexistuje, pri '2 u v' áno). Po každom príkaze treba vypísať, koľko vrcholov by prežilo, keby sa spustil KO-proces. KO-proces funguje tak, že sa odstránia vrcholy, ktoré majú aspoň jedného suseda a zároveň všetci ich susedia sú väčší. Táto operácia sa opakuje, kým nenastane stabilný stav, a tým KO-proces skončí. Detailne zdôvodnite korektnosť a zložitosť Vášho algoritmu.
 
 3. (10 bodov) Máme pole int a[n]; a funkciu komar, ktorú zavoláme komar (0,n-1).
-void komar (int 1, int r) {
-	if (1 >= r - 1) {
+void komar (int l, int r) {
+	if (l >= r - 1) {
 		if (a[1] > a[r]) swap (a [1], a[r]);
 	} else {
-		komar (1 + 1, r);
-		komar (1, r - 1);
-		komar (1 + 1, r); // A
+		komar (l + 1, r);
+		komar (l, r - 1);
+		komar (l + 1, r); // A
 	}
 }
 a) Napíšte funkciu somar (int 1, int r), ktorá robí to isté, ale je čo najefektívnejšia. Aká je zložitost komar a somar?
