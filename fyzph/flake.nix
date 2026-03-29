@@ -18,6 +18,7 @@
 						pkgs.libGL
 						pkgs.libGLU
 						pkgs.pkg-config
+						pkgs.obs-studio
           ];
         };
       }
